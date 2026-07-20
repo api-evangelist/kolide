@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: searched
+source:
+- https://www.kolide.com/docs/developers/api
+- openapi/kolide-k2-openapi.json
+- openapi/kolide-k2-2023-05-26-openapi.json
+docs: https://www.kolide.com/docs/developers/api
+api: K2 API
+base_url: https://api.kolide.com
+summary:
+  types: [http]
+  model: static bearer API keys — no OAuth authorization server, no scopes, no OIDC
+schemes:
+- name: api_key
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  format: 'Authorization: Bearer $KOLIDE_API_TOKEN'
+  applied: 'globally via root-level security [{api_key: []}] on all 65 operations'
+  sources:
+  - openapi/kolide-k2-openapi.json
+  - openapi/kolide-k2-2023-05-26-openapi.json
+  token:
+    shape: $PREFIX_$VERSION_$SECRET
+    prefix: k2sk
+    version_segment: v1
+    example_documented_by_provider: k2sk_v1_A2UYhW7OPt2jKKLqmFcaGNK7
+    rotation: manual, via the admin dashboard
+    expiry: not documented
+  provisioning:
+    ui_path: Settings > Developers > API Keys
+    required_role: administrator
+  authorization:
+    model: per-key permissions
+    read: available to all plans
+    write: >-
+      Available exclusively to Kolide Max subscribers. Write access must be granted
+      explicitly per key and requires a documented rationale at creation time.
+    scopes: none — Kolide does not expose an OAuth scope surface
+secondary_credentials:
+- name: SSF poll bearer token
+  header: X-Kolide-Poll-Bearer-Token
+  applies_to: SSF stream polling (RFC 8936)
+  rotation: 'POST /ssf_streams/{id}/rotate_poll_token with overlap | immediate | disable modes'
+  source: https://www.kolide.com/docs/developers/ssf-streams
+- name: webhook signing secret
+  header: Authorization
+  algorithm: HMAC-SHA256 hex digest over the raw request body
+  applies_to: inbound webhook verification
+  source: https://www.kolide.com/docs/developers/webhooks
+related_headers:
+- name: X-Kolide-Api-Version
+  purpose: Pin the dated API version line (current 2026-04-07); optional, defaults to latest
+gaps:
+- No OAuth 2.0 or OpenID Connect support; no /.well-known/oauth-authorization-server or
+  /.well-known/openid-configuration (both 404).
+- No scope surface — permissions are coarse per-key grants, not delegatable scopes.
+- No documented token expiry or automated rotation for the primary k2sk API key.
+- No mutual TLS or request-signing option for API calls.
