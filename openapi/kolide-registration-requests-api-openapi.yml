@@ -1,0 +1,394 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users Registration Requests API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: Registration Requests
+paths:
+  /registration_requests:
+    get:
+      summary: Fetch a list of Registration requests
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`status` , `requested_at` , `requester_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'status:':
+            summary: search the 'status' property of the Registration Request records using ':' operator
+            value: status:enumerated-value
+          'requested_at:':
+            summary: search the 'requested_at' property of the Registration Request records using ':' operator
+            value: requested_at:2000-01-08T20:38:21Z
+          requested_at<:
+            summary: search the 'requested_at' property of the Registration Request records using '<' operator
+            value: requested_at<2000-01-08T20:38:21Z
+          requested_at>:
+            summary: search the 'requested_at' property of the Registration Request records using '>' operator
+            value: requested_at>2000-01-08T20:38:21Z
+          'requester_message:':
+            summary: search the 'requester_message' property of the Registration Request records using ':' operator
+            value: requester_message:string
+          requester_message~:
+            summary: search the 'requester_message' property of the Registration Request records using '~' operator
+            value: requester_message~string
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Registration requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'A registration request is created when someone requests admin
+
+                      approval to register a device with Kolide. Registration requests can
+
+                      be approved or denied by admins.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/registration_request'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/registration_requests?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Registration Requests
+  /registration_requests/{id}:
+    get:
+      summary: Fetch information for a specific Registration request
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the registration request
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'A registration request is created when someone requests admin
+
+            approval to register a device with Kolide. Registration requests can
+
+            be approved or denied by admins.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registration_request'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Registration Requests
+    patch:
+      summary: Update an existing Registration request
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the registration request
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Registration request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registration_request'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registration_request_request_body'
+      tags:
+      - Registration Requests
+    put:
+      summary: Update an existing Registration request
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the registration request
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Registration request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registration_request'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registration_request_request_body'
+      tags:
+      - Registration Requests
+components:
+  schemas:
+    registration_request:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this Registration Request
+        status:
+          type: string
+          description: 'The current status of this registration request. One of: pending, approved, denied'
+        requester_message:
+          type: string
+          description: The message the person provided when requesting approval for this registration
+        internal_denial_note:
+          type: string
+          description: The internal explanation the admin provided when denying this request, for internal documentation. This message is not shown to the person requesting the registration approval. This property will be blank if the registration has not been denied.
+        internal_approval_note:
+          type: string
+          description: The internal explanation the admin provided when approving this request, for internal documentation. This message is not shown to the person requesting the registration approval. This property will be blank if the registration has not been approved.
+        requested_at:
+          type: string
+          description: The timestamp representing when the registration approval was requested
+          format: date-time
+        end_user_denial_note:
+          type: string
+          description: The message the admin provided for the requester when denying this registration request. This message is meant to be shown to the person requesting the exemption. This property will be blank if the exemption has not been denied
+        requester_information:
+          allOf:
+          - description: Information for fetching the complete data on the person who requested this registration
+          - $ref: '#/components/schemas/link-object'
+        device_information:
+          allOf:
+          - description: Information for fetching the complete data about the device the person is trying to register
+          - $ref: '#/components/schemas/link-object'
+    registration_request_request_body:
+      type: object
+      properties:
+        status:
+          type: string
+          description: 'Desired status of the registration request. One of: ''approved'' or ''denied'''
+        internal_denial_reason:
+          type: string
+          description: 'DEPRECATED: use the ''internal_message'' field instead.
+
+            The internal explanation for denying this request.
+
+            This message is not shown to the person requesting
+
+            registration approval, it is only for internal documentation
+
+            in the audit log. This parameter is ignored unless the status is ''denied''.
+
+            '
+        internal_message:
+          type: string
+          description: 'The internal explanation for approving or denying this request.
+
+            This message is not shown to the person requesting
+
+            registration approval, it is only for internal documentation
+
+            in the audit log. This parameter is optional
+
+            '
+        end_user_denial_message:
+          type: string
+          description: 'The message the admin provided for the requester when denying
+
+            this registration. This message is meant to be shown to the
+
+            person requesting registration approval. This parameter is
+
+            required if the status is ''denied''
+
+            '
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer

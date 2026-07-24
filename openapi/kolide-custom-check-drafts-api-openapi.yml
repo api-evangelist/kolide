@@ -1,0 +1,362 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users Custom Check Drafts API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: Custom Check Drafts
+paths:
+  /custom_check_drafts:
+    get:
+      summary: Fetch a list of Custom check drafts
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2026-04-07'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`name` , `slug` , `created_at` , `id`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'name:':
+            summary: search the 'name' property of the Custom Check Draft records using ':' operator
+            value: name:string
+          name~:
+            summary: search the 'name' property of the Custom Check Draft records using '~' operator
+            value: name~string
+          'slug:':
+            summary: search the 'slug' property of the Custom Check Draft records using ':' operator
+            value: slug:string
+          slug~:
+            summary: search the 'slug' property of the Custom Check Draft records using '~' operator
+            value: slug~string
+          'created_at:':
+            summary: search the 'created_at' property of the Custom Check Draft records using ':' operator
+            value: created_at:2000-01-08T20:38:21Z
+          created_at<:
+            summary: search the 'created_at' property of the Custom Check Draft records using '<' operator
+            value: created_at<2000-01-08T20:38:21Z
+          created_at>:
+            summary: search the 'created_at' property of the Custom Check Draft records using '>' operator
+            value: created_at>2000-01-08T20:38:21Z
+          'id:':
+            summary: search the 'id' property of the Custom Check Draft records using ':' operator
+            value: id:string
+          id~:
+            summary: search the 'id' property of the Custom Check Draft records using '~' operator
+            value: id~string
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Custom check drafts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'A draft of a custom check created in the Kolide admin UI or API. Drafts track
+
+                      SQL, templates, platform scope, and publishing readiness before a published
+
+                      CustomCheck exists.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/custom_check_draft'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/custom_check_drafts?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Custom Check Drafts
+  /custom_check_drafts/{id}:
+    get:
+      summary: Fetch information for a specific Custom check draft
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2026-04-07'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the custom check draft
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'A draft of a custom check created in the Kolide admin UI or API. Drafts track
+
+            SQL, templates, platform scope, and publishing readiness before a published
+
+            CustomCheck exists.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/custom_check_draft'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Custom Check Drafts
+    delete:
+      summary: Delete a specific Custom check draft
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2026-04-07'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the custom check draft
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The deleted Custom check draft
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/custom_check_draft'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Custom Check Drafts
+components:
+  schemas:
+    custom_check_draft:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The draft's canonical identifier
+        name:
+          type: string
+          description: The display name of the check draft
+        slug:
+          type: string
+          description: The URL slug for the draft / published check
+        description:
+          type: string
+          description: Longer-form description of the check
+        issue_title:
+          type: string
+          description: Title of the issue when the check fails
+        osquery_sql:
+          type: string
+          description: The osquery SQL (may include Liquid) used for this draft when the check type is osquery
+        platforms:
+          description: 'Device platforms this draft targets: darwin, windows, and/or linux'
+          type: array
+          items:
+            type: string
+        rationale_template:
+          type: string
+          description: Liquid/Markdown template for end-user rationale
+        fix_instructions_template:
+          type: string
+          description: Liquid/Markdown template for remediation steps
+        privacy_info:
+          type: string
+          description: Privacy center copy (may include Liquid)
+        check_type:
+          type: string
+          enum:
+          - osquery
+          - external
+          description: osquery or external
+        target_type:
+          type: string
+          enum:
+          - devices
+          - people
+          description: Whether the check applies to devices or people
+        requires_primary_key:
+          type: boolean
+          description: When true, the check expects a primary key column in results
+        primary_key_column:
+          type: string
+          description: Column name used as the stable primary key in query results
+        published:
+          type: boolean
+          description: True if this draft has been published to a CustomCheck
+        custom_check_id:
+          type: string
+          description: ID of the published CustomCheck when present
+        osquery_sql_status:
+          type: string
+          enum:
+          - missing
+          - bad
+          - good
+          description: Completeness/validity of SQL configuration (missing, bad, or good)
+        notification_templates_status:
+          type: string
+          enum:
+          - missing
+          - bad
+          - good
+          description: Status of rationale/fix template sections
+        details_status:
+          type: string
+          enum:
+          - missing
+          - bad
+          - good
+          description: Status of name/issue/description details
+        privacy_center_details_status:
+          type: string
+          enum:
+          - missing
+          - bad
+          - good
+          description: Status of privacy center/example data sections
+        publishable:
+          type: boolean
+          description: True when all draft sections pass publish validation
+        template_data_examples:
+          type: string
+          description: Example row data merged into Liquid templates (JSON object)
+          format: json
+        privacy_center_example_data:
+          type: string
+          description: Per-platform example payloads for the privacy center (JSON object)
+          format: json
+        created_at:
+          type: string
+          description: When the draft was created
+          format: date-time
+        updated_at:
+          type: string
+          description: When the draft was last updated
+          format: date-time
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer

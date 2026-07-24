@@ -1,0 +1,917 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users Checks API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: Checks
+paths:
+  /checks/{checkId}/results:
+    get:
+      summary: Fetch a list of Check results
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`device_display_name` , `ran_at` , `check_name` , `status`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'device_display_name:':
+            summary: search the 'device_display_name' property of the Check Results records using ':' operator
+            value: device_display_name:string
+          device_display_name~:
+            summary: search the 'device_display_name' property of the Check Results records using '~' operator
+            value: device_display_name~string
+          'ran_at:':
+            summary: search the 'ran_at' property of the Check Results records using ':' operator
+            value: ran_at:2000-01-08T20:38:21Z
+          ran_at<:
+            summary: search the 'ran_at' property of the Check Results records using '<' operator
+            value: ran_at<2000-01-08T20:38:21Z
+          ran_at>:
+            summary: search the 'ran_at' property of the Check Results records using '>' operator
+            value: ran_at>2000-01-08T20:38:21Z
+          'check_name:':
+            summary: search the 'check_name' property of the Check Results records using ':' operator
+            value: check_name:string
+          check_name~:
+            summary: search the 'check_name' property of the Check Results records using '~' operator
+            value: check_name~string
+          'status:':
+            summary: search the 'status' property of the Check Results records using ':' operator
+            value: status:enumerated-value
+        schema:
+          type: string
+      - name: checkId
+        in: path
+        required: true
+        description: The check ID of the check
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Check results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'A Check Result describes the data returned the last time a check ran on a single device.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/check_result'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/results?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Checks
+  /checks/{checkId}/configurations:
+    get:
+      summary: Fetch information for a specific Check configuration
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: checkId
+        in: path
+        required: true
+        description: The check ID of the check configuration
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Check configurations are the settings that determine how a check is run
+
+            and against what groups and devices.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/check_configuration'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Checks
+    patch:
+      summary: Update an existing Check configuration
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: checkId
+        in: path
+        required: true
+        description: The check ID of the check configuration
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Check configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/check_configuration'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check_configuration_request_body'
+      tags:
+      - Checks
+    put:
+      summary: Update an existing Check configuration
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: checkId
+        in: path
+        required: true
+        description: The check ID of the check configuration
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Check configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/check_configuration'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/check_configuration_request_body'
+      tags:
+      - Checks
+  /checks/{checkId}/runs:
+    post:
+      summary: Create a new External check run
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: checkId
+        in: path
+        required: true
+        description: The check ID of the external check run
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The newly created External check run
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_check_run'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/external_check_run_request_body'
+      tags:
+      - Checks
+  /checks:
+    get:
+      summary: Fetch a list of Checks
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`name` , `check_description` , `check_tag_name` , `check_tag_description` , `check_tag_id` , `slug` , `type`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'name:':
+            summary: search the 'name' property of the Check records using ':' operator
+            value: name:string
+          name~:
+            summary: search the 'name' property of the Check records using '~' operator
+            value: name~string
+          'check_description:':
+            summary: search the 'check_description' property of the Check records using ':' operator
+            value: check_description:string
+          check_description~:
+            summary: search the 'check_description' property of the Check records using '~' operator
+            value: check_description~string
+          'check_tag_name:':
+            summary: search the 'check_tag_name' property of the Check records using ':' operator
+            value: check_tag_name:string
+          check_tag_name~:
+            summary: search the 'check_tag_name' property of the Check records using '~' operator
+            value: check_tag_name~string
+          'check_tag_description:':
+            summary: search the 'check_tag_description' property of the Check records using ':' operator
+            value: check_tag_description:string
+          check_tag_description~:
+            summary: search the 'check_tag_description' property of the Check records using '~' operator
+            value: check_tag_description~string
+          'check_tag_id:':
+            summary: search the 'check_tag_id' property of the Check records using ':' operator
+            value: check_tag_id:string
+          check_tag_id~:
+            summary: search the 'check_tag_id' property of the Check records using '~' operator
+            value: check_tag_id~string
+          'slug:':
+            summary: search the 'slug' property of the Check records using ':' operator
+            value: slug:string
+          slug~:
+            summary: search the 'slug' property of the Check records using '~' operator
+            value: slug~string
+          'type:':
+            summary: search the 'type' property of the Check records using ':' operator
+            value: type:enumerated-value
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Checks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'A Check is a test that Kolide runs on a device on a regular cadence
+
+                      which typically produces a passing or failing result.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/check'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/checks?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Checks
+  /checks/{id}:
+    get:
+      summary: Fetch information for a specific Check
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the check
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'A Check is a test that Kolide runs on a device on a regular cadence
+
+            which typically produces a passing or failing result.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/check'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Checks
+components:
+  schemas:
+    check_configuration:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for this check configuration
+        organization_id:
+          type: integer
+          description: The ID of the organization to which this check belongs
+        check_id:
+          type: integer
+          description: The ID of the check associated with this configuration
+        name:
+          type: string
+          description: The name of the check associated with the check configuration
+        check_slug:
+          type: string
+          description: A slugified version of the check name, used for URL paths
+        issue_title:
+          type: string
+          description: The title of the issue associated with this check
+        options:
+          type: string
+          description: Additional options for this check configuration. Options are specified on a per-check basis and can be viewed in the UI
+          format: json
+        use_custom_rationale_template:
+          type: boolean
+          description: Whether a custom rationale template is used
+        use_custom_fix_instructions_template:
+          type: boolean
+          description: Whether custom fix instructions are used
+        paused:
+          type: boolean
+          description: Whether this check is currently paused
+        paused_by:
+          type: string
+          description: The ID of the user who paused this check configuration
+        paused_at:
+          type: string
+          description: The timestamp when this check configuration was paused
+          format: date-time
+        revision:
+          type: string
+          description: The revision number of this check configuration
+        block_auth_grace_period_days:
+          type: integer
+          description: Number of days a device is allowed to be out of compliance before blocking
+        auth_check_run_shelf_life_seconds:
+          type: integer
+          description: Number of seconds a check run is valid for authentication
+        begins_blocking_on:
+          type: string
+          description: Date when devices start being blocked if out of compliance
+          format: date-time
+        snooze_disallowed:
+          type: boolean
+          description: Whether snoozing is disallowed for this check
+        exemptions_disallowed:
+          type: boolean
+          description: Whether exemption requests are disallowed for this check
+        customized_remediation_targeting:
+          type: boolean
+          description: Whether remediation targeting is customized for this check
+        customized_run_targeting:
+          type: boolean
+          description: Whether run targeting is customized for this check
+        remediation_strategy:
+          type: string
+          enum:
+          - block_immediately
+          - warn_then_block
+          - notify_only
+          - report_only
+          description: The strategy used for remediating this check
+        targeted_groups:
+          description: List of groups targeted by this check
+          type: array
+          items:
+            type: string
+        excluded_groups:
+          description: List of groups excluded from this check
+          type: array
+          items:
+            type: string
+        blocking_allowed_groups:
+          description: List of groups allowed to be blocked by this check
+          type: array
+          items:
+            type: string
+        blocking_excluded_groups:
+          description: List of groups excluded from being blocked by this check
+          type: array
+          items:
+            type: string
+    check_result:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The canonical identifier for the check
+        check_slug:
+          type: string
+          description: The human-readable stable identifier for this check
+        check_name:
+          type: string
+          description: The name of the check
+        device_id:
+          type: string
+          description: The canonical identifier for the device
+        device_display_name:
+          type: string
+          description: The display name of the device
+        ran_at:
+          type: string
+          description: The timestamp the check was most recently run on the device
+          format: date-time
+        exemption_reason:
+          type: string
+          description: The reason the device was marked as exempt from this check. Null if not exempted
+        exemption_expires_at:
+          type: string
+          description: The time the exemption expires. Null if not exempted
+          format: date-time
+        check_result_data:
+          description: The full set of information used to determine the status of the check result
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - unknown
+          - passing
+          - failing
+          - errored
+          - inapplicable
+          - stale
+          - pending
+          - out_of_scope
+          description: The status of the check
+    check_tag:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this check tag
+        name:
+          type: string
+          description: The short name of the check tag
+        description:
+          type: string
+          description: The description of the check tag
+        color:
+          type: string
+          description: The rgba color value for this tag
+    external_check_run_request_body:
+      type: object
+      properties:
+        device_id:
+          type: integer
+          description: The ID of the device. Must pass exactly one of device_id, person_id, or person_email.
+        person_id:
+          type: integer
+          description: The ID of the person. Must pass exactly one of device_id, person_id, or person_email.
+        person_email:
+          type: string
+          description: The email of the person. Falls back to matching an identity email if no person matches directly. Must pass exactly one of device_id, person_id, or person_email.
+        check_data:
+          type: string
+          description: Data for the check result. Must include a KOLIDE_CHECK_STATUS attribute with a value matching one of FAIL, PASS, UNKNOWN, INAPPLICABLE, ERROR. May optionally include additional key-value pairs as extra metadata. May contain one element, or many elements in an array.
+          format: json
+    check_targeting_config:
+      type: object
+      properties:
+        excluded_groups:
+          description: A list of names for the groups whose device members are excluded from being targets for this check
+          type: array
+          items:
+            type: string
+        targeted_groups:
+          description: The names of the groups that define which devices will be targeted by this check. See also `excluded_groups`, as membership in an excluded group will exempt a device from being targeted by this check.
+          type: array
+          items:
+            type: string
+    check_configuration_request_body:
+      type: object
+      properties:
+        paused:
+          type: boolean
+          description: Whether this check is currently paused
+        block_auth_grace_period_days:
+          type: integer
+          description: Number of days a device is allowed to be out of compliance before blocking
+        auth_check_run_shelf_life_seconds:
+          type: integer
+          description: Number of seconds a check result is considered valid for authentication. If a check result is older than this value at authentication time, it will be re-run during the authentication process.
+        snooze_disallowed:
+          type: boolean
+          description: Whether users are allowed to snooze this check
+        exemptions_disallowed:
+          type: boolean
+          description: Whether users are allowed to request exemptions for this check
+        targeted_groups:
+          description: List of groups targeted by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        excluded_groups:
+          description: List of groups excluded from this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        blocking_allowed_groups:
+          description: List of groups allowed to be blocked by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        blocking_excluded_groups:
+          description: List of groups excluded from being blocked by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        options:
+          type: string
+          description: Additional options for this check configuration. Changes to this field will overwrite previous options and any fields not specified here will be deleted. Options are specified on a per-check basis and can be viewed in the UI
+          format: json
+        remediation_strategy:
+          type: string
+          enum:
+          - block_immediately
+          - warn_then_block
+          - notify_only
+          - report_only
+          description: The strategy used for remediating this check
+    check:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this check
+        name:
+          type: string
+          description: The short description of the state the check is meant to enforce
+        slug:
+          type: string
+          description: The unique, stable and human-readable identifier for this check
+        compatible_platforms:
+          description: "An array of device platforms this check can run on. The platform possibilities are:\n - linux: this check can run on all linux derivations\n - windows: this check can run on all windows devices\n - darwin: this check can run on all versions of macOS\n\nThe compatible platforms determine the default targeting if no custom targeting is configured\n"
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+          description: Longer-form description of the check's purpose and operation
+        topics:
+          description: A list of Kolide-set topics associated with the Check
+          type: array
+          items:
+            type: string
+        osquery_sql_template:
+          type: string
+          description: The templated SQL associated with a custom check query that will be run on devices to determine the custom check's status. This SQL may contain liquid variables. This field will be blank if the check is not a custom check. You can learn more about writing your own checks at https://www.kolide.com/docs/admins/checks.
+        issue_title:
+          type: string
+          description: The title of the issue that will be created if the check fails
+        fix_instructions_template:
+          type: string
+          description: The markdown-formatted template for the fix instructions that will be provided to the user to fix the issue. This may contain liquid variables. You can learn more about customizing fix instructions at https://www.kolide.com/docs/admins/checks#customizing-end-user-fix-instructions.
+        rationale_template:
+          type: string
+          description: The markdown-formatted template for the rationale that will be provided to the user when the check fails. This may contain liquid variables.
+        check_tags:
+          description: A list of Team-set tags associated with the Check
+          type: array
+          items:
+            $ref: '#/components/schemas/check_tag'
+        blocks_auth_configuration:
+          allOf:
+          - description: Object describing the authentication-blocking configuration of the check
+          - $ref: '#/components/schemas/check_auth_blocking_config'
+        targeting_configuration:
+          allOf:
+          - description: Object describing the device targeting configuration of the check
+          - $ref: '#/components/schemas/check_targeting_config'
+        percent_passing:
+          type: integer
+          description: Percentage of targeted devices currently passing this check (0–100). This value is truncated, not rounded, to avoid showing 100% when not all devices are passing.
+        kolide_provided:
+          type: boolean
+          description: Kolide provided checks are created and maintained by the Kolide team. This field is false for user-created custom checks.
+        type:
+          type: string
+          enum:
+          - osquery
+          - custom
+          - external
+          description: The type of check.
+    external_check_run:
+      type: object
+      properties:
+        check_id:
+          type: integer
+          description: The ID of the check
+        device_id:
+          type: integer
+          description: The ID of the device
+        status:
+          type: string
+          enum:
+          - FAIL
+          - PASS
+          - UNKNOWN
+          - INAPPLICABLE
+          - ERROR
+          description: The status of the check for the device
+        check_data:
+          type: string
+          description: Additional data for the check
+          format: json
+        person_id:
+          type: integer
+          description: The ID of the person for this check run
+        person_name:
+          type: string
+          description: The name of the person for this check run
+        person_email:
+          type: string
+          description: The email of the person for this check run
+    check_auth_blocking_config:
+      type: object
+      properties:
+        blocking_enabled:
+          type: boolean
+          description: Whether or not an issue for this check will block device trust authentication
+        grace_period_days:
+          type: integer
+          description: The number of days that a device is allowed to be failing the check before it will be blocked
+        blocking_group_names:
+          description: The names of the groups that define which devices will be blocked by this check. See also `blocking_exempt_group_names`, as membership in an excluded group will exempt a device from being blocked by this check.
+          type: array
+          items:
+            type: string
+        blocking_exempt_group_names:
+          description: The names of the Groups that are exempt from being blocked by this check
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer

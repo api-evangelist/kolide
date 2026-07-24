@@ -1,0 +1,401 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users Auth Logs API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: Auth Logs
+paths:
+  /auth_logs:
+    get:
+      summary: Fetch a list of Auth log sessions
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`timestamp` , `city` , `country` , `ip_address` , `agent_version` , `browser_name` , `person_name` , `person_email` , `person_id` , `device_id` , `result`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'timestamp:':
+            summary: search the 'timestamp' property of the Auth Log records using ':' operator
+            value: timestamp:2000-01-08T20:38:21Z
+          timestamp<:
+            summary: search the 'timestamp' property of the Auth Log records using '<' operator
+            value: timestamp<2000-01-08T20:38:21Z
+          timestamp>:
+            summary: search the 'timestamp' property of the Auth Log records using '>' operator
+            value: timestamp>2000-01-08T20:38:21Z
+          'city:':
+            summary: search the 'city' property of the Auth Log records using ':' operator
+            value: city:string
+          city~:
+            summary: search the 'city' property of the Auth Log records using '~' operator
+            value: city~string
+          'country:':
+            summary: search the 'country' property of the Auth Log records using ':' operator
+            value: country:string
+          country~:
+            summary: search the 'country' property of the Auth Log records using '~' operator
+            value: country~string
+          'ip_address:':
+            summary: search the 'ip_address' property of the Auth Log records using ':' operator
+            value: ip_address:string
+          ip_address~:
+            summary: search the 'ip_address' property of the Auth Log records using '~' operator
+            value: ip_address~string
+          'agent_version:':
+            summary: search the 'agent_version' property of the Auth Log records using ':' operator
+            value: agent_version:string
+          agent_version~:
+            summary: search the 'agent_version' property of the Auth Log records using '~' operator
+            value: agent_version~string
+          'browser_name:':
+            summary: search the 'browser_name' property of the Auth Log records using ':' operator
+            value: browser_name:string
+          browser_name~:
+            summary: search the 'browser_name' property of the Auth Log records using '~' operator
+            value: browser_name~string
+          'person_name:':
+            summary: search the 'person_name' property of the Auth Log records using ':' operator
+            value: person_name:string
+          person_name~:
+            summary: search the 'person_name' property of the Auth Log records using '~' operator
+            value: person_name~string
+          'person_email:':
+            summary: search the 'person_email' property of the Auth Log records using ':' operator
+            value: person_email:string
+          person_email~:
+            summary: search the 'person_email' property of the Auth Log records using '~' operator
+            value: person_email~string
+          'person_id:':
+            summary: search the 'person_id' property of the Auth Log records using ':' operator
+            value: person_id:string
+          person_id~:
+            summary: search the 'person_id' property of the Auth Log records using '~' operator
+            value: person_id~string
+          'device_id:':
+            summary: search the 'device_id' property of the Auth Log records using ':' operator
+            value: device_id:string
+          device_id~:
+            summary: search the 'device_id' property of the Auth Log records using '~' operator
+            value: device_id~string
+          'result:':
+            summary: search the 'result' property of the Auth Log records using ':' operator
+            value: result:enumerated-value
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Auth log sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'An Auth Log Session is a summarization of an end-user''s experience
+
+                      when signing into apps via Kolide Device Trust authentication. An
+
+                      Auth Log Session is created when an end-user is first redirected to
+
+                      Kolide to complete the Device Trust authentication flow and is
+
+                      updated as the end-user or the system perform actions during the
+
+                      session. These actions are considered Auth Log Events and are
+
+                      associated with the Auth Log Session.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/auth_log_session'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/auth_logs?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Auth Logs
+  /auth_logs/{id}:
+    get:
+      summary: Fetch information for a specific Auth log session
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the auth log session
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'An Auth Log Session is a summarization of an end-user''s experience
+
+            when signing into apps via Kolide Device Trust authentication. An
+
+            Auth Log Session is created when an end-user is first redirected to
+
+            Kolide to complete the Device Trust authentication flow and is
+
+            updated as the end-user or the system perform actions during the
+
+            session. These actions are considered Auth Log Events and are
+
+            associated with the Auth Log Session.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/auth_log_session'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Auth Logs
+components:
+  schemas:
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    auth_log_session:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this auth session
+        timestamp:
+          type: string
+          description: The timestamp representing the start of the auth event
+          format: date-time
+        person_name:
+          type: string
+          description: The name of the person triggering the event
+        person_email:
+          type: string
+          description: The email address of the person triggering the event
+        person_info:
+          allOf:
+          - description: Information for fetching the complete data on the person triggering this event
+          - $ref: '#/components/schemas/link-object'
+        device_info:
+          allOf:
+          - description: Information for fetching the complete data on the device triggering this event
+          - $ref: '#/components/schemas/link-object'
+        result:
+          type: string
+          enum:
+          - Success
+          - Fail
+          description: The result of the authentication attempt
+        initial_status:
+          type: string
+          description: 'The initial auth status of the device attempting authentication.
+
+            One of ''all_good'', ''will_Block'', ''blocked'' or ''unknown'' if no
+
+            device was detected. "
+
+            '
+        ip_address:
+          type: string
+          description: IP address of the request initiating this event. May be IPv4 or IPv6
+        agent_version:
+          type: string
+          description: Version of the Kolide Agent running on the endpoint if known
+        country:
+          type: string
+          description: 'The name of the country that the session originated from. This
+
+            location data is determined via IP address, and is subject to
+
+            the limitations of IP geocoding. See
+
+            https://www.kolide.com/docs/admins/auth-logs for details
+
+            on location accuracy.
+
+            '
+        city:
+          type: string
+          description: 'City that the session originated from. This location data is
+
+            determined via IP address, and is subject to the limitations of
+
+            IP geocoding. See https://www.kolide.com/docs/admins/auth-logs
+
+            for details on location accuracy.
+
+            '
+        browser_name:
+          type: string
+          description: 'The common name of the browser used to initiate this session.
+
+            See https://www.kolide.com/docs/admins/auth-logs for
+
+            details on browser detection accuracy.
+
+            '
+        browser_user_agent:
+          type: string
+          description: 'The user agent information for the browser used to initiate this
+
+            session. See https://www.kolide.com/docs/admins/auth-logs
+
+            for details on browser detection accuracy.
+
+            '
+        issues_displayed:
+          description: A list of Issue titles & blocking status that were displayed to the end user
+          type: array
+          items:
+            $ref: '#/components/schemas/auth_log_displayed_issue'
+        events:
+          description: The events that occured during this authentication session
+          type: array
+          items:
+            $ref: '#/components/schemas/auth_log_event'
+        okta_app_instance_id:
+          type: string
+          description: The Okta application instance identifier from the SAML request
+        okta_app_name:
+          type: string
+          description: The Okta application name from the SAML request
+    auth_log_event:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: The timestamp representing the start of the auth event
+          format: date-time
+        event_type:
+          type: string
+          description: The specific event type. Possibilities documented at https://app.kolide.com/docs/admins/auth-logs#event-types
+        event_description:
+          type: string
+          description: A brief description of the event
+    auth_log_displayed_issue:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the Issue
+        blocking_status:
+          type: string
+          description: The blocking status of the Issue - either 'blocked' or 'will_block'
+        id:
+          type: string
+          description: canonical identifier for the issue
+        link:
+          type: string
+          description: API URL where complete information about this issue can be found
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer

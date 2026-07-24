@@ -1,0 +1,857 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users People API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: People
+paths:
+  /people/{personId}/registered_devices:
+    get:
+      summary: Fetch a list of Devices
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'id:':
+            summary: search the 'id' property of the Device records
+            value: id:["a", "b", "c"]
+          'name:':
+            summary: search the 'name' property of the Device records using ':' operator
+            value: name:string
+          name~:
+            summary: search the 'name' property of the Device records using '~' operator
+            value: name~string
+          'registered_at:':
+            summary: search the 'registered_at' property of the Device records using ':' operator
+            value: registered_at:2000-01-08T20:38:21Z
+          registered_at<:
+            summary: search the 'registered_at' property of the Device records using '<' operator
+            value: registered_at<2000-01-08T20:38:21Z
+          registered_at>:
+            summary: search the 'registered_at' property of the Device records using '>' operator
+            value: registered_at>2000-01-08T20:38:21Z
+          'last_authenticated_at:':
+            summary: search the 'last_authenticated_at' property of the Device records using ':' operator
+            value: last_authenticated_at:2000-01-08T20:38:21Z
+          last_authenticated_at<:
+            summary: search the 'last_authenticated_at' property of the Device records using '<' operator
+            value: last_authenticated_at<2000-01-08T20:38:21Z
+          last_authenticated_at>:
+            summary: search the 'last_authenticated_at' property of the Device records using '>' operator
+            value: last_authenticated_at>2000-01-08T20:38:21Z
+          'serial:':
+            summary: search the 'serial' property of the Device records using ':' operator
+            value: serial:string
+          serial~:
+            summary: search the 'serial' property of the Device records using '~' operator
+            value: serial~string
+          'note:':
+            summary: search the 'note' property of the Device records using ':' operator
+            value: note:string
+          note~:
+            summary: search the 'note' property of the Device records using '~' operator
+            value: note~string
+          'hardware_uuid:':
+            summary: search the 'hardware_uuid' property of the Device records using ':' operator
+            value: hardware_uuid:string
+          hardware_uuid~:
+            summary: search the 'hardware_uuid' property of the Device records using '~' operator
+            value: hardware_uuid~string
+          'device_type:':
+            summary: search the 'device_type' property of the Device records using ':' operator
+            value: device_type:enumerated-value
+          'will_block_at:':
+            summary: search the 'will_block_at' property of the Device records using ':' operator
+            value: will_block_at:2000-01-08T20:38:21Z
+          will_block_at<:
+            summary: search the 'will_block_at' property of the Device records using '<' operator
+            value: will_block_at<2000-01-08T20:38:21Z
+          will_block_at>:
+            summary: search the 'will_block_at' property of the Device records using '>' operator
+            value: will_block_at>2000-01-08T20:38:21Z
+        schema:
+          type: string
+      - name: personId
+        in: path
+        required: true
+        description: The person ID of the device
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Devices
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: A Device is a computer or mobile device enrolled into Kolide
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/device'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/registered_devices?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - People
+  /people/{personId}/open_issues:
+    get:
+      summary: Fetch a list of Issues
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'id:':
+            summary: search the 'id' property of the Issue records
+            value: id:["a", "b", "c"]
+          'detected_at:':
+            summary: search the 'detected_at' property of the Issue records using ':' operator
+            value: detected_at:2000-01-08T20:38:21Z
+          detected_at<:
+            summary: search the 'detected_at' property of the Issue records using '<' operator
+            value: detected_at<2000-01-08T20:38:21Z
+          detected_at>:
+            summary: search the 'detected_at' property of the Issue records using '>' operator
+            value: detected_at>2000-01-08T20:38:21Z
+          'resolved_at:':
+            summary: search the 'resolved_at' property of the Issue records using ':' operator
+            value: resolved_at:2000-01-08T20:38:21Z
+          resolved_at<:
+            summary: search the 'resolved_at' property of the Issue records using '<' operator
+            value: resolved_at<2000-01-08T20:38:21Z
+          resolved_at>:
+            summary: search the 'resolved_at' property of the Issue records using '>' operator
+            value: resolved_at>2000-01-08T20:38:21Z
+          'blocks_device_at:':
+            summary: search the 'blocks_device_at' property of the Issue records using ':' operator
+            value: blocks_device_at:2000-01-08T20:38:21Z
+          blocks_device_at<:
+            summary: search the 'blocks_device_at' property of the Issue records using '<' operator
+            value: blocks_device_at<2000-01-08T20:38:21Z
+          blocks_device_at>:
+            summary: search the 'blocks_device_at' property of the Issue records using '>' operator
+            value: blocks_device_at>2000-01-08T20:38:21Z
+          'title:':
+            summary: search the 'title' property of the Issue records using ':' operator
+            value: title:string
+          title~:
+            summary: search the 'title' property of the Issue records using '~' operator
+            value: title~string
+          'issue_key:':
+            summary: search the 'issue_key' property of the Issue records using ':' operator
+            value: issue_key:string
+          issue_key~:
+            summary: search the 'issue_key' property of the Issue records using '~' operator
+            value: issue_key~string
+          'issue_value:':
+            summary: search the 'issue_value' property of the Issue records using ':' operator
+            value: issue_value:string
+          issue_value~:
+            summary: search the 'issue_value' property of the Issue records using '~' operator
+            value: issue_value~string
+          'exempted:':
+            summary: search the 'exempted' property of the Issue records using ':' operator
+            value: exempted:true
+          'check_id:':
+            summary: search the 'check_id' property of the Issue records using ':' operator
+            value: check_id:string
+          check_id~:
+            summary: search the 'check_id' property of the Issue records using '~' operator
+            value: check_id~string
+          'device_id:':
+            summary: search the 'device_id' property of the Issue records using ':' operator
+            value: device_id:string
+          device_id~:
+            summary: search the 'device_id' property of the Issue records using '~' operator
+            value: device_id~string
+          'last_rechecked_at:':
+            summary: search the 'last_rechecked_at' property of the Issue records using ':' operator
+            value: last_rechecked_at:2000-01-08T20:38:21Z
+          last_rechecked_at<:
+            summary: search the 'last_rechecked_at' property of the Issue records using '<' operator
+            value: last_rechecked_at<2000-01-08T20:38:21Z
+          last_rechecked_at>:
+            summary: search the 'last_rechecked_at' property of the Issue records using '>' operator
+            value: last_rechecked_at>2000-01-08T20:38:21Z
+        schema:
+          type: string
+      - name: personId
+        in: path
+        required: true
+        description: The person ID of the issue
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Issues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'An Issue is created when a device fails a check. Some checks, when
+
+                      they fail, will produce multiple Issues, each with a unique
+
+                      primary_key_value.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/issue'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/open_issues?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - People
+  /people/{personId}/person_groups:
+    get:
+      summary: Fetch a list of Person groups
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`name`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'name:':
+            summary: search the 'name' property of the Person Group records using ':' operator
+            value: name:string
+          name~:
+            summary: search the 'name' property of the Person Group records using '~' operator
+            value: name~string
+        schema:
+          type: string
+      - name: personId
+        in: path
+        required: true
+        description: The person ID of the person group
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Person groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'A group of people, these are synced from your SCIM provider
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/person_group'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/person_groups?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - People
+  /people:
+    get:
+      summary: Fetch a list of People
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `email` , `name` , `last_authenticated_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'id:':
+            summary: search the 'id' property of the Person records
+            value: id:["a", "b", "c"]
+          'email:':
+            summary: search the 'email' property of the Person records using ':' operator
+            value: email:string
+          email~:
+            summary: search the 'email' property of the Person records using '~' operator
+            value: email~string
+          'name:':
+            summary: search the 'name' property of the Person records using ':' operator
+            value: name:string
+          name~:
+            summary: search the 'name' property of the Person records using '~' operator
+            value: name~string
+          'last_authenticated_at:':
+            summary: search the 'last_authenticated_at' property of the Person records using ':' operator
+            value: last_authenticated_at:2000-01-08T20:38:21Z
+          last_authenticated_at<:
+            summary: search the 'last_authenticated_at' property of the Person records using '<' operator
+            value: last_authenticated_at<2000-01-08T20:38:21Z
+          last_authenticated_at>:
+            summary: search the 'last_authenticated_at' property of the Person records using '>' operator
+            value: last_authenticated_at>2000-01-08T20:38:21Z
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of People
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'A Person is a representation of a human in your organization, not
+
+                      necessarily someone with admin access to the Kolide dashboard.
+
+                      Devices can be registered to a person.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/person'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/people?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - People
+  /people/{id}:
+    get:
+      summary: Fetch information for a specific Person
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the person
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'A Person is a representation of a human in your organization, not
+
+            necessarily someone with admin access to the Kolide dashboard.
+
+            Devices can be registered to a person.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - People
+components:
+  schemas:
+    issue:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this Issue
+        issue_key:
+          type: string
+          description: 'The name of the primary key that distinguishes one Issue from
+
+            another in the context of a single Check. Only applicable for
+
+            Checks that can produce multiple Issues
+
+            '
+        issue_value:
+          type: string
+          description: 'The primary identifying value that distinguishes the Issue from
+
+            other instances of the failing Check. Only applicable for Checks
+
+            that can produce multiple Issues
+
+            '
+        title:
+          type: string
+          description: The short description of the Issue
+        value:
+          type: object
+          description: Relevant data that describes why the device failed the Check
+        exempted:
+          type: boolean
+          description: Whether this Issue has been granted an exemption
+        resolved_at:
+          type: string
+          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
+          format: date-time
+        detected_at:
+          type: string
+          description: A timestamp describing when the Issue was initially detected
+          format: date-time
+        blocks_device_at:
+          type: string
+          description: 'A timestamp describing the time after which the Issue will cause
+
+            the associated Device to be blocked from authenticating. This
+
+            property will be null if the check is not configured to block
+
+            authentication for the device.
+
+            '
+          format: date-time
+        device_information:
+          allOf:
+          - description: Information for fetching the complete data on the device for which this issue was generated
+          - $ref: '#/components/schemas/link-object'
+        check_information:
+          allOf:
+          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
+          - $ref: '#/components/schemas/link-object'
+        last_rechecked_at:
+          type: string
+          description: 'The timestamp when this Issue was last rechecked.
+
+            '
+          format: date-time
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
+    person:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this person
+        name:
+          type: string
+          description: The human-readable name for this person
+        email:
+          type: string
+          description: the recorded email address for this person
+        created_at:
+          type: string
+          description: when the person record was created
+          format: date-time
+        last_authenticated_at:
+          type: string
+          description: The timestamp representing when the person last authenticated with Kolide
+          format: date-time
+        has_registered_device:
+          type: boolean
+          description: Whether or not this person has at least one registered device
+        usernames:
+          description: The usernames imported from the SCIM provider that are associated with this person
+          type: array
+          items:
+            type: integer
+    device_authentication_mode:
+      type: object
+      properties:
+        device_id:
+          type: string
+          description: The canonical identifier for the device
+        authentication_mode:
+          type: string
+          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_groups:
+          description: Description of the groups allowed to authenticate with this device
+          type: array
+          items:
+            $ref: '#/components/schemas/person_group'
+    device:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this device
+        name:
+          type: string
+          description: The canonical human name for the device. May be edited via the web interface.
+        registered_at:
+          type: string
+          description: The timestamp representing when the device was registered to its current owner
+          format: date-time
+        last_authenticated_at:
+          type: string
+          description: The timestamp representing when the device last authenticated with Kolide
+          format: date-time
+        last_seen_at:
+          type: string
+          description: The timestamp when the device was last seen by the Kolide agent
+          format: date-time
+        registered_owner_info:
+          allOf:
+          - description: Information for fetching the complete data on the registered owner of the device
+          - $ref: '#/components/schemas/link-object'
+        operating_system:
+          type: string
+          description: The operating system installed on the device
+        hardware_model:
+          type: string
+          description: The specific hardware model of the device
+        serial:
+          type: string
+          description: The hardware serial of the device. May not be applicable
+        hardware_uuid:
+          type: string
+          description: The hardware UUID/UDID for the device. May not be applicable for some devices
+        note:
+          type: string
+          description: Notes provided by a Kolide administrator (in markdown format)
+        auth_state:
+          type: string
+          enum:
+          - Will Block
+          - Blocked
+          - Notified
+          - Good
+          description: 'The authorization status of the device, one of: ''Good'', ''Notified'', ''Will Block'' or ''Blocked'''
+        will_block_at:
+          type: string
+          description: If the auth status is 'Will Block', this timestamp describes when the device will be blocked by a failing check
+          format: date-time
+        product_image_url:
+          type: string
+          description: The URL of the device's product image
+        auth_configuration:
+          allOf:
+          - description: Object describing the authentication configuration for the device. Will be null if the device is not registered.
+          - $ref: '#/components/schemas/device_authentication_mode'
+        device_type:
+          type: string
+          enum:
+          - Mac
+          - Linux
+          - Windows
+          - iOS
+          - Android
+          description: The platform type of the device
+        form_factor:
+          type: string
+          enum:
+          - Computer
+          - Tablet
+          - Phone
+          description: The form factor of the device
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer

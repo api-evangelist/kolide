@@ -1,0 +1,630 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users Live Query Campaigns API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: Live Query Campaigns
+paths:
+  /live_query_campaigns/{liveQueryCampaignId}/query_results:
+    get:
+      summary: Fetch a list of Live query results
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`error_message` , `warning_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'error_message:':
+            summary: search the 'error_message' property of the Live Query Result records using ':' operator
+            value: error_message:string
+          error_message~:
+            summary: search the 'error_message' property of the Live Query Result records using '~' operator
+            value: error_message~string
+          'warning_message:':
+            summary: search the 'warning_message' property of the Live Query Result records using ':' operator
+            value: warning_message:string
+          warning_message~:
+            summary: search the 'warning_message' property of the Live Query Result records using '~' operator
+            value: warning_message~string
+        schema:
+          type: string
+      - name: liveQueryCampaignId
+        in: path
+        required: true
+        description: The live query campaign ID of the live query result
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Live query results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'The results set for a single device targeted in a live query
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/live_query_result'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/query_results?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Live Query Campaigns
+  /live_query_campaigns:
+    get:
+      summary: Fetch a list of Live query campaigns
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: cursor
+        in: query
+        description: Specify the cursor to begin returning results from
+        required: false
+        schema:
+          type: string
+          default: ''
+      - name: per_page
+        in: query
+        description: Specify the number of records to return in each response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          maximum: 100
+          minimum: 1
+          default: 25
+      - name: query
+        in: query
+        description: "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `published` , `tables_used`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+        required: false
+        examples:
+          'created_at:':
+            summary: search the 'created_at' property of the Live Query records using ':' operator
+            value: created_at:2000-01-08T20:38:21Z
+          created_at<:
+            summary: search the 'created_at' property of the Live Query records using '<' operator
+            value: created_at<2000-01-08T20:38:21Z
+          created_at>:
+            summary: search the 'created_at' property of the Live Query records using '>' operator
+            value: created_at>2000-01-08T20:38:21Z
+          'name:':
+            summary: search the 'name' property of the Live Query records using ':' operator
+            value: name:string
+          name~:
+            summary: search the 'name' property of the Live Query records using '~' operator
+            value: name~string
+          'published:':
+            summary: search the 'published' property of the Live Query records using ':' operator
+            value: published:true
+          'tables_used:':
+            summary: search the 'tables_used' property of the Live Query records using ':' operator
+            value: tables_used:search_term
+          tables_used~:
+            summary: search the 'tables_used' property of the Live Query records using '~' operator
+            value: tables_used~search_term
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated collection of Live query campaigns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    description: 'Kolide''s Live Query allows you to run your own ad-hoc SQL queries
+
+                      and get results from online devices in real time.
+
+                      '
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/live_query_campaign'
+                  pagination:
+                    type: object
+                    description: Information about the current and next pages of results
+                    properties:
+                      next:
+                        type: string
+                        format: uri
+                        description: The full URL that should be used to fetch the next page of results. This will be blank if there are no more results to fetch
+                        example: https://api.kolide.com/live_query_campaigns?per_page=10&cursor=Imyw
+                      current_cursor:
+                        type: string
+                        description: the pagination cursor used to fetch this page of results
+                        example: Miwy
+                      next_cursor:
+                        type: string
+                        description: 'the pagination cursor that can be used to fetch the page of results following the current page. This will be blank if there are no more results to fetch '
+                        example: NCw0
+                      count:
+                        type: integer
+                        description: the number of records in the current page of results
+                        example: 10
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Live Query Campaigns
+    post:
+      summary: Create a new Live query campaign
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      responses:
+        '200':
+          description: The newly created Live query campaign
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/live_query_campaign'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/live_query_campaign_request_body'
+      tags:
+      - Live Query Campaigns
+  /live_query_campaigns/{id}:
+    get:
+      summary: Fetch information for a specific Live query campaign
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the live query campaign
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Kolide''s Live Query allows you to run your own ad-hoc SQL queries
+
+            and get results from online devices in real time.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/live_query_campaign'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Live Query Campaigns
+    patch:
+      summary: Update an existing Live query campaign
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the live query campaign
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Live query campaign
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/live_query_campaign'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/live_query_campaign_request_body'
+      tags:
+      - Live Query Campaigns
+    put:
+      summary: Update an existing Live query campaign
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the live query campaign
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The updated Live query campaign
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/live_query_campaign'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/live_query_campaign_request_body'
+      tags:
+      - Live Query Campaigns
+    delete:
+      summary: Delete a specific Live query campaign
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      - name: id
+        in: path
+        required: true
+        description: The ID of the live query campaign
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The deleted Live query campaign
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/live_query_campaign'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Live Query Campaigns
+components:
+  schemas:
+    live_query_result:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this live query result
+        result_count:
+          type: string
+          description: Number of rows returned in the result set
+        error_message:
+          type: string
+          description: Any errors the device may emit while attempting to run a live query
+        revision:
+          type: integer
+          description: The revision of the parent Live Query this result corresponds to
+        warning_message:
+          type: string
+          description: Any warnings the device emits while running a live query
+        device_information:
+          allOf:
+          - description: Information that can be used to fetch the full data on the device that generated this result set
+          - $ref: '#/components/schemas/link-object'
+        results:
+          description: The returned rows of data for the live query on this device
+          type: array
+          items:
+            type: integer
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    live_query_campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this live query campaign
+        name:
+          type: string
+          description: The author-supplied title of the live query campaign
+        osquery_sql:
+          type: string
+          description: The sql to be run on all targeted devices
+        created_at:
+          type: string
+          description: The creation timestamp of the live query campaign
+          format: date-time
+        published:
+          type: boolean
+          description: Describes whether or not the author of the LQ has published the live query (true) or if it is still a draft (false)
+        revision:
+          type: integer
+          description: Editing a Live Query will increment its revision. When the revision is incremented, the live query will be re-run on all target devices
+        tables_used:
+          description: The names of the tables referenced in the osquery SQL
+          type: array
+          items:
+            type: string
+        successful_devices_count:
+          type: integer
+          description: The number of device that have successfully run the query
+        errored_devices_count:
+          type: integer
+          description: The number of device that returned an error when attempting to run the query
+        waiting_devices_count:
+          type: integer
+          description: The number of device that have not yet reported results or errors running the device
+    live_query_campaign_request_body:
+      type: object
+      properties:
+        targeted_device_ids:
+          description: Target Devices in Live Query
+          type: array
+          items:
+            type: integer
+        target_all_devices:
+          type: boolean
+          description: Target All Devices in Live Query
+        target_macs:
+          type: boolean
+          description: Target all MacOS devices in Live Query
+        target_windows_devices:
+          type: boolean
+          description: Target all windows devices in Live Query
+        target_linux_devices:
+          type: boolean
+          description: Target all Linux devices in Live Query
+        sql:
+          type: string
+          description: The sql to be run on all targeted devices
+        name:
+          type: string
+          description: The title of the live query
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer

@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  version: '2023-05-26'
+  title: K2 Admin Users Whoami API
+servers:
+- url: https://api.kolide.com/
+security:
+- api_key: []
+tags:
+- name: Whoami
+paths:
+  /whoami:
+    get:
+      summary: Fetch information about the organization
+      parameters:
+      - name: x-kolide-api-version
+        in: header
+        description: Specify the API version to be used
+        required: false
+        schema:
+          type: string
+          default: '2023-05-26'
+      responses:
+        '200':
+          description: 'Returns information about the customer authenticated by the authorization token.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/who_am_i'
+        '401':
+          description: An 'unauthorized' response may occur for features restricted by or unavailable to your organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: an error message describing why the endpoint is unavailable
+                    example: This feature has been disabled by your organization
+        '403':
+          description: A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: a succinct error message
+                    example: Forbidden
+                  message:
+                    type: string
+                    description: A longer-form error message explaining the reason for the response
+                    example: The API key used is not authorized to perform this action
+      tags:
+      - Whoami
+components:
+  schemas:
+    who_am_i:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The canonical identifier for this Organization
+        organization_name:
+          type: string
+          description: The name of this Organization
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer
