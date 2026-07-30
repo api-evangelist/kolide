@@ -1,0 +1,112 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Kolide K2 API
+  version: 1.0.0
+  x-generated: '2026-07-19'
+  x-method: generated
+  x-source: openapi/kolide-k2-openapi.json
+  x-notes: >-
+    Non-destructive enhancement layer over the provider's published 2026-04-07 spec.
+    Every value below is sourced from Kolide's own documentation
+    (https://www.kolide.com/docs/developers/api, /webhooks, /ssf-streams) or derived
+    from the spec itself. The original openapi/ file is never mutated.
+extends: ../openapi/kolide-k2-openapi.json
+actions:
+- target: $.info
+  description: Add contact, license, description and terms the published spec omits.
+  update:
+    description: >-
+      The Kolide K2 API provides read (and, for Kolide Max subscribers, write) access to
+      device trust data — devices, people, groups, security checks, compliance issues,
+      live osquery campaigns, exemption and registration requests, reporting tables and
+      audit/auth logs. Authentication is a bearer API key (k2sk_v1_ prefix). Requests are
+      pinned to a dated version line with the X-Kolide-Api-Version header.
+    termsOfService: https://1password.com/legal/api-sdk-terms-of-service
+    contact:
+      name: Kolide Support
+      url: https://www.kolide.com/docs/about-kolide/support
+- target: $.externalDocs
+  description: Attach the developer documentation entry point.
+  update:
+    description: Kolide developer documentation
+    url: https://www.kolide.com/docs/developers
+- target: $.servers[0]
+  description: Name the production server.
+  update:
+    description: Production
+- target: $.components.securitySchemes.api_key
+  description: >-
+    Document the API key format, provisioning path and the Kolide Max write-permission
+    gate, none of which the published spec records.
+  update:
+    description: >-
+      Bearer API key created at Settings > Developers > API Keys. Format is
+      $PREFIX_$VERSION_$SECRET with the prefix k2sk (e.g. k2sk_v1_...). Read access is
+      available on all plans; write permissions require a Kolide Max subscription and
+      must be granted explicitly per key with a documented rationale.
+    x-token-prefix: k2sk
+    x-provisioning-url: https://www.kolide.com/docs/developers/api
+- target: $.info
+  description: >-
+    Record the rate-limit contract, which is documented on the API overview page but
+    absent from the spec.
+  update:
+    x-rate-limit:
+      requests-per-minute: 270
+      exceeded-status: 429
+      standard: draft-polli-ratelimit-headers-02
+      headers: [Retry-After, RateLimit-Limit, Ratelimit-Remaining, Ratelimit-Reset]
+- target: $.info
+  description: >-
+    Record the cursor pagination contract shared by every list operation.
+  update:
+    x-pagination:
+      style: cursor
+      request: {per_page: {default: 25, minimum: 1, maximum: 100}, cursor: opaque}
+      response-object: pagination
+      response-fields: [next, next_cursor, current_cursor, count]
+- target: $.info
+  description: Record the documented search-query grammar used by the `query` parameter.
+  update:
+    x-query-syntax:
+      form: <field><operator><value>
+      operators:
+        ':': exact match
+        '~': substring match
+        '>': greater than (datetime only)
+        '<': less than (datetime only)
+      combinators: [AND, OR]
+- target: $.info
+  description: >-
+    Declare the event surface. Kolide ships webhooks and an OpenID SSF/CAEP stream but
+    publishes no AsyncAPI document; this points at the catalog we captured.
+  update:
+    x-event-surface:
+      webhooks:
+        docs: https://www.kolide.com/docs/developers/webhooks
+        signing: HMAC-SHA256 hex digest in the Authorization header
+        catalog: ../asyncapi/kolide-events.yml
+      ssf:
+        spec: OpenID Shared Signals Framework 1.0
+        profile: CAEP
+        discovery: https://api.kolide.com/.well-known/ssf-configuration
+- target: $.info
+  description: Point at the first-party MCP server so agent tooling can find it.
+  update:
+    x-mcp-server:
+      repository: https://github.com/kolide/device-trust-mcp-server
+      docs: https://www.kolide.com/docs/developers/kolide-mcp-server
+      transport: [stdio, http]
+      hosted: false
+      manifest: ../mcp/kolide-mcp.yml
+- target: $.info
+  description: >-
+    Record the dated-version policy so consumers know that omitting the version header
+    floats them onto breaking changes.
+  update:
+    x-versioning:
+      header: X-Kolide-Api-Version
+      current: '2026-04-07'
+      supported: ['2026-04-07', '2023-05-26']
+      default-when-omitted: latest
+      changelog: https://www.kolide.com/docs/developers/changelog

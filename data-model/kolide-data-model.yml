@@ -1,0 +1,154 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kolide-k2-openapi.json
+notes: >-
+  Derived from components.schemas $ref edges and *_id reference fields across the 44
+  schemas of the 2026-04-07 line. Kolide expresses most cross-entity references as
+  inline `link-object` values (id + display fields) rather than $refs to the target
+  schema, so relationship targets below are inferred from the field name and the
+  endpoint that resolves them; each carries the field it travels on.
+entities:
+- name: organization
+  schema: who_am_i
+  endpoint: GET /whoami
+  identifier: organization_id
+  description: The tenant. Root of every other entity.
+- name: device
+  schema: device
+  endpoints: [GET /devices, 'GET /devices/{id}', 'DELETE /devices/{id}']
+  identifier: id
+  relationships:
+  - {kind: has_one, target: person, via: registered_owner_info, notes: link-object to the registered owner}
+  - {kind: has_one, target: device_authentication_mode, via: auth_configuration}
+  - {kind: has_many, target: issue, via: 'GET /devices/{deviceId}/open_issues'}
+  - {kind: has_many, target: check_result, via: 'GET /devices/{deviceId}/check_results'}
+  - {kind: has_one, target: device_registration, via: 'DELETE /devices/{deviceId}/registration'}
+  - {kind: belongs_to_many, target: device_group, via: device_group_member}
+- name: person
+  schema: person
+  endpoints: [GET /people, 'GET /people/{id}']
+  identifier: id
+  relationships:
+  - {kind: has_many, target: device, via: 'GET /people/{personId}/registered_devices'}
+  - {kind: has_many, target: issue, via: 'GET /people/{personId}/open_issues'}
+  - {kind: belongs_to_many, target: person_group, via: 'GET /people/{personId}/person_groups'}
+- name: deprovisioned_person
+  schema: deprovisioned_person
+  endpoint: GET /deprovisioned_people
+  relationships:
+  - {kind: belongs_to, target: person, via: id}
+- name: person_group
+  schema: person_group
+  endpoints: [GET /person_groups, 'GET /person_groups/{id}']
+  relationships:
+  - {kind: has_many, target: person, via: 'GET /person_groups/{personGroupId}/people'}
+- name: device_group
+  schema: device_group
+  endpoints: [GET /device_groups, 'GET /device_groups/{id}']
+  relationships:
+  - {kind: has_many, target: device, via: 'GET /device_groups/{deviceGroupId}/devices'}
+  - {kind: has_many, target: device_group_member, via: 'POST /device_groups/{deviceGroupId}/memberships'}
+- name: device_group_member
+  schema: device_group_member
+  kind: join
+  relationships:
+  - {kind: belongs_to, target: device_group, via: deviceGroupId}
+  - {kind: belongs_to, target: device, via: device_group_member_request_body}
+- name: check
+  schema: check
+  endpoints: [GET /checks, 'GET /checks/{id}']
+  description: A security/compliance test evaluated on devices.
+  relationships:
+  - {kind: has_many, target: check_tag, via: check_tags}
+  - {kind: has_one, target: check_auth_blocking_config, via: blocks_auth_configuration}
+  - {kind: has_one, target: check_targeting_config, via: targeting_configuration}
+  - {kind: has_one, target: check_configuration, via: 'GET /checks/{checkId}/configurations'}
+  - {kind: has_many, target: check_result, via: 'GET /checks/{checkId}/results'}
+  - {kind: has_many, target: external_check_run, via: 'POST /checks/{checkId}/runs'}
+- name: check_result
+  schema: check_result
+  identifier_fields: [check_id, device_id]
+  relationships:
+  - {kind: belongs_to, target: check, via: check_id}
+  - {kind: belongs_to, target: device, via: device_id}
+- name: custom_check_draft
+  schema: custom_check_draft
+  endpoints: [GET /custom_check_drafts, 'GET /custom_check_drafts/{id}']
+  api_versions: ['2026-04-07']
+  relationships:
+  - {kind: belongs_to, target: check, via: custom_check_id}
+- name: issue
+  schema: issue
+  endpoints: [GET /issues, 'GET /issues/{id}']
+  description: A failing check on a specific device.
+  relationships:
+  - {kind: belongs_to, target: device, via: device_information}
+  - {kind: belongs_to, target: check, via: check_information}
+- name: resolved_issue
+  schema: resolved_issue
+  relationships:
+  - {kind: belongs_to, target: issue, via: id}
+- name: exemption_request
+  schema: exemption_request
+  endpoints: [GET /exemption_requests, 'PATCH /exemption_requests/{id}']
+  relationships:
+  - {kind: belongs_to, target: person, via: requester_information}
+  - {kind: belongs_to, target: device, via: device_information}
+  - {kind: has_many, target: issue, via: issues}
+- name: registration_request
+  schema: registration_request
+  endpoints: [GET /registration_requests, 'PATCH /registration_requests/{id}']
+  relationships:
+  - {kind: belongs_to, target: person, via: requester_information}
+  - {kind: belongs_to, target: device, via: device_information}
+- name: live_query_campaign
+  schema: live_query_campaign
+  endpoints: [GET /live_query_campaigns, POST /live_query_campaigns]
+  description: An ad-hoc osquery campaign run across a device fleet.
+  relationships:
+  - {kind: has_many, target: live_query_result, via: 'GET /live_query_campaigns/{liveQueryCampaignId}/query_results'}
+- name: live_query_result
+  schema: live_query_result
+  relationships:
+  - {kind: belongs_to, target: live_query_campaign, via: liveQueryCampaignId}
+  - {kind: belongs_to, target: device, via: device_information}
+- name: package
+  schema: package
+  endpoints: [GET /packages, 'GET /packages/{id}']
+  description: Software packages inventoried across the fleet.
+- name: admin_user
+  schema: admin_user
+  endpoints: [GET /admin_users, 'GET /admin_users/{id}']
+- name: audit_log
+  schema: audit_log
+  endpoints: [GET /audit_logs, 'GET /audit_logs/{id}']
+  relationships:
+  - {kind: has_one, target: audit_log_actor, via: actor_info}
+- name: auth_log_session
+  schema: auth_log_session
+  endpoints: [GET /auth_logs, 'GET /auth_logs/{id}']
+  relationships:
+  - {kind: belongs_to, target: person, via: person_info}
+  - {kind: belongs_to, target: device, via: device_info}
+  - {kind: has_many, target: auth_log_displayed_issue, via: issues_displayed}
+  - {kind: has_many, target: auth_log_event, via: events}
+  - {kind: belongs_to, target: okta_app_instance, via: okta_app_instance_id, external: true}
+- name: reporting_table
+  schema: reporting_table
+  endpoints: [GET /reporting/tables, 'GET /reporting/tables/{name}']
+  relationships:
+  - {kind: has_many, target: table_record, via: 'GET /reporting/tables/{tableName}/table_records'}
+- name: report_query
+  schema: report_query
+  endpoints: [GET /reporting/queries, 'GET /reporting/queries/{id}']
+  relationships:
+  - {kind: has_many, target: report_query_result, via: 'GET /reporting/queries/{queryId}/results'}
+id_conventions:
+  notes: >-
+    No documented per-entity id prefixes (unlike Stripe-style typed ids). API keys DO
+    carry a typed prefix: k2sk_v1_<secret>.
+shared_types:
+- name: link-object
+  usage: >-
+    The generic cross-reference envelope used wherever one entity points at another
+    (registered_owner_info, device_information, check_information, requester_information).

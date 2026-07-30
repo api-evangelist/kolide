@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of Kolide hosts
+notes: >-
+  Kolide publishes no security.txt, OIDC, OAuth authorization-server, api-catalog or
+  ai-plugin document on any host. It DOES publish a live OpenID Shared Signals Framework
+  (SSF) 1.0 configuration document at https://api.kolide.com/.well-known/ssf-configuration,
+  which is the machine-readable entry point to its CAEP device-compliance event stream.
+hosts:
+- host: https://api.kolide.com
+  documents:
+  - path: /.well-known/ssf-configuration
+    status: 200
+    file: kolide-ssf-configuration.json
+    spec: OpenID Shared Signals Framework 1.0
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.kolide.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ssf-configuration
+    status: 404
+- host: https://app.kolide.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

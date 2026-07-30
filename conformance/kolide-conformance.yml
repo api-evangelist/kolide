@@ -1,0 +1,89 @@
+generated: '2026-07-19'
+method: searched
+source:
+- https://www.kolide.com/docs/developers/ssf-streams
+- https://api.kolide.com/.well-known/ssf-configuration
+- https://www.kolide.com/docs/developers/api
+- https://www.kolide.com/security
+- openapi/kolide-k2-openapi.json
+standards:
+- id: openid-ssf
+  name: OpenID Shared Signals Framework 1.0
+  conforms: true
+  evidence: >-
+    Live discovery document at https://api.kolide.com/.well-known/ssf-configuration
+    declares spec_version "1_0", issuer, jwks_uri, configuration/status/verification
+    endpoints and supported delivery methods.
+- id: caep
+  name: CAEP (Continuous Access Evaluation Profile)
+  conforms: true
+  evidence: >-
+    Emits https://schemas.openid.net/secevent/caep/event-type/device-compliance-change
+    on every SSF stream, listed in events_supported of the live discovery document.
+- id: rfc8935
+  name: RFC 8935 — Push-Based Security Event Token Delivery
+  conforms: true
+  evidence: 'delivery_methods_supported includes urn:ietf:rfc:8935'
+- id: rfc8936
+  name: RFC 8936 — Poll-Based Security Event Token Delivery
+  conforms: true
+  evidence: 'delivery_methods_supported includes urn:ietf:rfc:8936'
+- id: openapi
+  name: OpenAPI 3.0.0
+  conforms: true
+  evidence: >-
+    Two dated specs published at /docs/openapi/2026-04-07 and /docs/openapi/2023-05-26,
+    both openapi 3.0.0, 52 and 50 paths respectively.
+- id: ratelimit-headers
+  name: IETF draft-polli-ratelimit-headers-02
+  conforms: true
+  evidence: >-
+    429 responses carry Retry-After, RateLimit-Limit, Ratelimit-Remaining and
+    Ratelimit-Reset; the API docs link the draft explicitly.
+- id: rfc6750
+  name: RFC 6750 — OAuth 2.0 Bearer Token Usage
+  conforms: partial
+  evidence: >-
+    Credentials are presented as `Authorization: Bearer <token>` (securityScheme
+    type http, scheme bearer), but the tokens are long-lived API keys, not OAuth
+    access tokens; there is no authorization server.
+- id: soc2
+  name: SOC 2 Type II
+  conforms: true
+  evidence: 'Published at https://www.kolide.com/security and https://www.kolide.com/legal/soc2'
+- id: gdpr
+  name: GDPR
+  conforms: true
+  evidence: 'Published at https://www.kolide.com/legal/gdpr'
+- id: oauth2
+  name: OAuth 2.0 authorization framework
+  conforms: false
+  evidence: >-
+    No authorization server, no /.well-known/oauth-authorization-server (404), no
+    oauth2 securityScheme, no scopes. Authentication is static bearer API keys.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns 404 on all Kolide hosts.'
+- id: rfc9457
+  name: RFC 9457 — Problem Details for HTTP APIs
+  conforms: false
+  evidence: 'Error responses are application/json with no problem+json envelope or schema.'
+- id: rfc9116
+  name: RFC 9116 — security.txt
+  conforms: false
+  evidence: '/.well-known/security.txt returns 404 on kolide.com, www.kolide.com and api.kolide.com.'
+- id: scim
+  name: SCIM
+  conforms: false
+  evidence: >-
+    No SCIM endpoints in either spec. Identity is synchronised from Okta, Google or
+    Entra via first-party integrations instead.
+- id: idempotency
+  name: Idempotency keys (draft-ietf-httpapi-idempotency-key-header)
+  conforms: false
+  evidence: 'No Idempotency-Key header or replay semantics documented.'
+- id: iso27001
+  name: ISO/IEC 27001
+  conforms: unknown
+  evidence: 'Not claimed on https://www.kolide.com/security.'

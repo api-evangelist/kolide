@@ -1,0 +1,90 @@
+generated: '2026-07-19'
+method: searched
+source:
+- https://www.kolide.com/docs/developers/api
+- openapi/kolide-k2-openapi.json
+api: K2 API
+base_url: https://api.kolide.com
+
+authentication:
+  style: bearer token
+  header: Authorization
+  format: 'Authorization: Bearer $KOLIDE_API_TOKEN'
+  token_shape: $PREFIX_$VERSION_$SECRET
+  token_prefix: k2sk
+  example_documented_by_provider: k2sk_v1_A2UYhW7OPt2jKKLqmFcaGNK7
+  provisioning: Settings > Developers > API Keys (admin)
+  write_access: >-
+    Write permissions are available only to Kolide Max subscribers and must be granted
+    explicitly per key, with a documented rationale.
+  detail: ../authentication/kolide-authentication.yml
+
+versioning:
+  style: dated version pinning
+  header: X-Kolide-Api-Version
+  required: false
+  default: latest
+  current: '2026-04-07'
+  also_supported: ['2023-05-26']
+  detail: ../lifecycle/kolide-lifecycle.yml
+
+pagination:
+  style: cursor
+  request_params:
+    per_page: {default: 25, min: 1, max: 100}
+    cursor: Opaque cursor taken from the previous response
+  response_object: pagination
+  response_fields: [next, next_cursor, current_cursor, count]
+  end_of_collection: Blank cursor/next values indicate the final page.
+
+filtering:
+  style: query expression
+  param: query
+  syntax: <field><operator><value>
+  operators:
+  - {op: ':', meaning: exact match, example: 'status:"fail"'}
+  - {op: '~', meaning: substring match, example: 'name~"MacBook"'}
+  - {op: '>', meaning: greater than (datetime only), example: 'detected_at>"2025-01-01T00:00:00Z"'}
+  - {op: '<', meaning: less than (datetime only)}
+  combinators: [AND, OR]
+  notes: Searchable fields differ per endpoint and are documented per operation.
+
+rate_limiting:
+  limit: 270 requests per minute
+  exceeded_status: 429
+  standard: IETF draft-polli-ratelimit-headers-02
+  headers: [Retry-After, RateLimit-Limit, Ratelimit-Remaining, Ratelimit-Reset]
+  reference: https://www.ietf.org/archive/id/draft-polli-ratelimit-headers-02.html
+
+errors:
+  media_type: application/json
+  rfc9457: false
+  documented_statuses: [401, 403, 429]
+  detail: ../errors/kolide-problem-types.yml
+
+idempotency:
+  supported: false
+  notes: >-
+    Kolide documents no idempotency key, no Idempotency-Key header, and no request
+    replay semantics. Writes are limited to a small mutation surface (device deletion,
+    group membership, campaign CRUD, request approvals, check configuration) and are
+    gated behind explicitly granted per-key write permissions. Recorded as a genuine
+    gap — no Idempotency pointer is emitted for this provider.
+
+request_tracing:
+  request_id_header: null
+  notes: No correlation/request-id header is documented.
+
+field_expansion:
+  supported: false
+  notes: >-
+    No `expand`/`include` mechanism is documented. Nested references are returned as
+    inline link-objects (components.schemas["link-object"]) rather than expandable refs.
+
+metadata:
+  custom_metadata_supported: false
+
+events:
+  webhooks: true
+  ssf_streams: true
+  detail: ../asyncapi/kolide-events.yml

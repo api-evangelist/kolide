@@ -1,0 +1,15 @@
+{
+  "spec_version": "1_0",
+  "issuer": "https://api.kolide.com",
+  "jwks_uri": "https://api.kolide.com/ssf/jwks.json",
+  "delivery_methods_supported": [
+    "urn:ietf:rfc:8935",
+    "urn:ietf:rfc:8936"
+  ],
+  "events_supported": [
+    "https://schemas.openid.net/secevent/caep/event-type/device-compliance-change"
+  ],
+  "configuration_endpoint": "https://api.kolide.com/ssf_streams",
+  "status_endpoint": "https://api.kolide.com/ssf_streams/status",
+  "verification_endpoint": "https://api.kolide.com/ssf_streams/verify"
+}

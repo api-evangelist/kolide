@@ -1,0 +1,55 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.kolide.com/docs/developers/changelog
+url: https://www.kolide.com/docs/developers/changelog
+product_changelog: https://www.kolide.com/blog/category/changelog
+scheme: dated entries against dated API version lines
+current_version: '2026-04-07'
+window: most recent entries as of 2026-07-19
+entries:
+- date: '2026-07-09'
+  kind: addition
+  breaking: false
+  highlights:
+  - Added POST /ssf_streams/{id}/rotate_poll_token to rotate SSF poll bearer tokens,
+    supporting "overlap", "immediate" and "disable" rotation modes.
+- date: '2026-06-25'
+  kind: enhancement
+  breaking: false
+  highlights:
+  - SSF compliance improvement — verification_endpoint now returns a concrete URL
+    instead of a path template.
+- date: '2026-06-02'
+  kind: addition
+  breaking: false
+  api_version: '2026-04-07'
+  highlights:
+  - Added GET /custom_check_drafts for retrieving custom check drafts (2026-04-07 only).
+- date: '2026-05-05'
+  kind: addition
+  breaking: true
+  highlights:
+  - Per-stream bearer token authentication for SSF polling streams via poll_bearer_token.
+  - HTTPS now enforced and private-network destinations blocked for push stream
+    delivery URLs (breaking for existing non-conforming endpoints).
+- date: '2026-04-28'
+  kind: enhancement
+  breaking: false
+  highlights:
+  - SSF spec compliance improvements including configuration_endpoint and
+    authorization_header support.
+  - Bug fix — the SSF stream API returned `delivery` as a JSON string rather than an object.
+- date: '2026-04-20'
+  kind: addition
+  breaking: false
+  highlights:
+  - Added a percent_passing field (integer 0-100) to check endpoints for compliance
+    monitoring.
+- date: '2026-04-07'
+  kind: version
+  breaking: true
+  api_version: '2026-04-07'
+  highlights:
+  - New API version line 2026-04-07 introduced.
+  - Reporting query responses omit the `results` field; results now retrieved from a
+    separate endpoint.

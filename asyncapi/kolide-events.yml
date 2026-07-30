@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: searched
+type: Webhooks
+source:
+- https://www.kolide.com/docs/developers/webhooks
+- https://www.kolide.com/docs/developers/ssf-streams
+- https://api.kolide.com/.well-known/ssf-configuration
+notes: >-
+  Kolide does NOT publish an AsyncAPI document. It ships two real event surfaces: a
+  classic HMAC-signed HTTPS webhook catalog, and an OpenID Shared Signals Framework
+  (SSF) 1.0 stream carrying CAEP device-compliance events. Both are captured here
+  verbatim from the provider's own documentation; nothing below is inferred.
+asyncapi_published: false
+
+webhooks:
+  configuration: Settings > Developers > Webhooks > Add Endpoint (admins with Full Access)
+  transport: HTTPS POST to a publicly reachable subscriber URL
+  envelope:
+    fields: [event, id, timestamp, data]
+  signing:
+    algorithm: HMAC-SHA256
+    computation: HMAC-SHA256(request_body, signing_secret)
+    encoding: hex digest
+    header: Authorization
+  headers:
+  - name: X-Kolide-Webhook-Identifier
+    description: Static value unique to each endpoint; usable for WAF filtering
+  - name: X-Forwarded-Proto
+  - name: X-Forwarded-Host
+  source_ips: >-
+    Not reservable — Kolide sends webhooks from any IP in the AWS us-east-1 region,
+    so IP allow-listing is explicitly documented as unsafe.
+  delivery_log_retention: 6 months
+  events:
+  - {name: audit_log.recorded, added: '2024-10', description: An admin or system action was recorded in the audit log}
+  - {name: admin_users.created, added: '2024-06', description: A new admin user was created}
+  - {name: auth_logs.success, added: '2024-03', description: A successful SSO authentication occurred}
+  - {name: auth_logs.failure, added: '2024-05', description: An authentication failed or was left incomplete}
+  - {name: devices.created, added: '2019-12', description: A device enrolled}
+  - {name: devices.registered, added: '2023-10', description: A device registration was approved}
+  - {name: devices.destroyed, added: '2019-12', description: A device was removed}
+  - {name: device_trust.status_changed, added: '2024-09', description: A device's trust status changed}
+  - {name: issues.new, added: '2021-10', description: A new compliance issue was detected}
+  - {name: issues.resolved, added: '2021-10', description: A compliance issue was resolved}
+  - {name: requests.issue_exemption, added: '2023-10', description: An issue-exemption request was submitted}
+  - {name: requests.registration, added: '2023-10', description: A device-registration request was submitted}
+
+ssf_streams:
+  spec: OpenID Shared Signals Framework 1.0
+  profile: CAEP (Continuous Access Evaluation Profile)
+  discovery: https://api.kolide.com/.well-known/ssf-configuration
+  discovery_file: ../well-known/kolide-ssf-configuration.json
+  issuer: https://api.kolide.com
+  jwks_uri: https://api.kolide.com/ssf/jwks.json
+  delivery_methods_supported:
+  - {urn: 'urn:ietf:rfc:8935', mode: push, rfc: RFC 8935, notes: Requires an HTTPS receiver URL}
+  - {urn: 'urn:ietf:rfc:8936', mode: poll, rfc: RFC 8936, notes: No endpoint URL required at stream creation}
+  events_supported:
+  - uri: https://schemas.openid.net/secevent/caep/event-type/device-compliance-change
+    description: A device's compliance posture changed; auto-subscribed on every stream
+  - uri: https://schemas.openid.net/secevent/ssf/event-type/verification
+    description: Stream verification event, added automatically by Kolide to every stream request
+  endpoints:
+  - {purpose: Create/manage streams, path: /ssf_streams, methods: [POST, GET, PATCH, DELETE]}
+  - {purpose: Stream status, path: /ssf_streams/status}
+  - {purpose: Stream verification, path: /ssf_streams/verify}
+  - {purpose: Poll events, path: '/ssf_streams/{stream_id}/events', methods: [GET]}
+  - {purpose: Acknowledge events, path: '/ssf_streams/{stream_id}/events', methods: [POST]}
+  - {purpose: Rotate poll bearer token, path: '/ssf_streams/{id}/rotate_poll_token', methods: [POST], added: '2026-07-09'}
+  authentication:
+    api: 'Authorization: Bearer <KOLIDE_API_TOKEN>'
+    poll: 'X-Kolide-Poll-Bearer-Token: <per-stream token>'
+  constraints:
+  - Push delivery URLs must be HTTPS; private-network destinations are blocked (since 2026-05-05).

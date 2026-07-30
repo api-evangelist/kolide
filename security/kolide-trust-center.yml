@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://www.kolide.com/security
+url: https://www.kolide.com/security
+notes: >-
+  Kolide does not run a dedicated trust-center subdomain (no trust.kolide.com). Its
+  security and compliance posture is published on the /security page plus dedicated legal
+  pages. Kolide is part of 1Password Extended Access Management and shares 1Password's
+  status page.
+certifications:
+- name: SOC 2 Type II
+  url: https://www.kolide.com/legal/soc2
+- name: GDPR
+  url: https://www.kolide.com/legal/gdpr
+not_claimed:
+- ISO/IEC 27001
+- PCI DSS
+- HIPAA
+- FedRAMP
+practices:
+  encryption_in_transit: HTTPS/TLS 256-bit for all traffic
+  encryption_at_rest: AES-256
+  audit_logs: Customer-accessible audit logs (GET /audit_logs)
+  penetration_testing: >-
+    Engages professional compliance auditors, penetration testers and independent
+    security researchers.
+  vulnerability_scanning: Automated
+  code_review: Continuous review as part of the deployment model
+  transparency: >-
+    "Honesty and Transparency by Default" — the agent source is open
+    (github.com/kolide/launcher) and end users get a Privacy Center showing what is
+    collected about their device.
+related:
+  vulnerability_disclosure: kolide-vulnerability-disclosure.yml
+  domain_security: kolide-domain-security.yml
+  status_page: https://status.1password.com
+  privacy_policy: https://www.kolide.com/legal/privacy
+  terms: https://www.kolide.com/legal/terms
+  api_terms: https://1password.com/legal/api-sdk-terms-of-service
+evidence:
+- source: https://www.kolide.com/security
+  keywords:
+  - soc2
+  - gdpr

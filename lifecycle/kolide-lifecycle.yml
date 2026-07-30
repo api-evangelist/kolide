@@ -1,0 +1,63 @@
+generated: '2026-07-19'
+method: searched
+source:
+- https://www.kolide.com/docs/developers/api
+- https://www.kolide.com/docs/developers/changelog
+- https://www.kolide.com/
+
+versioning:
+  scheme: dated version lines
+  header: X-Kolide-Api-Version
+  required: false
+  default_when_omitted: latest
+  current: '2026-04-07'
+  supported:
+  - version: '2026-04-07'
+    spec: openapi/kolide-k2-openapi.json
+    published_spec: https://www.kolide.com/docs/openapi/2026-04-07
+    docs: https://www.kolide.com/docs/developers/openapi-specification-2026-04-07
+  - version: '2023-05-26'
+    spec: openapi/kolide-k2-2023-05-26-openapi.json
+    published_spec: https://www.kolide.com/docs/openapi/2023-05-26
+    docs: https://www.kolide.com/docs/developers/openapi-specification-2023-05-26
+  policy: >-
+    Breaking changes ship as a NEW dated version line rather than mutating an existing
+    one; older dated lines remain callable by pinning X-Kolide-Api-Version. Callers that
+    omit the header float to latest and are therefore exposed to breaking changes.
+  breaking_change_example:
+    version: '2026-04-07'
+    date: '2026-04-07'
+    change: >-
+      Reporting query responses no longer include the `results` field; results are
+      retrieved from a separate endpoint.
+
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  notes: >-
+    Kolide publishes no standalone deprecation policy, no RFC 8594 Sunset/Deprecation
+    response headers, and no announced end-of-life date for the 2023-05-26 line. Version
+    retirement is implied by the dated-version model but never stated. Recorded as a gap;
+    no Deprecation pointer is emitted.
+
+status_page:
+  url: https://status.1password.com
+  provider: 1Password (Kolide is part of 1Password Extended Access Management)
+  linked_from: https://www.kolide.com/ footer
+  status: 200
+
+changelog:
+  url: https://www.kolide.com/docs/developers/changelog
+  product_changelog: https://www.kolide.com/blog/category/changelog
+  detail: ../changelog/kolide-changelog.yml
+
+sla:
+  published: false
+  notes: No public SLA or uptime commitment was found on the pricing or docs surface.
+
+deprecated_operations:
+  source: openapi/kolide-k2-openapi.json
+  count: 0
+  notes: 'No operation in either dated spec carries `deprecated: true`.'

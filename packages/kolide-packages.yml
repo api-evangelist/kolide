@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  npm registry search, PyPI (kolide / kolide-mcp / kolide-api all 404),
+  pkg.go.dev, github.com/kolide
+summary: >-
+  Kolide publishes NO first-party HTTP client SDK for the K2 API in any language.
+  Its public first-party Go modules are the open-source device agent (launcher) and a
+  shared internal toolkit (kit), not API client libraries. The official MCP server is
+  distributed as source from GitHub only — it is not published to PyPI. The one npm
+  package matching "kolide" is a third-party re-implementation, not first-party.
+packages:
+- language: go
+  registry: pkg.go.dev
+  name: github.com/kolide/launcher
+  url: https://pkg.go.dev/github.com/kolide/launcher
+  install: go get github.com/kolide/launcher
+  official: true
+  kind: agent
+  description: >-
+    The open-source Kolide osquery launcher, autoupdater and packager — the endpoint
+    agent that reports device state to Kolide. Not a client library for the K2 API.
+- language: go
+  registry: pkg.go.dev
+  name: github.com/kolide/kit
+  url: https://pkg.go.dev/github.com/kolide/kit
+  install: go get github.com/kolide/kit
+  official: true
+  kind: toolkit
+  description: A shared standard library for Kolide's own Go projects. Not an API client.
+- language: python
+  registry: null
+  name: kolide-mcp (device-trust-mcp-server)
+  url: https://github.com/kolide/device-trust-mcp-server
+  install: git clone https://github.com/kolide/device-trust-mcp-server.git && uv sync
+  official: true
+  kind: mcp-server
+  published_to_registry: false
+  description: >-
+    First-party MCP server wrapping the K2 API. Installed from source with uv or pip -e;
+    not published to PyPI (pypi.org/pypi/kolide-mcp returns 404 as of this probe).
+- language: javascript
+  registry: npm
+  name: kolide-mcp-server
+  url: https://www.npmjs.com/package/kolide-mcp-server
+  install: npm install kolide-mcp-server
+  official: false
+  kind: mcp-server
+  description: >-
+    Third-party MCP server for Kolide. Repository field points at
+    github.com/CoreWeave-Sandbox/kolide-mcp-server and the sole npm maintainer is an
+    individual account — NOT first-party Kolide.
+gaps:
+- No first-party JavaScript/TypeScript, Python, Go, Ruby, Java, PHP or .NET client
+  library for the K2 REST API is published on any registry.
+- The official MCP server would benefit from a PyPI release so it is installable
+  without cloning.

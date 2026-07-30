@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/kolide-k2-openapi.json + Kolide developer documentation
+api: Kolide K2 API
+base_url: https://api.kolide.com
+api_version: '2026-04-07'
+notes: >-
+  Packaged Agent Skills for the marquee Kolide flows. The published K2 OpenAPI declares
+  NO operationId values on any of its 65 operations, so every skill references operations
+  by method + path, verified against openapi/kolide-k2-openapi.json. Nothing is invented.
+  Kolide also ships a first-party MCP server (see mcp/kolide-mcp.yml) whose ~55 tools map
+  onto the same operations; these skills are the transport-agnostic equivalent.
+skills:
+- name: kolide-device-compliance-triage
+  file: kolide-device-compliance-triage.md
+  description: >-
+    Find failing security checks, trace them to devices and people, and drive compliance
+    issues to resolution.
+  operations: 10
+- name: kolide-access-request-review
+  file: kolide-access-request-review.md
+  description: >-
+    Work the device registration and issue exemption approval queues, and adjust or
+    revoke device trust.
+  operations: 9
+- name: kolide-fleet-reporting
+  file: kolide-fleet-reporting.md
+  description: >-
+    Answer fleet inventory and posture questions via reporting tables, saved queries,
+    software packages and live osquery campaigns.
+  operations: 13
+- name: kolide-event-subscription
+  file: kolide-event-subscription.md
+  description: >-
+    Verify HMAC-signed webhooks and consume the OpenID SSF/CAEP device-compliance stream
+    by push or poll.
+  operations: 9

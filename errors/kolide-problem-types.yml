@@ -1,0 +1,44 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/kolide-k2-openapi.json, https://www.kolide.com/docs/developers/api
+format: json
+rfc9457: false
+media_type: application/json
+notes: >-
+  The K2 OpenAPI declares only 401 and 403 error responses, both as application/json
+  with a prose description and no error schema — there is no RFC 9457 problem+json
+  envelope and no documented machine-readable error-code registry. The 429 entry below
+  is taken from the API overview page rather than the spec. Everything else the API can
+  return (400/404/422/5xx) is undocumented; listed under gaps rather than invented.
+problem_types:
+- status: 401
+  title: Unauthorized
+  source: openapi/kolide-k2-openapi.json
+  detail: >-
+    An 'unauthorized' response may occur for features restricted by or unavailable to
+    your organization.
+  remediation: >-
+    Verify the Authorization bearer token is a valid k2sk key, and confirm the feature is
+    included in your Kolide plan (several surfaces are Kolide Max only).
+- status: 403
+  title: Forbidden
+  source: openapi/kolide-k2-openapi.json
+  detail: >-
+    A 'forbidden' response may occur if the API key does not have necessary permissions
+    to perform certain actions.
+  remediation: >-
+    Grant the required per-key permission in Settings > Developers > API Keys. Write
+    permissions require a Kolide Max subscription and an explicit documented rationale.
+- status: 429
+  title: Too Many Requests
+  source: https://www.kolide.com/docs/developers/api
+  detail: The 270 requests-per-minute throughput ceiling was exceeded.
+  headers: [Retry-After, RateLimit-Limit, Ratelimit-Remaining, Ratelimit-Reset]
+  remediation: >-
+    Back off for the interval in Retry-After, then resume; use Ratelimit-Remaining and
+    Ratelimit-Reset to pace requests proactively.
+gaps:
+- No error-code registry or stable machine-readable error identifiers are published.
+- No error response schema is defined in components.schemas.
+- 400, 404, 422 and 5xx responses are not declared on any of the 65 operations.
+- Adopting RFC 9457 application/problem+json would make failures machine-actionable.
