@@ -1,22 +1,462 @@
 aid: kolide
 name: Kolide
-description: 'Kolide is a company surfaced as a portfolio company of matrix-partners and added to the
-  API Evangelist network as a stub for enrichment. Sector: b2b. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Kolide is a device trust and endpoint security platform, now part of 1Password Extended
+  Access Management. It enforces Zero Trust access by blocking non-compliant devices from
+  authenticating into corporate applications through Okta, Google Workspace or Microsoft
+  Entra, runs continuous security and compliance checks across Linux, macOS, Windows, iOS
+  and Android endpoints, and maintains fleet-wide device inventory built on thousands of
+  osquery-sourced data points. Its distinguishing philosophy is user-first remediation:
+  rather than silently denying access, Kolide educates the end user about the specific
+  problem on their device and guides them through fixing it themselves, cutting helpdesk
+  load. The public developer surface is the K2 API at api.kolide.com — 65 REST operations
+  across devices, people, groups, security checks, compliance issues, live osquery
+  campaigns, approval queues, reporting tables and audit logs — published as OpenAPI 3.0
+  on dated version lines, with HMAC-signed webhooks, an OpenID Shared Signals Framework
+  (CAEP) event stream, and a first-party MCP server.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.kolide.com/apple-touch-icon.png
 url: https://raw.githubusercontent.com/api-evangelist/kolide/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - matrix-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: producer
+x-tier-reason: publishes OpenAPI, webhooks, SSF/CAEP streams and a first-party MCP server
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - B2B
-apis: []
+- Security
+- Device Trust
+- Endpoint Security
+- Zero Trust
+- Compliance
+- Identity
+- osquery
+- Device Management
+apis:
+- aid: kolide:kolide-admin-users-api
+  name: Kolide Admin Users API
+  description: The Admin Users API from Kolide — 2 operation(s) for admin users.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Admin Users
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-admin-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-audit-logs-api
+  name: Kolide Audit Logs API
+  description: The Audit Logs API from Kolide — 2 operation(s) for audit logs.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-audit-logs-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-auth-logs-api
+  name: Kolide Auth Logs API
+  description: The Auth Logs API from Kolide — 2 operation(s) for auth logs.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Auth Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-auth-logs-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-checks-api
+  name: Kolide Checks API
+  description: The Checks API from Kolide — 5 operation(s) for checks.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Checks
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-checks-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-custom-check-drafts-api
+  name: Kolide Custom Check Drafts API
+  description: The Custom Check Drafts API from Kolide — 2 operation(s) for custom check drafts.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Custom Check Drafts
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-custom-check-drafts-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-deprovisioned-people-api
+  name: Kolide Deprovisioned People API
+  description: The Deprovisioned People API from Kolide — 1 operation(s) for deprovisioned people.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Deprovisioned People
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-deprovisioned-people-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-device-groups-api
+  name: Kolide Device Groups API
+  description: The Device Groups API from Kolide — 5 operation(s) for device groups.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Device Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-device-groups-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-devices-api
+  name: Kolide Devices API
+  description: The Devices API from Kolide — 7 operation(s) for devices.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-devices-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-exemption-requests-api
+  name: Kolide Exemption Requests API
+  description: The Exemption Requests API from Kolide — 2 operation(s) for exemption requests.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Exemption Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-exemption-requests-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-issues-api
+  name: Kolide Issues API
+  description: The Issues API from Kolide — 2 operation(s) for issues.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-issues-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-live-query-campaigns-api
+  name: Kolide Live Query Campaigns API
+  description: The Live Query Campaigns API from Kolide — 3 operation(s) for live query campaigns.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Live Query Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-live-query-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-packages-api
+  name: Kolide Packages API
+  description: The Packages API from Kolide — 2 operation(s) for packages.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-packages-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-people-api
+  name: Kolide People API
+  description: The People API from Kolide — 5 operation(s) for people.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-people-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-person-groups-api
+  name: Kolide Person Groups API
+  description: The Person Groups API from Kolide — 3 operation(s) for person groups.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Person Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-person-groups-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-registration-requests-api
+  name: Kolide Registration Requests API
+  description: The Registration Requests API from Kolide — 2 operation(s) for registration requests.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Registration Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-registration-requests-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-reporting-api
+  name: Kolide Reporting API
+  description: The Reporting API from Kolide — 6 operation(s) for reporting.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
+- aid: kolide:kolide-whoami-api
+  name: Kolide Whoami API
+  description: The Whoami API from Kolide — 1 operation(s) for whoami.
+  humanURL: https://www.kolide.com/docs/developers/api
+  baseURL: https://api.kolide.com
+  tags:
+  - Whoami
+  properties:
+  - type: OpenAPI
+    url: openapi/kolide-whoami-api-openapi.yml
+  - type: Documentation
+    url: https://www.kolide.com/docs/developers/api
+  - type: APIReference
+    url: https://kolideapi.readme.io/reference
+  - type: Authentication
+    url: authentication/kolide-authentication.yml
+  - type: Conventions
+    url: conventions/kolide-conventions.yml
+  - type: ErrorCatalog
+    url: errors/kolide-problem-types.yml
+  - type: DataModel
+    url: data-model/kolide-data-model.yml
+  - type: Webhooks
+    url: asyncapi/kolide-events.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +465,70 @@ maintainers:
 common:
 - type: Website
   url: https://kolide.com
+- type: DeveloperPortal
+  url: https://www.kolide.com/docs/developers
+- type: Documentation
+  url: https://www.kolide.com/docs
+- type: APIReference
+  url: https://kolideapi.readme.io/reference
+- type: GettingStarted
+  url: https://www.kolide.com/docs/developers/usecases
+- type: Support
+  url: https://www.kolide.com/docs/about-kolide/support
+- type: Blog
+  url: https://www.kolide.com/blog
+- type: GitHubOrganization
+  url: https://github.com/kolide
+- type: Pricing
+  url: https://www.kolide.com/pricing
+- type: SignUp
+  url: https://app.kolide.com/signin
+- type: TermsOfService
+  url: https://www.kolide.com/legal/terms
+- type: PrivacyPolicy
+  url: https://www.kolide.com/legal/privacy
+- type: Authentication
+  url: authentication/kolide-authentication.yml
+- type: Conventions
+  url: conventions/kolide-conventions.yml
+- type: ErrorCatalog
+  url: errors/kolide-problem-types.yml
+- type: DataModel
+  url: data-model/kolide-data-model.yml
+- type: Lifecycle
+  url: lifecycle/kolide-lifecycle.yml
+- type: StatusPage
+  url: https://status.1password.com
+- type: ChangeLog
+  url: changelog/kolide-changelog.yml
+- type: Webhooks
+  url: asyncapi/kolide-events.yml
+- type: MCPServer
+  url: mcp/kolide-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Packages
+  url: packages/kolide-packages.yml
+- type: WellKnown
+  url: well-known/kolide-well-known.yml
+- type: Conformance
+  url: conformance/kolide-conformance.yml
+- type: Compliance
+  url: conformance/kolide-conformance.yml
+- type: Security
+  url: security/kolide-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/kolide-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/kolide-trust-center.yml
+- type: DomainSecurity
+  url: security/kolide-domain-security.yml
+- type: LLMsTxt
+  url: llms/kolide-llms.txt
+- type: Overlay
+  url: overlays/kolide-k2-overlay.yaml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
