@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users Packages API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a list of Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/packages",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              }
+            ]
+          },
+          "docs": "Fetch a list of Packages"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/packages/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the package"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Package"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -6,7 +6,9 @@ repository: https://github.com/kolide/device-trust-mcp-server
 server:
   name: kolide
   title: 1Password Device Trust (Kolide K2) MCP Server
-  transport: [stdio, http]
+  transport:
+  - stdio
+  - http
   hosted: false
   local_url: http://127.0.0.1:8000/mcp
   install:
@@ -33,62 +35,191 @@ resources:
 - uri: kolide://docs/workflows
   description: Step-by-step guides for common analytical tasks
 tools:
-- {name: kolide_issue_resolution_stats, group: composite, description: 'Compute resolution time statistics (avg, median, min, max, p90) for issues of a specific check. Automatically fetches all pages.'}
-- {name: kolide_count_table_records_by_field, group: composite, description: 'Count records in a reporting table grouped by a field. Returns ranked results.'}
-- {name: kolide_refresh_reporting_tables, group: composite, description: 'Refresh the cached list of valid reporting table names from the API.'}
-- {name: kolide_whoami, group: organization, description: Get organization information, source_operation: 'GET /whoami'}
-- {name: kolide_list_devices, group: devices, source_operation: 'GET /devices'}
-- {name: kolide_get_device, group: devices, source_operation: 'GET /devices/{id}'}
-- {name: kolide_delete_device, group: devices, source_operation: 'DELETE /devices/{id}'}
-- {name: kolide_get_device_open_issues, group: devices, source_operation: 'GET /devices/{deviceId}/open_issues'}
-- {name: kolide_update_device_authentication_mode, group: devices, source_operation: 'PATCH /devices/{deviceId}/authentication_mode'}
-- {name: kolide_delete_device_registration, group: devices, source_operation: 'DELETE /devices/{deviceId}/registration'}
-- {name: kolide_create_check_refresh, group: devices, source_operation: 'POST /devices/{deviceId}/check_refreshes'}
-- {name: kolide_get_device_check_results, group: devices, source_operation: 'GET /devices/{deviceId}/check_results'}
-- {name: kolide_list_device_groups, group: device_groups, source_operation: 'GET /device_groups'}
-- {name: kolide_get_device_group, group: device_groups, source_operation: 'GET /device_groups/{id}'}
-- {name: kolide_list_device_group_devices, group: device_groups, source_operation: 'GET /device_groups/{deviceGroupId}/devices'}
-- {name: kolide_add_device_to_group, group: device_groups, source_operation: 'POST /device_groups/{deviceGroupId}/memberships'}
-- {name: kolide_remove_device_from_group, group: device_groups, source_operation: 'DELETE /device_groups/{deviceGroupId}/memberships/{id}'}
-- {name: kolide_list_people, group: people, source_operation: 'GET /people'}
-- {name: kolide_get_person, group: people, source_operation: 'GET /people/{id}'}
-- {name: kolide_list_person_devices, group: people, source_operation: 'GET /people/{personId}/registered_devices'}
-- {name: kolide_list_person_issues, group: people, source_operation: 'GET /people/{personId}/open_issues'}
-- {name: kolide_list_person_groups_for_person, group: people, source_operation: 'GET /people/{personId}/person_groups'}
-- {name: kolide_list_deprovisioned_people, group: people, source_operation: 'GET /deprovisioned_people'}
-- {name: kolide_list_person_groups, group: person_groups, source_operation: 'GET /person_groups'}
-- {name: kolide_get_person_group, group: person_groups, source_operation: 'GET /person_groups/{id}'}
-- {name: kolide_list_person_group_people, group: person_groups, source_operation: 'GET /person_groups/{personGroupId}/people'}
-- {name: kolide_list_issues, group: issues, source_operation: 'GET /issues'}
-- {name: kolide_get_issue, group: issues, source_operation: 'GET /issues/{id}'}
-- {name: kolide_list_checks, group: checks, source_operation: 'GET /checks'}
-- {name: kolide_get_check, group: checks, source_operation: 'GET /checks/{id}'}
-- {name: kolide_get_check_results, group: checks, source_operation: 'GET /checks/{checkId}/results'}
-- {name: kolide_get_check_configuration, group: checks, source_operation: 'GET /checks/{checkId}/configurations'}
-- {name: kolide_update_check_configuration, group: checks, source_operation: 'PATCH /checks/{checkId}/configurations'}
-- {name: kolide_list_live_query_campaigns, group: live_query, source_operation: 'GET /live_query_campaigns'}
-- {name: kolide_get_live_query_campaign, group: live_query, source_operation: 'GET /live_query_campaigns/{id}'}
-- {name: kolide_create_live_query_campaign, group: live_query, source_operation: 'POST /live_query_campaigns'}
-- {name: kolide_update_live_query_campaign, group: live_query, source_operation: 'PATCH /live_query_campaigns/{id}'}
-- {name: kolide_delete_live_query_campaign, group: live_query, source_operation: 'DELETE /live_query_campaigns/{id}'}
-- {name: kolide_get_live_query_results, group: live_query, source_operation: 'GET /live_query_campaigns/{liveQueryCampaignId}/query_results'}
-- {name: kolide_list_exemption_requests, group: exemption_requests, source_operation: 'GET /exemption_requests'}
-- {name: kolide_get_exemption_request, group: exemption_requests, source_operation: 'GET /exemption_requests/{id}'}
-- {name: kolide_update_exemption_request, group: exemption_requests, source_operation: 'PATCH /exemption_requests/{id}'}
-- {name: kolide_list_registration_requests, group: registration_requests, source_operation: 'GET /registration_requests'}
-- {name: kolide_get_registration_request, group: registration_requests, source_operation: 'GET /registration_requests/{id}'}
-- {name: kolide_update_registration_request, group: registration_requests, source_operation: 'PATCH /registration_requests/{id}'}
-- {name: kolide_list_packages, group: packages, source_operation: 'GET /packages'}
-- {name: kolide_get_package, group: packages, source_operation: 'GET /packages/{id}'}
-- {name: kolide_list_admin_users, group: admin_users, source_operation: 'GET /admin_users'}
-- {name: kolide_get_admin_user, group: admin_users, source_operation: 'GET /admin_users/{id}'}
-- {name: kolide_list_audit_logs, group: audit_logs, source_operation: 'GET /audit_logs'}
-- {name: kolide_get_audit_log, group: audit_logs, source_operation: 'GET /audit_logs/{id}'}
-- {name: kolide_list_auth_logs, group: auth_logs, source_operation: 'GET /auth_logs'}
-- {name: kolide_get_auth_log, group: auth_logs, source_operation: 'GET /auth_logs/{id}'}
-- {name: kolide_list_reporting_tables, group: reporting, source_operation: 'GET /reporting/tables'}
-- {name: kolide_get_reporting_table, group: reporting, source_operation: 'GET /reporting/tables/{name}'}
-- {name: kolide_get_table_records, group: reporting, source_operation: 'GET /reporting/tables/{tableName}/table_records'}
-- {name: kolide_list_report_queries, group: reporting, source_operation: 'GET /reporting/queries'}
-- {name: kolide_get_report_query, group: reporting, source_operation: 'GET /reporting/queries/{id}'}
-- {name: kolide_get_report_query_results, group: reporting, source_operation: 'GET /reporting/queries/{queryId}/results'}
+- name: kolide_issue_resolution_stats
+  group: composite
+  description: Compute resolution time statistics (avg, median, min, max, p90) for issues of a specific
+    check. Automatically fetches all pages.
+- name: kolide_count_table_records_by_field
+  group: composite
+  description: Count records in a reporting table grouped by a field. Returns ranked results.
+- name: kolide_refresh_reporting_tables
+  group: composite
+  description: Refresh the cached list of valid reporting table names from the API.
+- name: kolide_whoami
+  group: organization
+  description: Get organization information
+  source_operation: GET /whoami
+- name: kolide_list_devices
+  group: devices
+  source_operation: GET /devices
+- name: kolide_get_device
+  group: devices
+  source_operation: GET /devices/{id}
+- name: kolide_delete_device
+  group: devices
+  source_operation: DELETE /devices/{id}
+- name: kolide_get_device_open_issues
+  group: devices
+  source_operation: GET /devices/{deviceId}/open_issues
+- name: kolide_update_device_authentication_mode
+  group: devices
+  source_operation: PATCH /devices/{deviceId}/authentication_mode
+- name: kolide_delete_device_registration
+  group: devices
+  source_operation: DELETE /devices/{deviceId}/registration
+- name: kolide_create_check_refresh
+  group: devices
+  source_operation: POST /devices/{deviceId}/check_refreshes
+- name: kolide_get_device_check_results
+  group: devices
+  source_operation: GET /devices/{deviceId}/check_results
+- name: kolide_list_device_groups
+  group: device_groups
+  source_operation: GET /device_groups
+- name: kolide_get_device_group
+  group: device_groups
+  source_operation: GET /device_groups/{id}
+- name: kolide_list_device_group_devices
+  group: device_groups
+  source_operation: GET /device_groups/{deviceGroupId}/devices
+- name: kolide_add_device_to_group
+  group: device_groups
+  source_operation: POST /device_groups/{deviceGroupId}/memberships
+- name: kolide_remove_device_from_group
+  group: device_groups
+  source_operation: DELETE /device_groups/{deviceGroupId}/memberships/{id}
+- name: kolide_list_people
+  group: people
+  source_operation: GET /people
+- name: kolide_get_person
+  group: people
+  source_operation: GET /people/{id}
+- name: kolide_list_person_devices
+  group: people
+  source_operation: GET /people/{personId}/registered_devices
+- name: kolide_list_person_issues
+  group: people
+  source_operation: GET /people/{personId}/open_issues
+- name: kolide_list_person_groups_for_person
+  group: people
+  source_operation: GET /people/{personId}/person_groups
+- name: kolide_list_deprovisioned_people
+  group: people
+  source_operation: GET /deprovisioned_people
+- name: kolide_list_person_groups
+  group: person_groups
+  source_operation: GET /person_groups
+- name: kolide_get_person_group
+  group: person_groups
+  source_operation: GET /person_groups/{id}
+- name: kolide_list_person_group_people
+  group: person_groups
+  source_operation: GET /person_groups/{personGroupId}/people
+- name: kolide_list_issues
+  group: issues
+  source_operation: GET /issues
+- name: kolide_get_issue
+  group: issues
+  source_operation: GET /issues/{id}
+- name: kolide_list_checks
+  group: checks
+  source_operation: GET /checks
+- name: kolide_get_check
+  group: checks
+  source_operation: GET /checks/{id}
+- name: kolide_get_check_results
+  group: checks
+  source_operation: GET /checks/{checkId}/results
+- name: kolide_get_check_configuration
+  group: checks
+  source_operation: GET /checks/{checkId}/configurations
+- name: kolide_update_check_configuration
+  group: checks
+  source_operation: PATCH /checks/{checkId}/configurations
+- name: kolide_list_live_query_campaigns
+  group: live_query
+  source_operation: GET /live_query_campaigns
+- name: kolide_get_live_query_campaign
+  group: live_query
+  source_operation: GET /live_query_campaigns/{id}
+- name: kolide_create_live_query_campaign
+  group: live_query
+  source_operation: POST /live_query_campaigns
+- name: kolide_update_live_query_campaign
+  group: live_query
+  source_operation: PATCH /live_query_campaigns/{id}
+- name: kolide_delete_live_query_campaign
+  group: live_query
+  source_operation: DELETE /live_query_campaigns/{id}
+- name: kolide_get_live_query_results
+  group: live_query
+  source_operation: GET /live_query_campaigns/{liveQueryCampaignId}/query_results
+- name: kolide_list_exemption_requests
+  group: exemption_requests
+  source_operation: GET /exemption_requests
+- name: kolide_get_exemption_request
+  group: exemption_requests
+  source_operation: GET /exemption_requests/{id}
+- name: kolide_update_exemption_request
+  group: exemption_requests
+  source_operation: PATCH /exemption_requests/{id}
+- name: kolide_list_registration_requests
+  group: registration_requests
+  source_operation: GET /registration_requests
+- name: kolide_get_registration_request
+  group: registration_requests
+  source_operation: GET /registration_requests/{id}
+- name: kolide_update_registration_request
+  group: registration_requests
+  source_operation: PATCH /registration_requests/{id}
+- name: kolide_list_packages
+  group: packages
+  source_operation: GET /packages
+- name: kolide_get_package
+  group: packages
+  source_operation: GET /packages/{id}
+- name: kolide_list_admin_users
+  group: admin_users
+  source_operation: GET /admin_users
+- name: kolide_get_admin_user
+  group: admin_users
+  source_operation: GET /admin_users/{id}
+- name: kolide_list_audit_logs
+  group: audit_logs
+  source_operation: GET /audit_logs
+- name: kolide_get_audit_log
+  group: audit_logs
+  source_operation: GET /audit_logs/{id}
+- name: kolide_list_auth_logs
+  group: auth_logs
+  source_operation: GET /auth_logs
+- name: kolide_get_auth_log
+  group: auth_logs
+  source_operation: GET /auth_logs/{id}
+- name: kolide_list_reporting_tables
+  group: reporting
+  source_operation: GET /reporting/tables
+- name: kolide_get_reporting_table
+  group: reporting
+  source_operation: GET /reporting/tables/{name}
+- name: kolide_get_table_records
+  group: reporting
+  source_operation: GET /reporting/tables/{tableName}/table_records
+- name: kolide_list_report_queries
+  group: reporting
+  source_operation: GET /reporting/queries
+- name: kolide_get_report_query
+  group: reporting
+  source_operation: GET /reporting/queries/{id}
+- name: kolide_get_report_query_results
+  group: reporting
+  source_operation: GET /reporting/queries/{queryId}/results
+deployment:
+  mode: none
+  endpoint: http://127.0.0.1:8000/mcp
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census

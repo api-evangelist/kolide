@@ -1,0 +1,1747 @@
+{
+  "item": [
+    {
+      "id": "4b39aa0a-88a1-4457-8f3d-28a33a9fd77f",
+      "name": "Live Query Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a033db1-c3b5-4657-af24-8ef89843cc0e",
+          "name": "Fetch a list of Live query results",
+          "request": {
+            "name": "Fetch a list of Live query results",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns",
+                ":liveQueryCampaignId",
+                "query_results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "",
+                  "description": "Specify the cursor to begin returning results from"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Specify the number of records to return in each response."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`error_message` , `warning_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "liveQueryCampaignId",
+                  "description": "(Required) The live query campaign ID of the live query result"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1cf76f1-f349-4335-85c1-6ac3a291d058",
+              "name": "A paginated collection of Live query results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":liveQueryCampaignId",
+                    "query_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "error_message:string"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "liveQueryCampaignId",
+                      "description": "(Required) The live query campaign ID of the live query result"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"result_count\": \"string\",\n      \"error_message\": \"string\",\n      \"revision\": 3134,\n      \"warning_message\": \"string\",\n      \"device_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"results\": [\n        8175,\n        9322\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"result_count\": \"string\",\n      \"error_message\": \"string\",\n      \"revision\": 520,\n      \"warning_message\": \"string\",\n      \"device_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"results\": [\n        5955,\n        2583\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/query_results?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7ab4c0d-6a2e-46b2-a60c-b2b2dfbdbe12",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":liveQueryCampaignId",
+                    "query_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "error_message:string"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "liveQueryCampaignId",
+                      "description": "(Required) The live query campaign ID of the live query result"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1ed1cbb-193a-449d-9bab-86c062c050ba",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":liveQueryCampaignId",
+                    "query_results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "error_message:string"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "liveQueryCampaignId",
+                      "description": "(Required) The live query campaign ID of the live query result"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7db4b933-2b1b-4d0d-88b7-d95b778c968b",
+          "name": "Fetch a list of Live query campaigns",
+          "request": {
+            "name": "Fetch a list of Live query campaigns",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "",
+                  "description": "Specify the cursor to begin returning results from"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Specify the number of records to return in each response."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `published` , `tables_used`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec5e230e-8235-490a-bb06-5eea0324bfd1",
+              "name": "A paginated collection of Live query campaigns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "created_at:2000-01-08T20:38:21Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"osquery_sql\": \"string\",\n      \"created_at\": \"2010-10-12T20:32:09.655Z\",\n      \"published\": true,\n      \"revision\": 1521,\n      \"tables_used\": [\n        \"string\",\n        \"string\"\n      ],\n      \"successful_devices_count\": 4614,\n      \"errored_devices_count\": 9440,\n      \"waiting_devices_count\": 8845\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"osquery_sql\": \"string\",\n      \"created_at\": \"1964-11-14T02:45:07.074Z\",\n      \"published\": true,\n      \"revision\": 91,\n      \"tables_used\": [\n        \"string\",\n        \"string\"\n      ],\n      \"successful_devices_count\": 2788,\n      \"errored_devices_count\": 3287,\n      \"waiting_devices_count\": 9542\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/live_query_campaigns?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7687735-d21d-4c3c-a36c-78913815d81a",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "created_at:2000-01-08T20:38:21Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ec1367f-ea1c-4a70-9afe-ac2345f4234e",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "created_at:2000-01-08T20:38:21Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3758bbea-810a-4211-95a9-14e28bf2802f",
+          "name": "Create a new Live query campaign",
+          "request": {
+            "name": "Create a new Live query campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81e892a2-05a4-4ef5-97d4-64a148b34d86",
+              "name": "The newly created Live query campaign",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"created_at\": \"1982-07-14T02:33:30.452Z\",\n  \"published\": false,\n  \"revision\": 8383,\n  \"tables_used\": [\n    \"string\",\n    \"string\"\n  ],\n  \"successful_devices_count\": 7889,\n  \"errored_devices_count\": 8663,\n  \"waiting_devices_count\": 5867\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a2dbb61-33bf-4027-bf7f-312069611aa6",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbab9ac4-9a18-4303-8e8d-f29f20d7e979",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef2cbdbd-1d3c-4a13-8918-33abd0d7e7d5",
+          "name": "Fetch information for a specific Live query campaign",
+          "request": {
+            "name": "Fetch information for a specific Live query campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the live query campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb3e2ad8-c296-4e41-833c-36a8faee9ce8",
+              "name": "Kolide's Live Query allows you to run your own ad-hoc SQL queries\nand get results from online devices in real time.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"created_at\": \"1982-07-14T02:33:30.452Z\",\n  \"published\": false,\n  \"revision\": 8383,\n  \"tables_used\": [\n    \"string\",\n    \"string\"\n  ],\n  \"successful_devices_count\": 7889,\n  \"errored_devices_count\": 8663,\n  \"waiting_devices_count\": 5867\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad616d6a-c717-4379-89c6-35b7400dffe0",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecb846aa-d917-464e-a5b1-f9dab00d7f2d",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4aca8fa5-af20-4351-a164-b099b65c22f1",
+          "name": "Update an existing Live query campaign",
+          "request": {
+            "name": "Update an existing Live query campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the live query campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "770a9cbe-c1d4-4456-a06d-7bc11e81b042",
+              "name": "The updated Live query campaign",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"created_at\": \"1982-07-14T02:33:30.452Z\",\n  \"published\": false,\n  \"revision\": 8383,\n  \"tables_used\": [\n    \"string\",\n    \"string\"\n  ],\n  \"successful_devices_count\": 7889,\n  \"errored_devices_count\": 8663,\n  \"waiting_devices_count\": 5867\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a72095f-0610-4a33-bcfc-c4ad949b209e",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d40d714-f414-4945-870c-d0d8c22e86b9",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d76e97f-fecd-476a-acda-261dbcc11cbf",
+          "name": "Update an existing Live query campaign",
+          "request": {
+            "name": "Update an existing Live query campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the live query campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de0607ee-4926-4edc-bd37-5ccf794af656",
+              "name": "The updated Live query campaign",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"created_at\": \"1982-07-14T02:33:30.452Z\",\n  \"published\": false,\n  \"revision\": 8383,\n  \"tables_used\": [\n    \"string\",\n    \"string\"\n  ],\n  \"successful_devices_count\": 7889,\n  \"errored_devices_count\": 8663,\n  \"waiting_devices_count\": 5867\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc0ca97c-b295-4460-b35c-4acd96cf3542",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cc0687b-5f02-4fe0-b344-5ec7e586d1e2",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targeted_device_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"target_all_devices\": \"<boolean>\",\n  \"target_macs\": \"<boolean>\",\n  \"target_windows_devices\": \"<boolean>\",\n  \"target_linux_devices\": \"<boolean>\",\n  \"sql\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2dcd2b3-fa94-4280-b8a0-7f9dc33fe11d",
+          "name": "Delete a specific Live query campaign",
+          "request": {
+            "name": "Delete a specific Live query campaign",
+            "description": {},
+            "url": {
+              "path": [
+                "live_query_campaigns",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the live query campaign"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2023-05-26"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "635337d4-5732-40d6-b464-35e6458f34f7",
+              "name": "The deleted Live query campaign",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"created_at\": \"1982-07-14T02:33:30.452Z\",\n  \"published\": false,\n  \"revision\": 8383,\n  \"tables_used\": [\n    \"string\",\n    \"string\"\n  ],\n  \"successful_devices_count\": 7889,\n  \"errored_devices_count\": 8663,\n  \"waiting_devices_count\": 5867\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84d87506-3348-4b63-bc95-5e2e61773777",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a7a7f94-a2c7-46fc-af2a-3fc0e0a10826",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "live_query_campaigns",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query campaign"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2023-05-26"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolide.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b0b26ed7-a22f-40f6-9493-e8d21ea12a4e",
+    "name": "K2 Admin Users Live Query Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

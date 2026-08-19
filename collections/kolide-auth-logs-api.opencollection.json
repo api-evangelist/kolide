@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users Auth Logs API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a list of Auth log sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/auth_logs",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`timestamp` , `city` , `country` , `ip_address` , `agent_version` , `browser_name` , `person_name` , `person_email` , `person_id` , `device_id` , `result`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Auth log sessions"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Auth log session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/auth_logs/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the auth log session"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Auth log session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,726 @@
+{
+  "item": [
+    {
+      "id": "83d0c521-368d-407a-84d2-a0961e1d1f06",
+      "name": "Custom Check Drafts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1955e280-deec-4692-bb0a-7cf4c9bec60e",
+          "name": "Fetch a list of Custom check drafts",
+          "request": {
+            "name": "Fetch a list of Custom check drafts",
+            "description": {},
+            "url": {
+              "path": [
+                "custom_check_drafts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "",
+                  "description": "Specify the cursor to begin returning results from"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Specify the number of records to return in each response."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`name` , `slug` , `created_at` , `id`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a4a1bf7-69cf-4a22-8c5d-f0b10faa33a0",
+              "name": "A paginated collection of Custom check drafts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "name:string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"issue_title\": \"string\",\n      \"osquery_sql\": \"string\",\n      \"platforms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"rationale_template\": \"string\",\n      \"fix_instructions_template\": \"string\",\n      \"privacy_info\": \"string\",\n      \"check_type\": \"external\",\n      \"target_type\": \"devices\",\n      \"requires_primary_key\": true,\n      \"primary_key_column\": \"string\",\n      \"published\": true,\n      \"custom_check_id\": \"string\",\n      \"osquery_sql_status\": \"missing\",\n      \"notification_templates_status\": \"bad\",\n      \"details_status\": \"good\",\n      \"privacy_center_details_status\": \"good\",\n      \"publishable\": true,\n      \"template_data_examples\": \"string\",\n      \"privacy_center_example_data\": \"string\",\n      \"created_at\": \"1961-02-14T07:21:33.697Z\",\n      \"updated_at\": \"2002-01-17T05:19:29.501Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"issue_title\": \"string\",\n      \"osquery_sql\": \"string\",\n      \"platforms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"rationale_template\": \"string\",\n      \"fix_instructions_template\": \"string\",\n      \"privacy_info\": \"string\",\n      \"check_type\": \"osquery\",\n      \"target_type\": \"devices\",\n      \"requires_primary_key\": true,\n      \"primary_key_column\": \"string\",\n      \"published\": true,\n      \"custom_check_id\": \"string\",\n      \"osquery_sql_status\": \"good\",\n      \"notification_templates_status\": \"good\",\n      \"details_status\": \"bad\",\n      \"privacy_center_details_status\": \"good\",\n      \"publishable\": false,\n      \"template_data_examples\": \"string\",\n      \"privacy_center_example_data\": \"string\",\n      \"created_at\": \"1963-09-13T09:09:01.104Z\",\n      \"updated_at\": \"1965-08-14T00:47:09.287Z\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/custom_check_drafts?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3187d59-ad52-4da3-bc33-4152597c8843",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "name:string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb8ccabc-d070-4b23-8fda-44390cf84c06",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "query",
+                      "value": "name:string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab3f75e2-a15f-41d5-a606-29a0256e9a99",
+          "name": "Fetch information for a specific Custom check draft",
+          "request": {
+            "name": "Fetch information for a specific Custom check draft",
+            "description": {},
+            "url": {
+              "path": [
+                "custom_check_drafts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the custom check draft"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc7add3e-b7f5-4d20-b97e-78db8b31cba9",
+              "name": "A draft of a custom check created in the Kolide admin UI or API. Drafts track\nSQL, templates, platform scope, and publishing readiness before a published\nCustomCheck exists.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the custom check draft"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"issue_title\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"platforms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rationale_template\": \"string\",\n  \"fix_instructions_template\": \"string\",\n  \"privacy_info\": \"string\",\n  \"check_type\": \"osquery\",\n  \"target_type\": \"people\",\n  \"requires_primary_key\": false,\n  \"primary_key_column\": \"string\",\n  \"published\": false,\n  \"custom_check_id\": \"string\",\n  \"osquery_sql_status\": \"good\",\n  \"notification_templates_status\": \"good\",\n  \"details_status\": \"good\",\n  \"privacy_center_details_status\": \"bad\",\n  \"publishable\": false,\n  \"template_data_examples\": \"string\",\n  \"privacy_center_example_data\": \"string\",\n  \"created_at\": \"1966-01-28T21:10:11.002Z\",\n  \"updated_at\": \"2023-07-16T08:09:18.315Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10fdcff1-e729-48c3-8a31-9ebd23e55641",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the custom check draft"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce6c7d7d-3b1c-4a39-be62-491a9b13238f",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the custom check draft"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9404e855-7483-4b0d-8684-8156b52a2e44",
+          "name": "Delete a specific Custom check draft",
+          "request": {
+            "name": "Delete a specific Custom check draft",
+            "description": {},
+            "url": {
+              "path": [
+                "custom_check_drafts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the custom check draft"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0430f1e4-0cc6-4655-832c-1f4f836e2cf1",
+              "name": "The deleted Custom check draft",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the custom check draft"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"issue_title\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"platforms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rationale_template\": \"string\",\n  \"fix_instructions_template\": \"string\",\n  \"privacy_info\": \"string\",\n  \"check_type\": \"osquery\",\n  \"target_type\": \"people\",\n  \"requires_primary_key\": false,\n  \"primary_key_column\": \"string\",\n  \"published\": false,\n  \"custom_check_id\": \"string\",\n  \"osquery_sql_status\": \"good\",\n  \"notification_templates_status\": \"good\",\n  \"details_status\": \"good\",\n  \"privacy_center_details_status\": \"bad\",\n  \"publishable\": false,\n  \"template_data_examples\": \"string\",\n  \"privacy_center_example_data\": \"string\",\n  \"created_at\": \"1966-01-28T21:10:11.002Z\",\n  \"updated_at\": \"2023-07-16T08:09:18.315Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97acd448-00f8-4e61-8575-4306a7d4abcc",
+              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the custom check draft"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c817c7d3-8dba-429b-9b22-955a36c16b85",
+              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_check_drafts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the custom check draft"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kolide.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f5e25fd3-717d-4c33-816b-4890cc1b2bef",
+    "name": "K2 Admin Users Custom Check Drafts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

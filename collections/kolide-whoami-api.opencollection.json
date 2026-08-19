@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users Whoami API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Whoami",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch information about the organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/whoami",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Fetch information about the organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

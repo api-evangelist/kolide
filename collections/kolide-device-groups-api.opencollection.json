@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users Device Groups API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a list of Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/device_groups/:deviceGroupId/devices",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              },
+              {
+                "name": "deviceGroupId",
+                "value": "",
+                "type": "path",
+                "description": "The device group ID of the device"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Devices"
+        },
+        {
+          "info": {
+            "name": "Add a Device to the Device Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolide.com/device_groups/:deviceGroupId/memberships",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deviceGroupId",
+                "value": "",
+                "type": "path",
+                "description": "The device group ID of the device group member"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a Device to the Device Group"
+        },
+        {
+          "info": {
+            "name": "Remove a specified Device from the Device Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolide.com/device_groups/:deviceGroupId/memberships/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deviceGroupId",
+                "value": "",
+                "type": "path",
+                "description": "The device group ID of the device group member"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the device group member"
+              }
+            ]
+          },
+          "docs": "Remove a specified Device from the Device Group"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of Device groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/device_groups",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `description`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Device groups"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Device group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/device_groups/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the device group"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Device group"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

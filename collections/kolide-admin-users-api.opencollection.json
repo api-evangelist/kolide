@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a list of Admin users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/admin_users",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`first_name` , `last_name` , `email` , `created_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Admin users"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Admin user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/admin_users/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the admin user"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Admin user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

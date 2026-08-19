@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users Reporting API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a list of Table records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/reporting/tables/:tableName/table_records",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "The table name of the table record"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Table records"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of Reporting tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/reporting/tables",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              }
+            ]
+          },
+          "docs": "Fetch a list of Reporting tables"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Reporting table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/reporting/tables/:name",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the reporting table"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Reporting table"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of Report query results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/reporting/queries/:queryId/results",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The query ID of the report query result"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Report query results"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of Report queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/reporting/queries",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "omit_results",
+                "value": "",
+                "type": "query",
+                "description": "In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field.\nHowever, this can lead to timeouts when retrieving queries with large resultsets.\n\nTo improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint (see below).\n\n> Note: The results field is deprecated and will be removed in a future API version.\n\nFor paginated access to query results, use the dedicated endpoint:\n\n```\n/reporting/queries/{queryId}/results\n```\n"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              }
+            ]
+          },
+          "docs": "Fetch a list of Report queries"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Report query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/reporting/queries/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "omit_results",
+                "value": "",
+                "type": "query",
+                "description": "In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field.\nHowever, this can lead to timeouts when retrieving queries with large resultsets.\n\nTo improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint (see below).\n\n> Note: The results field is deprecated and will be removed in a future API version.\n\nFor paginated access to query results, use the dedicated endpoint:\n\n```\n/reporting/queries/{queryId}/results\n```\n"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report query"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Report query"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

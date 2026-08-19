@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "K2 Admin Users Devices API",
+    "version": "2023-05-26"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a list of Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/devices/:deviceId/open_issues",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The device ID of the issue"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Issues"
+        },
+        {
+          "info": {
+            "name": "Update an existing Device authentication mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kolide.com/devices/:deviceId/authentication_mode",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The device ID of the device authentication mode"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Device authentication mode"
+        },
+        {
+          "info": {
+            "name": "Update an existing Device authentication mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.kolide.com/devices/:deviceId/authentication_mode",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The device ID of the device authentication mode"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Device authentication mode"
+        },
+        {
+          "info": {
+            "name": "Delete a device registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolide.com/devices/:deviceId/registration",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The device ID of the device registration"
+              }
+            ]
+          },
+          "docs": "Remove an existing device registration. This will prevent the\nregistered owner from authenticating with the device. If this device\nis the only registered device for the person, their\nTrust-On-First-Use (TOFU) status will be reset, allowing them to\nregister another device without needing admin approval. Deleting a\nmobile device's registration will also remove the device from the\nKolide.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new Check refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kolide.com/devices/:deviceId/check_refreshes",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The device ID of the check refresh"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Check refresh"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of Check results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/devices/:deviceId/check_results",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`device_display_name` , `ran_at` , `check_name` , `status`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "The device ID of the check"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Check results"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/devices",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Specify the cursor to begin returning results from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the number of records to return in each response."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+              }
+            ]
+          },
+          "docs": "Fetch a list of Devices"
+        },
+        {
+          "info": {
+            "name": "Fetch information for a specific Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kolide.com/devices/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the device"
+              }
+            ]
+          },
+          "docs": "Fetch information for a specific Device"
+        },
+        {
+          "info": {
+            "name": "Delete a specific Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kolide.com/devices/:id",
+            "headers": [
+              {
+                "name": "x-kolide-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the device"
+              }
+            ]
+          },
+          "docs": "Mark a device as pending deletion. Note that the deletion will not\nhappen immediately: the deletion can be canceled in the web\ninterface until the device is actually deleted. The Kolide agent\non the device will also be disabled to prevent re-enrollment.\nIf this device is the only registered device for a user, their\nTrust-On-First-Use (TOFU) status will be reset, allowing them to\nregister another device without needing admin approval.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
