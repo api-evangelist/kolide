@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Reporting API
+  version: '2026-04-07'
+  title: K2 Reporting API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -115,6 +115,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Reporting
+      operationId: getReportingTablesByTableNameTableRecords
+      x-operation-id-source: derived
   /reporting/tables:
     get:
       summary: Fetch a list of Reporting tables
@@ -125,7 +127,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -205,6 +207,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Reporting
+      operationId: getReportingTables
+      x-operation-id-source: derived
   /reporting/tables/{name}:
     get:
       summary: Fetch information for a specific Reporting table
@@ -215,7 +219,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: name
         in: path
         required: true
@@ -257,6 +261,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Reporting
+      operationId: getReportingTablesByName
+      x-operation-id-source: derived
   /reporting/queries/{queryId}/results:
     get:
       summary: Fetch a list of Report query results
@@ -267,7 +273,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -353,6 +359,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Reporting
+      operationId: getReportingQueriesByQueryIdResults
+      x-operation-id-source: derived
   /reporting/queries:
     get:
       summary: Fetch a list of Report queries
@@ -363,32 +371,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
-      - name: omit_results
-        in: query
-        schema:
-          type: string
-        description: 'In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field.
-
-          However, this can lead to timeouts when retrieving queries with large resultsets.
-
-
-          To improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint (see below).
-
-
-          > Note: The results field is deprecated and will be removed in a future API version.
-
-
-          For paginated access to query results, use the dedicated endpoint:
-
-
-          ```
-
-          /reporting/queries/{queryId}/results
-
-          ```
-
-          '
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -472,6 +455,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Reporting
+      operationId: getReportingQueries
+      x-operation-id-source: derived
   /reporting/queries/{id}:
     get:
       summary: Fetch information for a specific Report query
@@ -482,32 +467,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
-      - name: omit_results
-        in: query
-        schema:
-          type: string
-        description: 'In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field.
-
-          However, this can lead to timeouts when retrieving queries with large resultsets.
-
-
-          To improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint (see below).
-
-
-          > Note: The results field is deprecated and will be removed in a future API version.
-
-
-          For paginated access to query results, use the dedicated endpoint:
-
-
-          ```
-
-          /reporting/queries/{queryId}/results
-
-          ```
-
-          '
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -553,17 +513,29 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Reporting
+      operationId: getReportingQueriesById
+      x-operation-id-source: derived
 components:
   schemas:
-    table_record:
+    report_query:
       type: object
       properties:
         id:
+          type: integer
+          description: The canonical identifier for this report query
+        name:
           type: string
-          description: The unique identifier for this table record
-    report_query_result:
-      type: object
-      properties: {}
+          description: The human-readable name for this report query
+        osquery_sql:
+          type: string
+          description: The SQL query used to generate the report
+        result_count:
+          type: integer
+          description: Number of rows returned in the result set
+        created_at:
+          type: string
+          description: when the report query was created
+          format: date-time
     reporting_table:
       type: object
       properties:
@@ -589,30 +561,15 @@ components:
         documentation_url:
           type: string
           description: A link to the detailed documentation for this table
-    report_query:
+    table_record:
       type: object
       properties:
         id:
-          type: integer
-          description: The canonical identifier for this report query
-        name:
           type: string
-          description: The human-readable name for this report query
-        osquery_sql:
-          type: string
-          description: The SQL query used to generate the report
-        result_count:
-          type: integer
-          description: Number of rows returned in the result set
-        created_at:
-          type: string
-          description: when the report query was created
-          format: date-time
-        results:
-          description: 'In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field. However, this can lead to timeouts when retrieving queries with large resultsets. To improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint: `/reporting/queries/{queryId}/results`.'
-          type: array
-          items:
-            type: object
+          description: The unique identifier for this table record
+    report_query_result:
+      type: object
+      properties: {}
   securitySchemes:
     api_key:
       type: http

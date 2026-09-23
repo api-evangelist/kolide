@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Auth Logs API
+  version: '2026-04-07'
+  title: K2 Auth Logs API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -186,6 +186,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Auth Logs
+      operationId: getAuthLogs
+      x-operation-id-source: derived
   /auth_logs/{id}:
     get:
       summary: Fetch information for a specific Auth log session
@@ -196,7 +198,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -252,18 +254,38 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Auth Logs
+      operationId: getAuthLogsById
+      x-operation-id-source: derived
 components:
   schemas:
-    link-object:
+    auth_log_displayed_issue:
       type: object
       properties:
-        identifier:
+        title:
           type: string
-          description: the canonical identifier for this object
+          description: The title of the Issue
+        blocking_status:
+          type: string
+          description: The blocking status of the Issue - either 'blocked' or 'will_block'
+        id:
+          type: string
+          description: canonical identifier for the issue
         link:
           type: string
-          format: url
-          description: the API URL where complete information about this object can be found
+          description: API URL where complete information about this issue can be found
+    auth_log_event:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: The timestamp representing the start of the auth event
+          format: date-time
+        event_type:
+          type: string
+          description: The specific event type. Possibilities documented at https://app.kolide.com/docs/admins/auth-logs#event-types
+        event_description:
+          type: string
+          description: A brief description of the event
     auth_log_session:
       type: object
       properties:
@@ -367,34 +389,16 @@ components:
         okta_app_name:
           type: string
           description: The Okta application name from the SAML request
-    auth_log_event:
+    link-object:
       type: object
       properties:
-        timestamp:
+        identifier:
           type: string
-          description: The timestamp representing the start of the auth event
-          format: date-time
-        event_type:
-          type: string
-          description: The specific event type. Possibilities documented at https://app.kolide.com/docs/admins/auth-logs#event-types
-        event_description:
-          type: string
-          description: A brief description of the event
-    auth_log_displayed_issue:
-      type: object
-      properties:
-        title:
-          type: string
-          description: The title of the Issue
-        blocking_status:
-          type: string
-          description: The blocking status of the Issue - either 'blocked' or 'will_block'
-        id:
-          type: string
-          description: canonical identifier for the issue
+          description: the canonical identifier for this object
         link:
           type: string
-          description: API URL where complete information about this issue can be found
+          format: url
+          description: the API URL where complete information about this object can be found
   securitySchemes:
     api_key:
       type: http

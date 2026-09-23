@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Registration Requests API
+  version: '2026-04-07'
+  title: K2 Registration Requests API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -130,6 +130,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Registration Requests
+      operationId: getRegistrationRequests
+      x-operation-id-source: derived
   /registration_requests/{id}:
     get:
       summary: Fetch information for a specific Registration request
@@ -140,7 +142,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -188,6 +190,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Registration Requests
+      operationId: getRegistrationRequestsById
+      x-operation-id-source: derived
     patch:
       summary: Update an existing Registration request
       parameters:
@@ -197,7 +201,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -245,6 +249,8 @@ paths:
               $ref: '#/components/schemas/registration_request_request_body'
       tags:
       - Registration Requests
+      operationId: patchRegistrationRequestsById
+      x-operation-id-source: derived
     put:
       summary: Update an existing Registration request
       parameters:
@@ -254,7 +260,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -302,41 +308,10 @@ paths:
               $ref: '#/components/schemas/registration_request_request_body'
       tags:
       - Registration Requests
+      operationId: putRegistrationRequestsById
+      x-operation-id-source: derived
 components:
   schemas:
-    registration_request:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this Registration Request
-        status:
-          type: string
-          description: 'The current status of this registration request. One of: pending, approved, denied'
-        requester_message:
-          type: string
-          description: The message the person provided when requesting approval for this registration
-        internal_denial_note:
-          type: string
-          description: The internal explanation the admin provided when denying this request, for internal documentation. This message is not shown to the person requesting the registration approval. This property will be blank if the registration has not been denied.
-        internal_approval_note:
-          type: string
-          description: The internal explanation the admin provided when approving this request, for internal documentation. This message is not shown to the person requesting the registration approval. This property will be blank if the registration has not been approved.
-        requested_at:
-          type: string
-          description: The timestamp representing when the registration approval was requested
-          format: date-time
-        end_user_denial_note:
-          type: string
-          description: The message the admin provided for the requester when denying this registration request. This message is meant to be shown to the person requesting the exemption. This property will be blank if the exemption has not been denied
-        requester_information:
-          allOf:
-          - description: Information for fetching the complete data on the person who requested this registration
-          - $ref: '#/components/schemas/link-object'
-        device_information:
-          allOf:
-          - description: Information for fetching the complete data about the device the person is trying to register
-          - $ref: '#/components/schemas/link-object'
     registration_request_request_body:
       type: object
       properties:
@@ -388,6 +363,39 @@ components:
           type: string
           format: url
           description: the API URL where complete information about this object can be found
+    registration_request:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this Registration Request
+        status:
+          type: string
+          description: 'The current status of this registration request. One of: pending, approved, denied'
+        requester_message:
+          type: string
+          description: The message the person provided when requesting approval for this registration
+        internal_denial_note:
+          type: string
+          description: The internal explanation the admin provided when denying this request, for internal documentation. This message is not shown to the person requesting the registration approval. This property will be blank if the registration has not been denied.
+        internal_approval_note:
+          type: string
+          description: The internal explanation the admin provided when approving this request, for internal documentation. This message is not shown to the person requesting the registration approval. This property will be blank if the registration has not been approved.
+        requested_at:
+          type: string
+          description: The timestamp representing when the registration approval was requested
+          format: date-time
+        end_user_denial_note:
+          type: string
+          description: The message the admin provided for the requester when denying this registration request. This message is meant to be shown to the person requesting the exemption. This property will be blank if the exemption has not been denied
+        requester_information:
+          allOf:
+          - description: Information for fetching the complete data on the person who requested this registration
+          - $ref: '#/components/schemas/link-object'
+        device_information:
+          allOf:
+          - description: Information for fetching the complete data about the device the person is trying to register
+          - $ref: '#/components/schemas/link-object'
   securitySchemes:
     api_key:
       type: http

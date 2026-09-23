@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Packages API
+  version: '2026-04-07'
+  title: K2 Packages API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -101,6 +101,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Packages
+      operationId: getPackages
+      x-operation-id-source: derived
   /packages/{id}:
     get:
       summary: Fetch information for a specific Package
@@ -111,7 +113,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -155,6 +157,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Packages
+      operationId: getPackagesById
+      x-operation-id-source: derived
 components:
   schemas:
     package:

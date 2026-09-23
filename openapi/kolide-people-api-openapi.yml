@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users People API
+  version: '2026-04-07'
+  title: K2 People API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -169,6 +169,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - People
+      operationId: getPeopleByPersonIdRegisteredDevices
+      x-operation-id-source: derived
   /people/{personId}/open_issues:
     get:
       summary: Fetch a list of Issues
@@ -179,7 +181,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -350,6 +352,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - People
+      operationId: getPeopleByPersonIdOpenIssues
+      x-operation-id-source: derived
   /people/{personId}/person_groups:
     get:
       summary: Fetch a list of Person groups
@@ -360,7 +364,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -461,6 +465,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - People
+      operationId: getPeopleByPersonIdPersonGroups
+      x-operation-id-source: derived
   /people:
     get:
       summary: Fetch a list of People
@@ -471,7 +477,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -588,6 +594,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - People
+      operationId: getPeople
+      x-operation-id-source: derived
   /people/{id}:
     get:
       summary: Fetch information for a specific Person
@@ -598,7 +606,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -646,112 +654,10 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - People
+      operationId: getPeopleById
+      x-operation-id-source: derived
 components:
   schemas:
-    issue:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this Issue
-        issue_key:
-          type: string
-          description: 'The name of the primary key that distinguishes one Issue from
-
-            another in the context of a single Check. Only applicable for
-
-            Checks that can produce multiple Issues
-
-            '
-        issue_value:
-          type: string
-          description: 'The primary identifying value that distinguishes the Issue from
-
-            other instances of the failing Check. Only applicable for Checks
-
-            that can produce multiple Issues
-
-            '
-        title:
-          type: string
-          description: The short description of the Issue
-        value:
-          type: object
-          description: Relevant data that describes why the device failed the Check
-        exempted:
-          type: boolean
-          description: Whether this Issue has been granted an exemption
-        resolved_at:
-          type: string
-          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
-          format: date-time
-        detected_at:
-          type: string
-          description: A timestamp describing when the Issue was initially detected
-          format: date-time
-        blocks_device_at:
-          type: string
-          description: 'A timestamp describing the time after which the Issue will cause
-
-            the associated Device to be blocked from authenticating. This
-
-            property will be null if the check is not configured to block
-
-            authentication for the device.
-
-            '
-          format: date-time
-        device_information:
-          allOf:
-          - description: Information for fetching the complete data on the device for which this issue was generated
-          - $ref: '#/components/schemas/link-object'
-        check_information:
-          allOf:
-          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
-          - $ref: '#/components/schemas/link-object'
-        last_rechecked_at:
-          type: string
-          description: 'The timestamp when this Issue was last rechecked.
-
-            '
-          format: date-time
-    person_group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this group
-        name:
-          type: string
-          description: The human-readable name for this group
-    person:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this person
-        name:
-          type: string
-          description: The human-readable name for this person
-        email:
-          type: string
-          description: the recorded email address for this person
-        created_at:
-          type: string
-          description: when the person record was created
-          format: date-time
-        last_authenticated_at:
-          type: string
-          description: The timestamp representing when the person last authenticated with Kolide
-          format: date-time
-        has_registered_device:
-          type: boolean
-          description: Whether or not this person has at least one registered device
-        usernames:
-          description: The usernames imported from the SCIM provider that are associated with this person
-          type: array
-          items:
-            type: integer
     device_authentication_mode:
       type: object
       properties:
@@ -766,6 +672,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/person_group'
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
     device:
       type: object
       properties:
@@ -841,16 +757,110 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
-    link-object:
+    person:
       type: object
       properties:
-        identifier:
+        id:
           type: string
-          description: the canonical identifier for this object
-        link:
+          description: The canonical identifier for this person
+        name:
           type: string
-          format: url
-          description: the API URL where complete information about this object can be found
+          description: The human-readable name for this person
+        email:
+          type: string
+          description: the recorded email address for this person
+        created_at:
+          type: string
+          description: when the person record was created
+          format: date-time
+        last_authenticated_at:
+          type: string
+          description: The timestamp representing when the person last authenticated with Kolide
+          format: date-time
+        has_registered_device:
+          type: boolean
+          description: Whether or not this person has at least one registered device
+        usernames:
+          description: The usernames imported from the SCIM provider that are associated with this person
+          type: array
+          items:
+            type: integer
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
+    issue:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this Issue
+        issue_key:
+          type: string
+          description: 'The name of the primary key that distinguishes one Issue from
+
+            another in the context of a single Check. Only applicable for
+
+            Checks that can produce multiple Issues
+
+            '
+        issue_value:
+          type: string
+          description: 'The primary identifying value that distinguishes the Issue from
+
+            other instances of the failing Check. Only applicable for Checks
+
+            that can produce multiple Issues
+
+            '
+        title:
+          type: string
+          description: The short description of the Issue
+        value:
+          type: object
+          description: Relevant data that describes why the device failed the Check
+        exempted:
+          type: boolean
+          description: Whether this Issue has been granted an exemption
+        resolved_at:
+          type: string
+          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
+          format: date-time
+        detected_at:
+          type: string
+          description: A timestamp describing when the Issue was initially detected
+          format: date-time
+        blocks_device_at:
+          type: string
+          description: 'A timestamp describing the time after which the Issue will cause
+
+            the associated Device to be blocked from authenticating. This
+
+            property will be null if the check is not configured to block
+
+            authentication for the device.
+
+            '
+          format: date-time
+        device_information:
+          allOf:
+          - description: Information for fetching the complete data on the device for which this issue was generated
+          - $ref: '#/components/schemas/link-object'
+        check_information:
+          allOf:
+          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
+          - $ref: '#/components/schemas/link-object'
+        last_rechecked_at:
+          type: string
+          description: 'The timestamp when this Issue was last rechecked.
+
+            '
+          format: date-time
   securitySchemes:
     api_key:
       type: http

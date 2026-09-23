@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Audit Logs API
+  version: '2026-04-07'
+  title: K2 Audit Logs API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -127,6 +127,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Audit Logs
+      operationId: getAuditLogs
+      x-operation-id-source: derived
   /audit_logs/{id}:
     get:
       summary: Fetch information for a specific Audit log
@@ -137,7 +139,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -179,6 +181,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Audit Logs
+      operationId: getAuditLogsById
+      x-operation-id-source: derived
 components:
   schemas:
     audit_log:

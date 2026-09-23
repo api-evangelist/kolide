@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Devices API
+  version: '2026-04-07'
+  title: K2 Devices API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -190,6 +190,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Devices
+      operationId: getDevicesByDeviceIdOpenIssues
+      x-operation-id-source: derived
   /devices/{deviceId}/authentication_mode:
     patch:
       summary: Update an existing Device authentication mode
@@ -200,7 +202,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: deviceId
         in: path
         required: true
@@ -248,6 +250,8 @@ paths:
               $ref: '#/components/schemas/device_authentication_mode_request_body'
       tags:
       - Devices
+      operationId: patchDevicesByDeviceIdAuthenticationMode
+      x-operation-id-source: derived
     put:
       summary: Update an existing Device authentication mode
       parameters:
@@ -257,7 +261,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: deviceId
         in: path
         required: true
@@ -305,6 +309,8 @@ paths:
               $ref: '#/components/schemas/device_authentication_mode_request_body'
       tags:
       - Devices
+      operationId: putDevicesByDeviceIdAuthenticationMode
+      x-operation-id-source: derived
   /devices/{deviceId}/registration:
     delete:
       summary: Delete a device registration
@@ -320,9 +326,7 @@ paths:
 
         mobile device''s registration will also remove the device from the
 
-        Kolide.
-
-        '
+        Kolide.'
       parameters:
       - name: x-kolide-api-version
         in: header
@@ -330,7 +334,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: deviceId
         in: path
         required: true
@@ -372,6 +376,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Devices
+      operationId: deleteDevicesByDeviceIdRegistration
+      x-operation-id-source: derived
   /devices/{deviceId}/check_refreshes:
     post:
       summary: Create a new Check refresh
@@ -382,7 +388,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: deviceId
         in: path
         required: true
@@ -430,6 +436,8 @@ paths:
               $ref: '#/components/schemas/check_refresh_request_body'
       tags:
       - Devices
+      operationId: postDevicesByDeviceIdCheckRefreshes
+      x-operation-id-source: derived
   /devices/{deviceId}/check_results:
     get:
       summary: Fetch a list of Check results
@@ -440,7 +448,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -559,6 +567,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Devices
+      operationId: getDevicesByDeviceIdCheckResults
+      x-operation-id-source: derived
   /devices:
     get:
       summary: Fetch a list of Devices
@@ -569,7 +579,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -713,6 +723,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Devices
+      operationId: getDevices
+      x-operation-id-source: derived
   /devices/{id}:
     get:
       summary: Fetch information for a specific Device
@@ -723,7 +735,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -765,6 +777,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Devices
+      operationId: getDevicesById
+      x-operation-id-source: derived
     delete:
       summary: Delete a specific Device
       description: 'Mark a device as pending deletion. Note that the deletion will not
@@ -779,9 +793,7 @@ paths:
 
         Trust-On-First-Use (TOFU) status will be reset, allowing them to
 
-        register another device without needing admin approval.
-
-        '
+        register another device without needing admin approval.'
       parameters:
       - name: x-kolide-api-version
         in: header
@@ -789,7 +801,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -831,98 +843,10 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Devices
+      operationId: deleteDevicesById
+      x-operation-id-source: derived
 components:
   schemas:
-    device_registration:
-      type: object
-      properties:
-        device_id:
-          type: string
-          description: The unique identifier for the device registration
-        registered_at:
-          type: string
-          description: The date and time the device registration was created
-          format: date-time
-        registered_owner_info:
-          allOf:
-          - description: Information for fetching the complete data on the registered owner of the device
-          - $ref: '#/components/schemas/link-object'
-        device_info:
-          allOf:
-          - description: Information for fetching the complete data on the device
-          - $ref: '#/components/schemas/link-object'
-    device_authentication_mode_request_body:
-      type: object
-      properties:
-        authentication_mode:
-          type: string
-          description: 'Describes the authentication mode for this device. Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
-        person_group_ids:
-          description: 'The identifiers for the groups that should be allowed to
-
-            authenticate with this device. Ignored if the auth_mode is not
-
-            ''only_registered_owner_or_group_members''
-
-            '
-          type: array
-          items:
-            type: integer
-    check_result:
-      type: object
-      properties:
-        check_id:
-          type: string
-          description: The canonical identifier for the check
-        check_slug:
-          type: string
-          description: The human-readable stable identifier for this check
-        check_name:
-          type: string
-          description: The name of the check
-        device_id:
-          type: string
-          description: The canonical identifier for the device
-        device_display_name:
-          type: string
-          description: The display name of the device
-        ran_at:
-          type: string
-          description: The timestamp the check was most recently run on the device
-          format: date-time
-        exemption_reason:
-          type: string
-          description: The reason the device was marked as exempt from this check. Null if not exempted
-        exemption_expires_at:
-          type: string
-          description: The time the exemption expires. Null if not exempted
-          format: date-time
-        check_result_data:
-          description: The full set of information used to determine the status of the check result
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-          enum:
-          - unknown
-          - passing
-          - failing
-          - errored
-          - inapplicable
-          - stale
-          - pending
-          - out_of_scope
-          description: The status of the check
-    person_group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this group
-        name:
-          type: string
-          description: The human-readable name for this group
     check_refresh:
       type: object
       properties:
@@ -935,73 +859,6 @@ components:
         check_refresh_initiated_at:
           type: string
           description: The UTC timestamp describing the check refresh was initiated
-          format: date-time
-    issue:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this Issue
-        issue_key:
-          type: string
-          description: 'The name of the primary key that distinguishes one Issue from
-
-            another in the context of a single Check. Only applicable for
-
-            Checks that can produce multiple Issues
-
-            '
-        issue_value:
-          type: string
-          description: 'The primary identifying value that distinguishes the Issue from
-
-            other instances of the failing Check. Only applicable for Checks
-
-            that can produce multiple Issues
-
-            '
-        title:
-          type: string
-          description: The short description of the Issue
-        value:
-          type: object
-          description: Relevant data that describes why the device failed the Check
-        exempted:
-          type: boolean
-          description: Whether this Issue has been granted an exemption
-        resolved_at:
-          type: string
-          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
-          format: date-time
-        detected_at:
-          type: string
-          description: A timestamp describing when the Issue was initially detected
-          format: date-time
-        blocks_device_at:
-          type: string
-          description: 'A timestamp describing the time after which the Issue will cause
-
-            the associated Device to be blocked from authenticating. This
-
-            property will be null if the check is not configured to block
-
-            authentication for the device.
-
-            '
-          format: date-time
-        device_information:
-          allOf:
-          - description: Information for fetching the complete data on the device for which this issue was generated
-          - $ref: '#/components/schemas/link-object'
-        check_information:
-          allOf:
-          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
-          - $ref: '#/components/schemas/link-object'
-        last_rechecked_at:
-          type: string
-          description: 'The timestamp when this Issue was last rechecked.
-
-            '
           format: date-time
     check_refresh_request_body:
       type: object
@@ -1023,6 +880,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/person_group'
+    device_authentication_mode_request_body:
+      type: object
+      properties:
+        authentication_mode:
+          type: string
+          description: 'Describes the authentication mode for this device. Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_group_ids:
+          description: 'The identifiers for the groups that should be allowed to
+
+            authenticate with this device. Ignored if the auth_mode is not
+
+            ''only_registered_owner_or_group_members''
+
+            '
+          type: array
+          items:
+            type: integer
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
     device:
       type: object
       properties:
@@ -1098,16 +982,146 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
-    link-object:
+    device_registration:
       type: object
       properties:
-        identifier:
+        device_id:
           type: string
-          description: the canonical identifier for this object
-        link:
+          description: The unique identifier for the device registration
+        registered_at:
           type: string
-          format: url
-          description: the API URL where complete information about this object can be found
+          description: The date and time the device registration was created
+          format: date-time
+        registered_owner_info:
+          allOf:
+          - description: Information for fetching the complete data on the registered owner of the device
+          - $ref: '#/components/schemas/link-object'
+        device_info:
+          allOf:
+          - description: Information for fetching the complete data on the device
+          - $ref: '#/components/schemas/link-object'
+    check_result:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The canonical identifier for the check
+        check_slug:
+          type: string
+          description: The human-readable stable identifier for this check
+        check_name:
+          type: string
+          description: The name of the check
+        device_id:
+          type: string
+          description: The canonical identifier for the device
+        device_display_name:
+          type: string
+          description: The display name of the device
+        ran_at:
+          type: string
+          description: The timestamp the check was most recently run on the device
+          format: date-time
+        exemption_reason:
+          type: string
+          description: The reason the device was marked as exempt from this check. Null if not exempted
+        exemption_expires_at:
+          type: string
+          description: The time the exemption expires. Null if not exempted
+          format: date-time
+        check_result_data:
+          description: The full set of information used to determine the status of the check result
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - unknown
+          - passing
+          - failing
+          - errored
+          - inapplicable
+          - stale
+          - pending
+          - out_of_scope
+          description: The status of the check
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
+    issue:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this Issue
+        issue_key:
+          type: string
+          description: 'The name of the primary key that distinguishes one Issue from
+
+            another in the context of a single Check. Only applicable for
+
+            Checks that can produce multiple Issues
+
+            '
+        issue_value:
+          type: string
+          description: 'The primary identifying value that distinguishes the Issue from
+
+            other instances of the failing Check. Only applicable for Checks
+
+            that can produce multiple Issues
+
+            '
+        title:
+          type: string
+          description: The short description of the Issue
+        value:
+          type: object
+          description: Relevant data that describes why the device failed the Check
+        exempted:
+          type: boolean
+          description: Whether this Issue has been granted an exemption
+        resolved_at:
+          type: string
+          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
+          format: date-time
+        detected_at:
+          type: string
+          description: A timestamp describing when the Issue was initially detected
+          format: date-time
+        blocks_device_at:
+          type: string
+          description: 'A timestamp describing the time after which the Issue will cause
+
+            the associated Device to be blocked from authenticating. This
+
+            property will be null if the check is not configured to block
+
+            authentication for the device.
+
+            '
+          format: date-time
+        device_information:
+          allOf:
+          - description: Information for fetching the complete data on the device for which this issue was generated
+          - $ref: '#/components/schemas/link-object'
+        check_information:
+          allOf:
+          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
+          - $ref: '#/components/schemas/link-object'
+        last_rechecked_at:
+          type: string
+          description: 'The timestamp when this Issue was last rechecked.
+
+            '
+          format: date-time
   securitySchemes:
     api_key:
       type: http

@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Exemption Requests API
+  version: '2026-04-07'
+  title: K2 Exemption Requests API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -130,6 +130,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Exemption Requests
+      operationId: getExemptionRequests
+      x-operation-id-source: derived
   /exemption_requests/{id}:
     get:
       summary: Fetch information for a specific Exemption request
@@ -140,7 +142,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -188,6 +190,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Exemption Requests
+      operationId: getExemptionRequestsById
+      x-operation-id-source: derived
     patch:
       summary: Update an existing Exemption request
       parameters:
@@ -197,7 +201,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -245,6 +249,8 @@ paths:
               $ref: '#/components/schemas/exemption_request_request_body'
       tags:
       - Exemption Requests
+      operationId: patchExemptionRequestsById
+      x-operation-id-source: derived
     put:
       summary: Update an existing Exemption request
       parameters:
@@ -254,7 +260,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -302,8 +308,20 @@ paths:
               $ref: '#/components/schemas/exemption_request_request_body'
       tags:
       - Exemption Requests
+      operationId: putExemptionRequestsById
+      x-operation-id-source: derived
 components:
   schemas:
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
     exemption_request:
       type: object
       properties:
@@ -339,16 +357,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link-object'
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
     exemption_request_request_body:
       type: object
       properties:

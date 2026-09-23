@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: '2023-05-26'
-  title: K2 Admin Users Live Query Campaigns API
+  version: '2026-04-07'
+  title: K2 Live Query Campaigns API
 servers:
 - url: https://api.kolide.com/
 security:
@@ -19,7 +19,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -126,6 +126,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Live Query Campaigns
+      operationId: getLiveQueryCampaignsByLiveQueryCampaignIdQueryResults
+      x-operation-id-source: derived
   /live_query_campaigns:
     get:
       summary: Fetch a list of Live query campaigns
@@ -136,7 +138,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: cursor
         in: query
         description: Specify the cursor to begin returning results from
@@ -251,6 +253,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Live Query Campaigns
+      operationId: getLiveQueryCampaigns
+      x-operation-id-source: derived
     post:
       summary: Create a new Live query campaign
       parameters:
@@ -260,7 +264,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       responses:
         '200':
           description: The newly created Live query campaign
@@ -302,6 +306,8 @@ paths:
               $ref: '#/components/schemas/live_query_campaign_request_body'
       tags:
       - Live Query Campaigns
+      operationId: postLiveQueryCampaigns
+      x-operation-id-source: derived
   /live_query_campaigns/{id}:
     get:
       summary: Fetch information for a specific Live query campaign
@@ -312,7 +318,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -358,6 +364,8 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Live Query Campaigns
+      operationId: getLiveQueryCampaignsById
+      x-operation-id-source: derived
     patch:
       summary: Update an existing Live query campaign
       parameters:
@@ -367,7 +375,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -415,6 +423,8 @@ paths:
               $ref: '#/components/schemas/live_query_campaign_request_body'
       tags:
       - Live Query Campaigns
+      operationId: patchLiveQueryCampaignsById
+      x-operation-id-source: derived
     put:
       summary: Update an existing Live query campaign
       parameters:
@@ -424,7 +434,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -472,6 +482,8 @@ paths:
               $ref: '#/components/schemas/live_query_campaign_request_body'
       tags:
       - Live Query Campaigns
+      operationId: putLiveQueryCampaignsById
+      x-operation-id-source: derived
     delete:
       summary: Delete a specific Live query campaign
       parameters:
@@ -481,7 +493,7 @@ paths:
         required: false
         schema:
           type: string
-          default: '2023-05-26'
+          default: '2026-04-07'
       - name: id
         in: path
         required: true
@@ -523,45 +535,10 @@ paths:
                     example: The API key used is not authorized to perform this action
       tags:
       - Live Query Campaigns
+      operationId: deleteLiveQueryCampaignsById
+      x-operation-id-source: derived
 components:
   schemas:
-    live_query_result:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this live query result
-        result_count:
-          type: string
-          description: Number of rows returned in the result set
-        error_message:
-          type: string
-          description: Any errors the device may emit while attempting to run a live query
-        revision:
-          type: integer
-          description: The revision of the parent Live Query this result corresponds to
-        warning_message:
-          type: string
-          description: Any warnings the device emits while running a live query
-        device_information:
-          allOf:
-          - description: Information that can be used to fetch the full data on the device that generated this result set
-          - $ref: '#/components/schemas/link-object'
-        results:
-          description: The returned rows of data for the live query on this device
-          type: array
-          items:
-            type: integer
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
     live_query_campaign:
       type: object
       properties:
@@ -624,6 +601,43 @@ components:
         name:
           type: string
           description: The title of the live query
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    live_query_result:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this live query result
+        result_count:
+          type: string
+          description: Number of rows returned in the result set
+        error_message:
+          type: string
+          description: Any errors the device may emit while attempting to run a live query
+        revision:
+          type: integer
+          description: The revision of the parent Live Query this result corresponds to
+        warning_message:
+          type: string
+          description: Any warnings the device emits while running a live query
+        device_information:
+          allOf:
+          - description: Information that can be used to fetch the full data on the device that generated this result set
+          - $ref: '#/components/schemas/link-object'
+        results:
+          description: The returned rows of data for the live query on this device
+          type: array
+          items:
+            type: integer
   securitySchemes:
     api_key:
       type: http
