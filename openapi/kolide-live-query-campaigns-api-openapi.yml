@@ -565,42 +565,6 @@ components:
         name:
           type: string
           description: The title of the live query
-    live_query_campaign:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this live query campaign
-        name:
-          type: string
-          description: The author-supplied title of the live query campaign
-        osquery_sql:
-          type: string
-          description: The sql to be run on all targeted devices
-        created_at:
-          type: string
-          description: The creation timestamp of the live query campaign
-          format: date-time
-        published:
-          type: boolean
-          description: Describes whether or not the author of the LQ has published the live query (true) or if it is still a draft (false)
-        revision:
-          type: integer
-          description: Editing a Live Query will increment its revision. When the revision is incremented, the live query will be re-run on all target devices
-        tables_used:
-          description: The names of the tables referenced in the osquery SQL
-          type: array
-          items:
-            type: string
-        successful_devices_count:
-          type: integer
-          description: The number of device that have successfully run the query
-        errored_devices_count:
-          type: integer
-          description: The number of device that returned an error when attempting to run the query
-        waiting_devices_count:
-          type: integer
-          description: The number of device that have not yet reported results or errors running the device
     link-object:
       type: object
       properties:
@@ -638,6 +602,42 @@ components:
           type: array
           items:
             type: integer
+    live_query_campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this live query campaign
+        name:
+          type: string
+          description: The author-supplied title of the live query campaign
+        osquery_sql:
+          type: string
+          description: The sql to be run on all targeted devices
+        created_at:
+          type: string
+          description: The creation timestamp of the live query campaign
+          format: date-time
+        published:
+          type: boolean
+          description: Describes whether or not the author of the LQ has published the live query (true) or if it is still a draft (false)
+        revision:
+          type: integer
+          description: Editing a Live Query will increment its revision. When the revision is incremented, the live query will be re-run on all target devices
+        tables_used:
+          description: The names of the tables referenced in the osquery SQL
+          type: array
+          items:
+            type: string
+        successful_devices_count:
+          type: integer
+          description: The number of device that have successfully run the query
+        errored_devices_count:
+          type: integer
+          description: The number of device that returned an error when attempting to run the query
+        waiting_devices_count:
+          type: integer
+          description: The number of device that have not yet reported results or errors running the device
   securitySchemes:
     api_key:
       type: http

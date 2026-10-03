@@ -667,115 +667,6 @@ components:
         name:
           type: string
           description: The human-readable name for this group
-    issue:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this Issue
-        issue_key:
-          type: string
-          description: 'The name of the primary key that distinguishes one Issue from
-
-            another in the context of a single Check. Only applicable for
-
-            Checks that can produce multiple Issues
-
-            '
-        issue_value:
-          type: string
-          description: 'The primary identifying value that distinguishes the Issue from
-
-            other instances of the failing Check. Only applicable for Checks
-
-            that can produce multiple Issues
-
-            '
-        title:
-          type: string
-          description: The short description of the Issue
-        value:
-          type: object
-          description: Relevant data that describes why the device failed the Check
-        exempted:
-          type: boolean
-          description: Whether this Issue has been granted an exemption
-        resolved_at:
-          type: string
-          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
-          format: date-time
-        detected_at:
-          type: string
-          description: A timestamp describing when the Issue was initially detected
-          format: date-time
-        blocks_device_at:
-          type: string
-          description: 'A timestamp describing the time after which the Issue will cause
-
-            the associated Device to be blocked from authenticating. This
-
-            property will be null if the check is not configured to block
-
-            authentication for the device.
-
-            '
-          format: date-time
-        device_information:
-          allOf:
-          - description: Information for fetching the complete data on the device for which this issue was generated
-          - $ref: '#/components/schemas/link-object'
-        check_information:
-          allOf:
-          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
-          - $ref: '#/components/schemas/link-object'
-        last_rechecked_at:
-          type: string
-          description: 'The timestamp when this Issue was last rechecked.
-
-            '
-          format: date-time
-    device_authentication_mode:
-      type: object
-      properties:
-        device_id:
-          type: string
-          description: The canonical identifier for the device
-        authentication_mode:
-          type: string
-          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
-        person_groups:
-          description: Description of the groups allowed to authenticate with this device
-          type: array
-          items:
-            $ref: '#/components/schemas/person_group'
-    person:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this person
-        name:
-          type: string
-          description: The human-readable name for this person
-        email:
-          type: string
-          description: the recorded email address for this person
-        created_at:
-          type: string
-          description: when the person record was created
-          format: date-time
-        last_authenticated_at:
-          type: string
-          description: The timestamp representing when the person last authenticated with Kolide
-          format: date-time
-        has_registered_device:
-          type: boolean
-          description: Whether or not this person has at least one registered device
-        usernames:
-          description: The usernames imported from the SCIM provider that are associated with this person
-          type: array
-          items:
-            type: integer
     link-object:
       type: object
       properties:
@@ -861,6 +752,115 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
+    person:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this person
+        name:
+          type: string
+          description: The human-readable name for this person
+        email:
+          type: string
+          description: the recorded email address for this person
+        created_at:
+          type: string
+          description: when the person record was created
+          format: date-time
+        last_authenticated_at:
+          type: string
+          description: The timestamp representing when the person last authenticated with Kolide
+          format: date-time
+        has_registered_device:
+          type: boolean
+          description: Whether or not this person has at least one registered device
+        usernames:
+          description: The usernames imported from the SCIM provider that are associated with this person
+          type: array
+          items:
+            type: integer
+    device_authentication_mode:
+      type: object
+      properties:
+        device_id:
+          type: string
+          description: The canonical identifier for the device
+        authentication_mode:
+          type: string
+          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_groups:
+          description: Description of the groups allowed to authenticate with this device
+          type: array
+          items:
+            $ref: '#/components/schemas/person_group'
+    issue:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this Issue
+        issue_key:
+          type: string
+          description: 'The name of the primary key that distinguishes one Issue from
+
+            another in the context of a single Check. Only applicable for
+
+            Checks that can produce multiple Issues
+
+            '
+        issue_value:
+          type: string
+          description: 'The primary identifying value that distinguishes the Issue from
+
+            other instances of the failing Check. Only applicable for Checks
+
+            that can produce multiple Issues
+
+            '
+        title:
+          type: string
+          description: The short description of the Issue
+        value:
+          type: object
+          description: Relevant data that describes why the device failed the Check
+        exempted:
+          type: boolean
+          description: Whether this Issue has been granted an exemption
+        resolved_at:
+          type: string
+          description: The timestamp when this Issue was resolved. Will be null if the Issue is open.
+          format: date-time
+        detected_at:
+          type: string
+          description: A timestamp describing when the Issue was initially detected
+          format: date-time
+        blocks_device_at:
+          type: string
+          description: 'A timestamp describing the time after which the Issue will cause
+
+            the associated Device to be blocked from authenticating. This
+
+            property will be null if the check is not configured to block
+
+            authentication for the device.
+
+            '
+          format: date-time
+        device_information:
+          allOf:
+          - description: Information for fetching the complete data on the device for which this issue was generated
+          - $ref: '#/components/schemas/link-object'
+        check_information:
+          allOf:
+          - description: Information for fetching the Check that defines the conditions causing this Issue to be generated
+          - $ref: '#/components/schemas/link-object'
+        last_rechecked_at:
+          type: string
+          description: 'The timestamp when this Issue was last rechecked.
+
+            '
+          format: date-time
   securitySchemes:
     api_key:
       type: http

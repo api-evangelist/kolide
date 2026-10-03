@@ -312,28 +312,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    exemption_request_request_body:
-      type: object
-      properties:
-        status:
-          type: string
-          description: 'Desired status of the exemption request. One of: ''approved'' or ''denied'''
-        internal_message:
-          type: string
-          description: The internal explanation for approving or denying this exemption. This message is not shown to the person requesting the exemption, it is only for internal documentation in the audit log. This parameter is required
-        denial_explanation:
-          type: string
-          description: The message the admin provided for the requester when denying this exemption. This message is meant to be shown to the person requesting the exemption. This parameter is required if the status is 'denied'
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
     exemption_request:
       type: object
       properties:
@@ -369,6 +347,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link-object'
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    exemption_request_request_body:
+      type: object
+      properties:
+        status:
+          type: string
+          description: 'Desired status of the exemption request. One of: ''approved'' or ''denied'''
+        internal_message:
+          type: string
+          description: The internal explanation for approving or denying this exemption. This message is not shown to the person requesting the exemption, it is only for internal documentation in the audit log. This parameter is required
+        denial_explanation:
+          type: string
+          description: The message the admin provided for the requester when denying this exemption. This message is meant to be shown to the person requesting the exemption. This parameter is required if the status is 'denied'
   securitySchemes:
     api_key:
       type: http

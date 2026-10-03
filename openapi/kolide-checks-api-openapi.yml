@@ -578,84 +578,72 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    check_tag:
+    check_configuration_request_body:
       type: object
       properties:
-        id:
-          type: string
-          description: The canonical identifier for this check tag
-        name:
-          type: string
-          description: The short name of the check tag
-        description:
-          type: string
-          description: The description of the check tag
-        color:
-          type: string
-          description: The rgba color value for this tag
-    external_check_run:
-      type: object
-      properties:
-        check_id:
+        paused:
+          type: boolean
+          description: Whether this check is currently paused
+        block_auth_grace_period_days:
           type: integer
-          description: The ID of the check
-        device_id:
+          description: Number of days a device is allowed to be out of compliance before blocking
+        auth_check_run_shelf_life_seconds:
           type: integer
-          description: The ID of the device
-        status:
+          description: Number of seconds a check result is considered valid for authentication. If a check result is older than this value at authentication time, it will be re-run during the authentication process.
+        snooze_disallowed:
+          type: boolean
+          description: Whether users are allowed to snooze this check
+        exemptions_disallowed:
+          type: boolean
+          description: Whether users are allowed to request exemptions for this check
+        targeted_groups:
+          description: List of groups targeted by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        excluded_groups:
+          description: List of groups excluded from this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        blocking_allowed_groups:
+          description: List of groups allowed to be blocked by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        blocking_excluded_groups:
+          description: List of groups excluded from being blocked by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
+          type: array
+          items:
+            type: string
+        options:
+          type: string
+          description: Additional options for this check configuration. Changes to this field will overwrite previous options and any fields not specified here will be deleted. Options are specified on a per-check basis and can be viewed in the UI
+          format: json
+        remediation_strategy:
           type: string
           enum:
-          - FAIL
-          - PASS
-          - UNKNOWN
-          - INAPPLICABLE
-          - ERROR
-          description: The status of the check for the device
-        check_data:
-          type: string
-          description: Additional data for the check
-          format: json
+          - block_immediately
+          - warn_then_block
+          - notify_only
+          - report_only
+          description: The strategy used for remediating this check
+    external_check_run_request_body:
+      type: object
+      properties:
+        device_id:
+          type: integer
+          description: The ID of the device. Must pass exactly one of device_id, person_id, or person_email.
         person_id:
           type: integer
-          description: The ID of the person for this check run
-        person_name:
-          type: string
-          description: The name of the person for this check run
+          description: The ID of the person. Must pass exactly one of device_id, person_id, or person_email.
         person_email:
           type: string
-          description: The email of the person for this check run
-    check_targeting_config:
-      type: object
-      properties:
-        excluded_groups:
-          description: A list of names for the groups whose device members are excluded from being targets for this check
-          type: array
-          items:
-            type: string
-        targeted_groups:
-          description: The names of the groups that define which devices will be targeted by this check. See also `excluded_groups`, as membership in an excluded group will exempt a device from being targeted by this check.
-          type: array
-          items:
-            type: string
-    check_auth_blocking_config:
-      type: object
-      properties:
-        blocking_enabled:
-          type: boolean
-          description: Whether or not an issue for this check will block device trust authentication
-        grace_period_days:
-          type: integer
-          description: The number of days that a device is allowed to be failing the check before it will be blocked
-        blocking_group_names:
-          description: The names of the groups that define which devices will be blocked by this check. See also `blocking_exempt_group_names`, as membership in an excluded group will exempt a device from being blocked by this check.
-          type: array
-          items:
-            type: string
-        blocking_exempt_group_names:
-          description: The names of the Groups that are exempt from being blocked by this check
-          type: array
-          items:
-            type: string
+          description: The email of the person. Falls back to matching an identity email if no person matches directly. Must pass exactly one of device_id, person_id, or person_email.
+        check_data:
+          type: string
+          description: Data for the check result. Must include a KOLIDE_CHECK_STATUS attribute with a value matching one of FAIL, PASS, UNKNOWN, INAPPLICABLE, ERROR. May optionally include additional key-value pairs as extra metadata. May contain one element, or many elements in an array.
+          format: json
     check_result:
       type: object
       properties:
@@ -702,69 +690,6 @@ components:
           - pending
           - out_of_scope
           description: The status of the check
-    check:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this check
-        name:
-          type: string
-          description: The short description of the state the check is meant to enforce
-        slug:
-          type: string
-          description: The unique, stable and human-readable identifier for this check
-        compatible_platforms:
-          description: "An array of device platforms this check can run on. The platform possibilities are:\n - linux: this check can run on all linux derivations\n - windows: this check can run on all windows devices\n - darwin: this check can run on all versions of macOS\n\nThe compatible platforms determine the default targeting if no custom targeting is configured\n"
-          type: array
-          items:
-            type: string
-        description:
-          type: string
-          description: Longer-form description of the check's purpose and operation
-        topics:
-          description: A list of Kolide-set topics associated with the Check
-          type: array
-          items:
-            type: string
-        osquery_sql_template:
-          type: string
-          description: The templated SQL associated with a custom check query that will be run on devices to determine the custom check's status. This SQL may contain liquid variables. This field will be blank if the check is not a custom check. You can learn more about writing your own checks at https://www.kolide.com/docs/admins/checks.
-        issue_title:
-          type: string
-          description: The title of the issue that will be created if the check fails
-        fix_instructions_template:
-          type: string
-          description: The markdown-formatted template for the fix instructions that will be provided to the user to fix the issue. This may contain liquid variables. You can learn more about customizing fix instructions at https://www.kolide.com/docs/admins/checks#customizing-end-user-fix-instructions.
-        rationale_template:
-          type: string
-          description: The markdown-formatted template for the rationale that will be provided to the user when the check fails. This may contain liquid variables.
-        check_tags:
-          description: A list of Team-set tags associated with the Check
-          type: array
-          items:
-            $ref: '#/components/schemas/check_tag'
-        blocks_auth_configuration:
-          allOf:
-          - description: Object describing the authentication-blocking configuration of the check
-          - $ref: '#/components/schemas/check_auth_blocking_config'
-        targeting_configuration:
-          allOf:
-          - description: Object describing the device targeting configuration of the check
-          - $ref: '#/components/schemas/check_targeting_config'
-        percent_passing:
-          type: integer
-          description: Percentage of targeted devices currently passing this check (0–100). This value is truncated, not rounded, to avoid showing 100% when not all devices are passing.
-        kolide_provided:
-          type: boolean
-          description: Kolide provided checks are created and maintained by the Kolide team. This field is false for user-created custom checks.
-        type:
-          type: string
-          enum:
-          - osquery
-          - custom
-          - external
-          description: The type of check.
     check_configuration:
       type: object
       properties:
@@ -859,72 +784,147 @@ components:
           type: array
           items:
             type: string
-    external_check_run_request_body:
+    external_check_run:
       type: object
       properties:
+        check_id:
+          type: integer
+          description: The ID of the check
         device_id:
           type: integer
-          description: The ID of the device. Must pass exactly one of device_id, person_id, or person_email.
-        person_id:
-          type: integer
-          description: The ID of the person. Must pass exactly one of device_id, person_id, or person_email.
-        person_email:
-          type: string
-          description: The email of the person. Falls back to matching an identity email if no person matches directly. Must pass exactly one of device_id, person_id, or person_email.
-        check_data:
-          type: string
-          description: Data for the check result. Must include a KOLIDE_CHECK_STATUS attribute with a value matching one of FAIL, PASS, UNKNOWN, INAPPLICABLE, ERROR. May optionally include additional key-value pairs as extra metadata. May contain one element, or many elements in an array.
-          format: json
-    check_configuration_request_body:
-      type: object
-      properties:
-        paused:
-          type: boolean
-          description: Whether this check is currently paused
-        block_auth_grace_period_days:
-          type: integer
-          description: Number of days a device is allowed to be out of compliance before blocking
-        auth_check_run_shelf_life_seconds:
-          type: integer
-          description: Number of seconds a check result is considered valid for authentication. If a check result is older than this value at authentication time, it will be re-run during the authentication process.
-        snooze_disallowed:
-          type: boolean
-          description: Whether users are allowed to snooze this check
-        exemptions_disallowed:
-          type: boolean
-          description: Whether users are allowed to request exemptions for this check
-        targeted_groups:
-          description: List of groups targeted by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
-          type: array
-          items:
-            type: string
-        excluded_groups:
-          description: List of groups excluded from this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
-          type: array
-          items:
-            type: string
-        blocking_allowed_groups:
-          description: List of groups allowed to be blocked by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
-          type: array
-          items:
-            type: string
-        blocking_excluded_groups:
-          description: List of groups excluded from being blocked by this check. This field is a combination of group IDs and platform names. For platform names, use 'macos', 'windows', or 'linux'.
-          type: array
-          items:
-            type: string
-        options:
-          type: string
-          description: Additional options for this check configuration. Changes to this field will overwrite previous options and any fields not specified here will be deleted. Options are specified on a per-check basis and can be viewed in the UI
-          format: json
-        remediation_strategy:
+          description: The ID of the device
+        status:
           type: string
           enum:
-          - block_immediately
-          - warn_then_block
-          - notify_only
-          - report_only
-          description: The strategy used for remediating this check
+          - FAIL
+          - PASS
+          - UNKNOWN
+          - INAPPLICABLE
+          - ERROR
+          description: The status of the check for the device
+        check_data:
+          type: string
+          description: Additional data for the check
+          format: json
+        person_id:
+          type: integer
+          description: The ID of the person for this check run
+        person_name:
+          type: string
+          description: The name of the person for this check run
+        person_email:
+          type: string
+          description: The email of the person for this check run
+    check_auth_blocking_config:
+      type: object
+      properties:
+        blocking_enabled:
+          type: boolean
+          description: Whether or not an issue for this check will block device trust authentication
+        grace_period_days:
+          type: integer
+          description: The number of days that a device is allowed to be failing the check before it will be blocked
+        blocking_group_names:
+          description: The names of the groups that define which devices will be blocked by this check. See also `blocking_exempt_group_names`, as membership in an excluded group will exempt a device from being blocked by this check.
+          type: array
+          items:
+            type: string
+        blocking_exempt_group_names:
+          description: The names of the Groups that are exempt from being blocked by this check
+          type: array
+          items:
+            type: string
+    check_tag:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this check tag
+        name:
+          type: string
+          description: The short name of the check tag
+        description:
+          type: string
+          description: The description of the check tag
+        color:
+          type: string
+          description: The rgba color value for this tag
+    check_targeting_config:
+      type: object
+      properties:
+        excluded_groups:
+          description: A list of names for the groups whose device members are excluded from being targets for this check
+          type: array
+          items:
+            type: string
+        targeted_groups:
+          description: The names of the groups that define which devices will be targeted by this check. See also `excluded_groups`, as membership in an excluded group will exempt a device from being targeted by this check.
+          type: array
+          items:
+            type: string
+    check:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this check
+        name:
+          type: string
+          description: The short description of the state the check is meant to enforce
+        slug:
+          type: string
+          description: The unique, stable and human-readable identifier for this check
+        compatible_platforms:
+          description: "An array of device platforms this check can run on. The platform possibilities are:\n - linux: this check can run on all linux derivations\n - windows: this check can run on all windows devices\n - darwin: this check can run on all versions of macOS\n\nThe compatible platforms determine the default targeting if no custom targeting is configured\n"
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+          description: Longer-form description of the check's purpose and operation
+        topics:
+          description: A list of Kolide-set topics associated with the Check
+          type: array
+          items:
+            type: string
+        osquery_sql_template:
+          type: string
+          description: The templated SQL associated with a custom check query that will be run on devices to determine the custom check's status. This SQL may contain liquid variables. This field will be blank if the check is not a custom check. You can learn more about writing your own checks at https://www.kolide.com/docs/admins/checks.
+        issue_title:
+          type: string
+          description: The title of the issue that will be created if the check fails
+        fix_instructions_template:
+          type: string
+          description: The markdown-formatted template for the fix instructions that will be provided to the user to fix the issue. This may contain liquid variables. You can learn more about customizing fix instructions at https://www.kolide.com/docs/admins/checks#customizing-end-user-fix-instructions.
+        rationale_template:
+          type: string
+          description: The markdown-formatted template for the rationale that will be provided to the user when the check fails. This may contain liquid variables.
+        check_tags:
+          description: A list of Team-set tags associated with the Check
+          type: array
+          items:
+            $ref: '#/components/schemas/check_tag'
+        blocks_auth_configuration:
+          allOf:
+          - description: Object describing the authentication-blocking configuration of the check
+          - $ref: '#/components/schemas/check_auth_blocking_config'
+        targeting_configuration:
+          allOf:
+          - description: Object describing the device targeting configuration of the check
+          - $ref: '#/components/schemas/check_targeting_config'
+        percent_passing:
+          type: integer
+          description: Percentage of targeted devices currently passing this check (0–100). This value is truncated, not rounded, to avoid showing 100% when not all devices are passing.
+        kolide_provided:
+          type: boolean
+          description: Kolide provided checks are created and maintained by the Kolide team. This field is false for user-created custom checks.
+        type:
+          type: string
+          enum:
+          - osquery
+          - custom
+          - external
+          description: The type of check.
   securitySchemes:
     api_key:
       type: http

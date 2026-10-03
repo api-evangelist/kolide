@@ -309,6 +309,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
     person:
       type: object
       properties:
@@ -337,15 +346,6 @@ components:
           type: array
           items:
             type: integer
-    person_group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this group
-        name:
-          type: string
-          description: The human-readable name for this group
   securitySchemes:
     api_key:
       type: http
