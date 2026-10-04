@@ -1,0 +1,47 @@
+slug: kolide
+provider: Kolide
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Devices
+  spec_file: kolide-devices-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: PATCH /devices/{deviceId}/authentication_mode  Update an existing Device authentication mode;
+    GET /devices/{deviceId}/open_issues; POST /devices/{deviceId}/check_refreshes
+  reason: 'Core endpoint device-trust surface: device registration, authentication mode (access enforcement)
+    and security check results/issues. Plainly cybersecurity management; split between identity/access
+    and vulnerability remediation is unclear so L1 only.'
+- tag: Checks
+  spec_file: kolide-checks-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: 'GET /checks/{checkId}/results  Fetch a list of Check results; schemas: check_auth_blocking_config,
+    check_targeting_config'
+  reason: Configuration and execution of the vendor's continuous security/compliance checks on endpoints,
+    including auth-blocking enforcement. Clearly cybersecurity management; the sub-capability split (governance
+    vs vulnerability remediation) is ambiguous so only L1 is asserted.
+- tag: Admin Users
+  spec_file: kolide-admin-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /admin_users  getAdminUsers  Fetch a list of Admin users
+  reason: Read-only listing of administrator accounts on a device-trust/endpoint security platform — administrative
+    identity and access records. Mapped to Identity & Access Management, though the surface is only two
+    read endpoints.

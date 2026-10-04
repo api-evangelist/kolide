@@ -476,6 +476,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/kolide-capability-edges.yml
+  name: Kolide Business Capability Map
 - type: Website
   url: https://kolide.com
 - type: DeveloperPortal
