@@ -479,25 +479,37 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    person_group:
+    device_authentication_mode:
       type: object
       properties:
-        id:
+        device_id:
           type: string
-          description: The canonical identifier for this group
-        name:
+          description: The canonical identifier for the device
+        authentication_mode:
           type: string
-          description: The human-readable name for this group
-    link-object:
+          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_groups:
+          description: Description of the groups allowed to authenticate with this device
+          type: array
+          items:
+            $ref: '#/components/schemas/person_group'
+    device_group_member:
       type: object
       properties:
-        identifier:
+        device_id:
           type: string
-          description: the canonical identifier for this object
-        link:
+          description: Identifier of the device belonging to a group
+        group_id:
           type: string
-          format: url
-          description: the API URL where complete information about this object can be found
+          description: Identifier of the group that the device belongs to
+    device_group_member_request_body:
+      type: object
+      properties:
+        device_ids:
+          description: Array of identifiers for the devices to be added to/removed from the group
+          type: array
+          items:
+            type: string
     device:
       type: object
       properties:
@@ -573,37 +585,6 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
-    device_group_member:
-      type: object
-      properties:
-        device_id:
-          type: string
-          description: Identifier of the device belonging to a group
-        group_id:
-          type: string
-          description: Identifier of the group that the device belongs to
-    device_group_member_request_body:
-      type: object
-      properties:
-        device_ids:
-          description: Array of identifiers for the devices to be added to/removed from the group
-          type: array
-          items:
-            type: string
-    device_authentication_mode:
-      type: object
-      properties:
-        device_id:
-          type: string
-          description: The canonical identifier for the device
-        authentication_mode:
-          type: string
-          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
-        person_groups:
-          description: Description of the groups allowed to authenticate with this device
-          type: array
-          items:
-            $ref: '#/components/schemas/person_group'
     device_group:
       type: object
       properties:
@@ -623,6 +604,25 @@ components:
         members_count:
           type: integer
           description: The number of member devices in this group
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
   securitySchemes:
     api_key:
       type: http

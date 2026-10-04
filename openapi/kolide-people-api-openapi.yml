@@ -658,25 +658,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    person_group:
+    device_authentication_mode:
       type: object
       properties:
-        id:
+        device_id:
           type: string
-          description: The canonical identifier for this group
-        name:
+          description: The canonical identifier for the device
+        authentication_mode:
           type: string
-          description: The human-readable name for this group
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
+          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_groups:
+          description: Description of the groups allowed to authenticate with this device
+          type: array
+          items:
+            $ref: '#/components/schemas/person_group'
     device:
       type: object
       properties:
@@ -752,48 +747,16 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
-    person:
+    link-object:
       type: object
       properties:
-        id:
+        identifier:
           type: string
-          description: The canonical identifier for this person
-        name:
+          description: the canonical identifier for this object
+        link:
           type: string
-          description: The human-readable name for this person
-        email:
-          type: string
-          description: the recorded email address for this person
-        created_at:
-          type: string
-          description: when the person record was created
-          format: date-time
-        last_authenticated_at:
-          type: string
-          description: The timestamp representing when the person last authenticated with Kolide
-          format: date-time
-        has_registered_device:
-          type: boolean
-          description: Whether or not this person has at least one registered device
-        usernames:
-          description: The usernames imported from the SCIM provider that are associated with this person
-          type: array
-          items:
-            type: integer
-    device_authentication_mode:
-      type: object
-      properties:
-        device_id:
-          type: string
-          description: The canonical identifier for the device
-        authentication_mode:
-          type: string
-          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
-        person_groups:
-          description: Description of the groups allowed to authenticate with this device
-          type: array
-          items:
-            $ref: '#/components/schemas/person_group'
+          format: url
+          description: the API URL where complete information about this object can be found
     issue:
       type: object
       properties:
@@ -861,6 +824,43 @@ components:
 
             '
           format: date-time
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
+    person:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this person
+        name:
+          type: string
+          description: The human-readable name for this person
+        email:
+          type: string
+          description: the recorded email address for this person
+        created_at:
+          type: string
+          description: when the person record was created
+          format: date-time
+        last_authenticated_at:
+          type: string
+          description: The timestamp representing when the person last authenticated with Kolide
+          format: date-time
+        has_registered_device:
+          type: boolean
+          description: Whether or not this person has at least one registered device
+        usernames:
+          description: The usernames imported from the SCIM provider that are associated with this person
+          type: array
+          items:
+            type: integer
   securitySchemes:
     api_key:
       type: http

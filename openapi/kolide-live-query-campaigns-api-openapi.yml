@@ -539,42 +539,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    live_query_campaign_request_body:
-      type: object
-      properties:
-        targeted_device_ids:
-          description: Target Devices in Live Query
-          type: array
-          items:
-            type: integer
-        target_all_devices:
-          type: boolean
-          description: Target All Devices in Live Query
-        target_macs:
-          type: boolean
-          description: Target all MacOS devices in Live Query
-        target_windows_devices:
-          type: boolean
-          description: Target all windows devices in Live Query
-        target_linux_devices:
-          type: boolean
-          description: Target all Linux devices in Live Query
-        sql:
-          type: string
-          description: The sql to be run on all targeted devices
-        name:
-          type: string
-          description: The title of the live query
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
     live_query_result:
       type: object
       properties:
@@ -602,6 +566,42 @@ components:
           type: array
           items:
             type: integer
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    live_query_campaign_request_body:
+      type: object
+      properties:
+        targeted_device_ids:
+          description: Target Devices in Live Query
+          type: array
+          items:
+            type: integer
+        target_all_devices:
+          type: boolean
+          description: Target All Devices in Live Query
+        target_macs:
+          type: boolean
+          description: Target all MacOS devices in Live Query
+        target_windows_devices:
+          type: boolean
+          description: Target all windows devices in Live Query
+        target_linux_devices:
+          type: boolean
+          description: Target all Linux devices in Live Query
+        sql:
+          type: string
+          description: The sql to be run on all targeted devices
+        name:
+          type: string
+          description: The title of the live query
     live_query_campaign:
       type: object
       properties:

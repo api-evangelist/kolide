@@ -548,9 +548,6 @@ components:
         documentation_url:
           type: string
           description: A link to the detailed documentation for this table
-    report_query_result:
-      type: object
-      properties: {}
     report_query:
       type: object
       properties:
@@ -570,6 +567,9 @@ components:
           type: string
           description: when the report query was created
           format: date-time
+    report_query_result:
+      type: object
+      properties: {}
   securitySchemes:
     api_key:
       type: http

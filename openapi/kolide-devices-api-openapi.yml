@@ -847,25 +847,66 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    person_group:
+    device_authentication_mode:
       type: object
       properties:
-        id:
+        device_id:
           type: string
-          description: The canonical identifier for this group
-        name:
+          description: The canonical identifier for the device
+        authentication_mode:
           type: string
-          description: The human-readable name for this group
-    link-object:
+          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_groups:
+          description: Description of the groups allowed to authenticate with this device
+          type: array
+          items:
+            $ref: '#/components/schemas/person_group'
+    check_result:
       type: object
       properties:
-        identifier:
+        check_id:
           type: string
-          description: the canonical identifier for this object
-        link:
+          description: The canonical identifier for the check
+        check_slug:
           type: string
-          format: url
-          description: the API URL where complete information about this object can be found
+          description: The human-readable stable identifier for this check
+        check_name:
+          type: string
+          description: The name of the check
+        device_id:
+          type: string
+          description: The canonical identifier for the device
+        device_display_name:
+          type: string
+          description: The display name of the device
+        ran_at:
+          type: string
+          description: The timestamp the check was most recently run on the device
+          format: date-time
+        exemption_reason:
+          type: string
+          description: The reason the device was marked as exempt from this check. Null if not exempted
+        exemption_expires_at:
+          type: string
+          description: The time the exemption expires. Null if not exempted
+          format: date-time
+        check_result_data:
+          description: The full set of information used to determine the status of the check result
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - unknown
+          - passing
+          - failing
+          - errored
+          - inapplicable
+          - stale
+          - pending
+          - out_of_scope
+          description: The status of the check
     device:
       type: object
       properties:
@@ -941,58 +982,6 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
-    check_result:
-      type: object
-      properties:
-        check_id:
-          type: string
-          description: The canonical identifier for the check
-        check_slug:
-          type: string
-          description: The human-readable stable identifier for this check
-        check_name:
-          type: string
-          description: The name of the check
-        device_id:
-          type: string
-          description: The canonical identifier for the device
-        device_display_name:
-          type: string
-          description: The display name of the device
-        ran_at:
-          type: string
-          description: The timestamp the check was most recently run on the device
-          format: date-time
-        exemption_reason:
-          type: string
-          description: The reason the device was marked as exempt from this check. Null if not exempted
-        exemption_expires_at:
-          type: string
-          description: The time the exemption expires. Null if not exempted
-          format: date-time
-        check_result_data:
-          description: The full set of information used to determine the status of the check result
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-          enum:
-          - unknown
-          - passing
-          - failing
-          - errored
-          - inapplicable
-          - stale
-          - pending
-          - out_of_scope
-          description: The status of the check
-    check_refresh_request_body:
-      type: object
-      properties:
-        check_id:
-          type: string
-          description: The identifier of the check that should be refreshed on the device
     check_refresh:
       type: object
       properties:
@@ -1006,55 +995,16 @@ components:
           type: string
           description: The UTC timestamp describing the check refresh was initiated
           format: date-time
-    device_registration:
+    link-object:
       type: object
       properties:
-        device_id:
+        identifier:
           type: string
-          description: The unique identifier for the device registration
-        registered_at:
+          description: the canonical identifier for this object
+        link:
           type: string
-          description: The date and time the device registration was created
-          format: date-time
-        registered_owner_info:
-          allOf:
-          - description: Information for fetching the complete data on the registered owner of the device
-          - $ref: '#/components/schemas/link-object'
-        device_info:
-          allOf:
-          - description: Information for fetching the complete data on the device
-          - $ref: '#/components/schemas/link-object'
-    device_authentication_mode_request_body:
-      type: object
-      properties:
-        authentication_mode:
-          type: string
-          description: 'Describes the authentication mode for this device. Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
-        person_group_ids:
-          description: 'The identifiers for the groups that should be allowed to
-
-            authenticate with this device. Ignored if the auth_mode is not
-
-            ''only_registered_owner_or_group_members''
-
-            '
-          type: array
-          items:
-            type: integer
-    device_authentication_mode:
-      type: object
-      properties:
-        device_id:
-          type: string
-          description: The canonical identifier for the device
-        authentication_mode:
-          type: string
-          description: 'Authentication mode describing who can authentication with this device.  Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
-        person_groups:
-          description: Description of the groups allowed to authenticate with this device
-          type: array
-          items:
-            $ref: '#/components/schemas/person_group'
+          format: url
+          description: the API URL where complete information about this object can be found
     issue:
       type: object
       properties:
@@ -1122,6 +1072,56 @@ components:
 
             '
           format: date-time
+    check_refresh_request_body:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The identifier of the check that should be refreshed on the device
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
+    device_registration:
+      type: object
+      properties:
+        device_id:
+          type: string
+          description: The unique identifier for the device registration
+        registered_at:
+          type: string
+          description: The date and time the device registration was created
+          format: date-time
+        registered_owner_info:
+          allOf:
+          - description: Information for fetching the complete data on the registered owner of the device
+          - $ref: '#/components/schemas/link-object'
+        device_info:
+          allOf:
+          - description: Information for fetching the complete data on the device
+          - $ref: '#/components/schemas/link-object'
+    device_authentication_mode_request_body:
+      type: object
+      properties:
+        authentication_mode:
+          type: string
+          description: 'Describes the authentication mode for this device. Must be one of: only_registered_owner, only_registered_owner_or_group_members, anyone'
+        person_group_ids:
+          description: 'The identifiers for the groups that should be allowed to
+
+            authenticate with this device. Ignored if the auth_mode is not
+
+            ''only_registered_owner_or_group_members''
+
+            '
+          type: array
+          items:
+            type: integer
   securitySchemes:
     api_key:
       type: http
