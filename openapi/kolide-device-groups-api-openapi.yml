@@ -502,6 +502,44 @@ components:
         group_id:
           type: string
           description: Identifier of the group that the device belongs to
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
+    device_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        created_at:
+          type: string
+          description: A timestamp describing when the device group was created
+          format: date-time
+        name:
+          type: string
+          description: The human-readable name for this group
+        description:
+          type: string
+          description: Longer-form details about this device group
+        members_count:
+          type: integer
+          description: The number of member devices in this group
+    person_group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this group
+        name:
+          type: string
+          description: The human-readable name for this group
     device_group_member_request_body:
       type: object
       properties:
@@ -585,44 +623,6 @@ components:
           - Tablet
           - Phone
           description: The form factor of the device
-    device_group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this group
-        created_at:
-          type: string
-          description: A timestamp describing when the device group was created
-          format: date-time
-        name:
-          type: string
-          description: The human-readable name for this group
-        description:
-          type: string
-          description: Longer-form details about this device group
-        members_count:
-          type: integer
-          description: The number of member devices in this group
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
-    person_group:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this group
-        name:
-          type: string
-          description: The human-readable name for this group
   securitySchemes:
     api_key:
       type: http

@@ -258,19 +258,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    auth_log_event:
+    link-object:
       type: object
       properties:
-        timestamp:
+        identifier:
           type: string
-          description: The timestamp representing the start of the auth event
-          format: date-time
-        event_type:
+          description: the canonical identifier for this object
+        link:
           type: string
-          description: The specific event type. Possibilities documented at https://app.kolide.com/docs/admins/auth-logs#event-types
-        event_description:
-          type: string
-          description: A brief description of the event
+          format: url
+          description: the API URL where complete information about this object can be found
     auth_log_displayed_issue:
       type: object
       properties:
@@ -286,16 +283,6 @@ components:
         link:
           type: string
           description: API URL where complete information about this issue can be found
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
     auth_log_session:
       type: object
       properties:
@@ -399,6 +386,19 @@ components:
         okta_app_name:
           type: string
           description: The Okta application name from the SAML request
+    auth_log_event:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: The timestamp representing the start of the auth event
+          format: date-time
+        event_type:
+          type: string
+          description: The specific event type. Possibilities documented at https://app.kolide.com/docs/admins/auth-logs#event-types
+        event_description:
+          type: string
+          description: A brief description of the event
   securitySchemes:
     api_key:
       type: http

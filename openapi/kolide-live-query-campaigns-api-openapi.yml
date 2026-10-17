@@ -539,33 +539,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    live_query_result:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The canonical identifier for this live query result
-        result_count:
-          type: string
-          description: Number of rows returned in the result set
-        error_message:
-          type: string
-          description: Any errors the device may emit while attempting to run a live query
-        revision:
-          type: integer
-          description: The revision of the parent Live Query this result corresponds to
-        warning_message:
-          type: string
-          description: Any warnings the device emits while running a live query
-        device_information:
-          allOf:
-          - description: Information that can be used to fetch the full data on the device that generated this result set
-          - $ref: '#/components/schemas/link-object'
-        results:
-          description: The returned rows of data for the live query on this device
-          type: array
-          items:
-            type: integer
     link-object:
       type: object
       properties:
@@ -602,6 +575,33 @@ components:
         name:
           type: string
           description: The title of the live query
+    live_query_result:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The canonical identifier for this live query result
+        result_count:
+          type: string
+          description: Number of rows returned in the result set
+        error_message:
+          type: string
+          description: Any errors the device may emit while attempting to run a live query
+        revision:
+          type: integer
+          description: The revision of the parent Live Query this result corresponds to
+        warning_message:
+          type: string
+          description: Any warnings the device emits while running a live query
+        device_information:
+          allOf:
+          - description: Information that can be used to fetch the full data on the device that generated this result set
+          - $ref: '#/components/schemas/link-object'
+        results:
+          description: The returned rows of data for the live query on this device
+          type: array
+          items:
+            type: integer
     live_query_campaign:
       type: object
       properties:

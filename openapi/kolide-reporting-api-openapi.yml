@@ -517,12 +517,28 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    table_record:
+    report_query:
       type: object
       properties:
         id:
+          type: integer
+          description: The canonical identifier for this report query
+        name:
           type: string
-          description: The unique identifier for this table record
+          description: The human-readable name for this report query
+        osquery_sql:
+          type: string
+          description: The SQL query used to generate the report
+        result_count:
+          type: integer
+          description: Number of rows returned in the result set
+        created_at:
+          type: string
+          description: when the report query was created
+          format: date-time
+    report_query_result:
+      type: object
+      properties: {}
     reporting_table:
       type: object
       properties:
@@ -548,28 +564,12 @@ components:
         documentation_url:
           type: string
           description: A link to the detailed documentation for this table
-    report_query:
+    table_record:
       type: object
       properties:
         id:
-          type: integer
-          description: The canonical identifier for this report query
-        name:
           type: string
-          description: The human-readable name for this report query
-        osquery_sql:
-          type: string
-          description: The SQL query used to generate the report
-        result_count:
-          type: integer
-          description: Number of rows returned in the result set
-        created_at:
-          type: string
-          description: when the report query was created
-          format: date-time
-    report_query_result:
-      type: object
-      properties: {}
+          description: The unique identifier for this table record
   securitySchemes:
     api_key:
       type: http

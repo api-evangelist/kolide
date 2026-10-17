@@ -578,6 +578,53 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    external_check_run_request_body:
+      type: object
+      properties:
+        device_id:
+          type: integer
+          description: The ID of the device. Must pass exactly one of device_id, person_id, or person_email.
+        person_id:
+          type: integer
+          description: The ID of the person. Must pass exactly one of device_id, person_id, or person_email.
+        person_email:
+          type: string
+          description: The email of the person. Falls back to matching an identity email if no person matches directly. Must pass exactly one of device_id, person_id, or person_email.
+        check_data:
+          type: string
+          description: Data for the check result. Must include a KOLIDE_CHECK_STATUS attribute with a value matching one of FAIL, PASS, UNKNOWN, INAPPLICABLE, ERROR. May optionally include additional key-value pairs as extra metadata. May contain one element, or many elements in an array.
+          format: json
+    external_check_run:
+      type: object
+      properties:
+        check_id:
+          type: integer
+          description: The ID of the check
+        device_id:
+          type: integer
+          description: The ID of the device
+        status:
+          type: string
+          enum:
+          - FAIL
+          - PASS
+          - UNKNOWN
+          - INAPPLICABLE
+          - ERROR
+          description: The status of the check for the device
+        check_data:
+          type: string
+          description: Additional data for the check
+          format: json
+        person_id:
+          type: integer
+          description: The ID of the person for this check run
+        person_name:
+          type: string
+          description: The name of the person for this check run
+        person_email:
+          type: string
+          description: The email of the person for this check run
     check:
       type: object
       properties:
@@ -641,100 +688,6 @@ components:
           - custom
           - external
           description: The type of check.
-    check_configuration:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier for this check configuration
-        organization_id:
-          type: integer
-          description: The ID of the organization to which this check belongs
-        check_id:
-          type: integer
-          description: The ID of the check associated with this configuration
-        name:
-          type: string
-          description: The name of the check associated with the check configuration
-        check_slug:
-          type: string
-          description: A slugified version of the check name, used for URL paths
-        issue_title:
-          type: string
-          description: The title of the issue associated with this check
-        options:
-          type: string
-          description: Additional options for this check configuration. Options are specified on a per-check basis and can be viewed in the UI
-          format: json
-        use_custom_rationale_template:
-          type: boolean
-          description: Whether a custom rationale template is used
-        use_custom_fix_instructions_template:
-          type: boolean
-          description: Whether custom fix instructions are used
-        paused:
-          type: boolean
-          description: Whether this check is currently paused
-        paused_by:
-          type: string
-          description: The ID of the user who paused this check configuration
-        paused_at:
-          type: string
-          description: The timestamp when this check configuration was paused
-          format: date-time
-        revision:
-          type: string
-          description: The revision number of this check configuration
-        block_auth_grace_period_days:
-          type: integer
-          description: Number of days a device is allowed to be out of compliance before blocking
-        auth_check_run_shelf_life_seconds:
-          type: integer
-          description: Number of seconds a check run is valid for authentication
-        begins_blocking_on:
-          type: string
-          description: Date when devices start being blocked if out of compliance
-          format: date-time
-        snooze_disallowed:
-          type: boolean
-          description: Whether snoozing is disallowed for this check
-        exemptions_disallowed:
-          type: boolean
-          description: Whether exemption requests are disallowed for this check
-        customized_remediation_targeting:
-          type: boolean
-          description: Whether remediation targeting is customized for this check
-        customized_run_targeting:
-          type: boolean
-          description: Whether run targeting is customized for this check
-        remediation_strategy:
-          type: string
-          enum:
-          - block_immediately
-          - warn_then_block
-          - notify_only
-          - report_only
-          description: The strategy used for remediating this check
-        targeted_groups:
-          description: List of groups targeted by this check
-          type: array
-          items:
-            type: string
-        excluded_groups:
-          description: List of groups excluded from this check
-          type: array
-          items:
-            type: string
-        blocking_allowed_groups:
-          description: List of groups allowed to be blocked by this check
-          type: array
-          items:
-            type: string
-        blocking_excluded_groups:
-          description: List of groups excluded from being blocked by this check
-          type: array
-          items:
-            type: string
     check_result:
       type: object
       properties:
@@ -831,63 +784,97 @@ components:
           - notify_only
           - report_only
           description: The strategy used for remediating this check
-    external_check_run_request_body:
+    check_configuration:
       type: object
       properties:
-        device_id:
+        id:
           type: integer
-          description: The ID of the device. Must pass exactly one of device_id, person_id, or person_email.
-        person_id:
+          description: The unique identifier for this check configuration
+        organization_id:
           type: integer
-          description: The ID of the person. Must pass exactly one of device_id, person_id, or person_email.
-        person_email:
-          type: string
-          description: The email of the person. Falls back to matching an identity email if no person matches directly. Must pass exactly one of device_id, person_id, or person_email.
-        check_data:
-          type: string
-          description: Data for the check result. Must include a KOLIDE_CHECK_STATUS attribute with a value matching one of FAIL, PASS, UNKNOWN, INAPPLICABLE, ERROR. May optionally include additional key-value pairs as extra metadata. May contain one element, or many elements in an array.
-          format: json
-    external_check_run:
-      type: object
-      properties:
+          description: The ID of the organization to which this check belongs
         check_id:
           type: integer
-          description: The ID of the check
-        device_id:
+          description: The ID of the check associated with this configuration
+        name:
+          type: string
+          description: The name of the check associated with the check configuration
+        check_slug:
+          type: string
+          description: A slugified version of the check name, used for URL paths
+        issue_title:
+          type: string
+          description: The title of the issue associated with this check
+        options:
+          type: string
+          description: Additional options for this check configuration. Options are specified on a per-check basis and can be viewed in the UI
+          format: json
+        use_custom_rationale_template:
+          type: boolean
+          description: Whether a custom rationale template is used
+        use_custom_fix_instructions_template:
+          type: boolean
+          description: Whether custom fix instructions are used
+        paused:
+          type: boolean
+          description: Whether this check is currently paused
+        paused_by:
+          type: string
+          description: The ID of the user who paused this check configuration
+        paused_at:
+          type: string
+          description: The timestamp when this check configuration was paused
+          format: date-time
+        revision:
+          type: string
+          description: The revision number of this check configuration
+        block_auth_grace_period_days:
           type: integer
-          description: The ID of the device
-        status:
+          description: Number of days a device is allowed to be out of compliance before blocking
+        auth_check_run_shelf_life_seconds:
+          type: integer
+          description: Number of seconds a check run is valid for authentication
+        begins_blocking_on:
+          type: string
+          description: Date when devices start being blocked if out of compliance
+          format: date-time
+        snooze_disallowed:
+          type: boolean
+          description: Whether snoozing is disallowed for this check
+        exemptions_disallowed:
+          type: boolean
+          description: Whether exemption requests are disallowed for this check
+        customized_remediation_targeting:
+          type: boolean
+          description: Whether remediation targeting is customized for this check
+        customized_run_targeting:
+          type: boolean
+          description: Whether run targeting is customized for this check
+        remediation_strategy:
           type: string
           enum:
-          - FAIL
-          - PASS
-          - UNKNOWN
-          - INAPPLICABLE
-          - ERROR
-          description: The status of the check for the device
-        check_data:
-          type: string
-          description: Additional data for the check
-          format: json
-        person_id:
-          type: integer
-          description: The ID of the person for this check run
-        person_name:
-          type: string
-          description: The name of the person for this check run
-        person_email:
-          type: string
-          description: The email of the person for this check run
-    check_targeting_config:
-      type: object
-      properties:
-        excluded_groups:
-          description: A list of names for the groups whose device members are excluded from being targets for this check
+          - block_immediately
+          - warn_then_block
+          - notify_only
+          - report_only
+          description: The strategy used for remediating this check
+        targeted_groups:
+          description: List of groups targeted by this check
           type: array
           items:
             type: string
-        targeted_groups:
-          description: The names of the groups that define which devices will be targeted by this check. See also `excluded_groups`, as membership in an excluded group will exempt a device from being targeted by this check.
+        excluded_groups:
+          description: List of groups excluded from this check
+          type: array
+          items:
+            type: string
+        blocking_allowed_groups:
+          description: List of groups allowed to be blocked by this check
+          type: array
+          items:
+            type: string
+        blocking_excluded_groups:
+          description: List of groups excluded from being blocked by this check
           type: array
           items:
             type: string
@@ -907,6 +894,19 @@ components:
             type: string
         blocking_exempt_group_names:
           description: The names of the Groups that are exempt from being blocked by this check
+          type: array
+          items:
+            type: string
+    check_targeting_config:
+      type: object
+      properties:
+        excluded_groups:
+          description: A list of names for the groups whose device members are excluded from being targets for this check
+          type: array
+          items:
+            type: string
+        targeted_groups:
+          description: The names of the groups that define which devices will be targeted by this check. See also `excluded_groups`, as membership in an excluded group will exempt a device from being targeted by this check.
           type: array
           items:
             type: string

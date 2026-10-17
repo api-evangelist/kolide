@@ -312,6 +312,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    link-object:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: the canonical identifier for this object
+        link:
+          type: string
+          format: url
+          description: the API URL where complete information about this object can be found
     exemption_request:
       type: object
       properties:
@@ -347,16 +357,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link-object'
-    link-object:
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: the canonical identifier for this object
-        link:
-          type: string
-          format: url
-          description: the API URL where complete information about this object can be found
     exemption_request_request_body:
       type: object
       properties:
