@@ -16,9 +16,55 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/kolide/kit
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/kolide/kit
+      version: v0.0.0-20261001123428-92dd92effba6
+      released: '2026-10-01'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/kolide/kit
+      repo_leg: github-org:kolide
+      publisher_leg: org:kolide
+      matched_by: github-org
+    - name: github.com/kolide/launcher
+      version: v1.32.1
+      released: '2026-03-03'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/kolide/launcher
+      repo_leg: github-org:kolide
+      publisher_leg: org:kolide
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 generated: '2026-10-18'
 method: searched
 source:
 - slack/integrations/slack-integration-edges.yml
 checked:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - slack/integrations/slack-integration-edges.yml

@@ -16,3 +16,42 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: kolide-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
+  type: register
+  channel: package-registry
+  evidence: https://pkg.go.dev/github.com/kolide/kit
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/kolide/kit
+      version: v0.0.0-20261001123428-92dd92effba6
+      released: '2026-10-01'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/kolide/kit
+      repo_leg: github-org:kolide
+      publisher_leg: org:kolide
+      matched_by: github-org
+    - name: github.com/kolide/launcher
+      version: v1.32.1
+      released: '2026-03-03'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/kolide/launcher
+      repo_leg: github-org:kolide
+      publisher_leg: org:kolide
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
