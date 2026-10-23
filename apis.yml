@@ -476,6 +476,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/kolide/overview
 - type: CapabilityMap
   url: capabilities/kolide-capability-edges.yml
   name: Kolide Business Capability Map
