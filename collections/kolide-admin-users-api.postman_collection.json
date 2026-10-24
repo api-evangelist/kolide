@@ -1,487 +1,478 @@
 {
+  "info": {
+    "_postman_id": "b10d0e38-cb5d-403e-9166-522264398d47",
+    "name": "K2 Admin Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:58:16.000Z",
+    "updatedAt": "2026-10-22T01:58:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b10d0e38-cb5d-403e-9166-522264398d47"
+  },
   "item": [
     {
-      "id": "5625a2c3-c3c0-4344-85f3-d6dc25f093ff",
-      "name": "Admin Users",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "admin_users",
       "item": [
         {
-          "id": "3959ed68-c06d-419c-b60d-3bbfc8205b05",
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fetch information for a specific Admin user",
+              "id": "55d58f27-71cb-4c64-82d8-d0e899732f5c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin_users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin_users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d019cfd3-98ca-4bf4-bc79-6780e15c9c09",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the admin user"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "80d652f0-ab15-4036-99e7-752eccb065df",
+                  "name": "Admin Users are those with access to the Kolide dashboard. Depending\non your organization's restrictions, they are able to view and\nmanage checks, devices, users, and other settings.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin_users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin_users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"access\": \"<string>\",\n  \"restrictions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-22T01:58:17.000Z",
+                  "updatedAt": "2026-10-22T01:58:17.000Z",
+                  "uid": "35240-80d652f0-ab15-4036-99e7-752eccb065df"
+                },
+                {
+                  "id": "96e284d2-ae3c-4d01-bf03-9fe4ce5bf036",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin_users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin_users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:58:17.000Z",
+                  "updatedAt": "2026-10-22T01:58:17.000Z",
+                  "uid": "35240-96e284d2-ae3c-4d01-bf03-9fe4ce5bf036"
+                },
+                {
+                  "id": "ee872c83-a046-4262-924c-c0752037059c",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin_users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin_users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:58:17.000Z",
+                  "updatedAt": "2026-10-22T01:58:17.000Z",
+                  "uid": "35240-ee872c83-a046-4262-924c-c0752037059c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:58:17.000Z",
+              "updatedAt": "2026-10-22T01:58:17.000Z",
+              "uid": "35240-55d58f27-71cb-4c64-82d8-d0e899732f5c"
+            }
+          ],
+          "id": "39ae2b25-09fe-4466-8791-4c9c02a171fc",
+          "createdAt": "2026-10-22T01:58:17.000Z",
+          "updatedAt": "2026-10-22T01:58:17.000Z",
+          "uid": "35240-39ae2b25-09fe-4466-8791-4c9c02a171fc"
+        },
+        {
           "name": "Fetch a list of Admin users",
+          "id": "76500903-c588-4285-92d9-ac4f8196ffc5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch a list of Admin users",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/admin_users?cursor=&per_page=25&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "admin_users"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Specify the cursor to begin returning results from",
                   "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
+                  "value": ""
                 },
                 {
-                  "disabled": false,
+                  "description": "Specify the number of records to return in each response.",
                   "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
+                  "value": "25"
                 },
                 {
-                  "disabled": false,
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`first_name` , `last_name` , `email` , `created_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                   "key": "query",
-                  "value": "<string>",
-                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`first_name` , `last_name` , `email` , `created_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "14bbfcec-3f4e-40fa-9b90-529b6bf255f1",
-              "name": "A paginated collection of Admin users",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "admin_users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "first_name:string"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"string\",\n      \"created_at\": \"1994-10-20T09:14:29.251Z\",\n      \"access\": \"string\",\n      \"restrictions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"string\",\n      \"created_at\": \"2016-06-19T15:08:40.282Z\",\n      \"access\": \"string\",\n      \"restrictions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/admin_users?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "132f13d5-86a3-450d-841f-645806eecfff",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "admin_users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "first_name:string"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ff6815db-e766-43d3-a2d8-e99ea1b1ceba",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "admin_users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "first_name:string"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3d1b782c-d131-4e3e-8dbe-5ffe9b06a83c",
-          "name": "Fetch information for a specific Admin user",
-          "request": {
-            "name": "Fetch information for a specific Admin user",
-            "description": {},
-            "url": {
-              "path": [
-                "admin_users",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the admin user"
+                  "value": "<string>"
                 }
               ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            }
           },
           "response": [
             {
-              "id": "e0cfe850-0197-4555-96a6-e1521296e861",
-              "name": "Admin Users are those with access to the Kolide dashboard. Depending\non your organization's restrictions, they are able to view and\nmanage checks, devices, users, and other settings.\n",
+              "id": "7b9d9d14-0a29-4ded-8d9b-97efd28164cc",
+              "name": "A paginated collection of Admin users",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "admin_users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the admin user"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/admin_users?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`first_name` , `last_name` , `email` , `created_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"string\",\n  \"created_at\": \"2024-10-25T19:17:21.747Z\",\n  \"access\": \"string\",\n  \"restrictions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"access\": \"<string>\",\n      \"restrictions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"access\": \"<string>\",\n      \"restrictions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:58:17.000Z",
+              "updatedAt": "2026-10-22T01:58:17.000Z",
+              "uid": "35240-7b9d9d14-0a29-4ded-8d9b-97efd28164cc"
             },
             {
-              "id": "e625b4da-ec99-4d70-bf10-9e16b46df1cd",
+              "id": "6f2b1a87-766d-43be-a6a4-a12191b18e44",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "admin_users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the admin user"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/admin_users?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`first_name` , `last_name` , `email` , `created_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:58:17.000Z",
+              "updatedAt": "2026-10-22T01:58:17.000Z",
+              "uid": "35240-6f2b1a87-766d-43be-a6a4-a12191b18e44"
             },
             {
-              "id": "08405342-eab4-48c7-9055-3bec51f813c2",
+              "id": "73c16300-576f-42c9-a192-33dbad0ae930",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "admin_users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the admin user"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/admin_users?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`first_name` , `last_name` , `email` , `created_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:58:17.000Z",
+              "updatedAt": "2026-10-22T01:58:17.000Z",
+              "uid": "35240-73c16300-576f-42c9-a192-33dbad0ae930"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:58:17.000Z",
+          "updatedAt": "2026-10-22T01:58:17.000Z",
+          "uid": "35240-76500903-c588-4285-92d9-ac4f8196ffc5"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "39e3633e-d17f-4173-aadd-5b5afa6ed3cd",
+      "createdAt": "2026-10-22T01:58:17.000Z",
+      "updatedAt": "2026-10-22T01:58:17.000Z",
+      "uid": "35240-39e3633e-d17f-4173-aadd-5b5afa6ed3cd"
     }
   ],
   "auth": {
@@ -489,17 +480,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "57bf4d69-199a-4a31-be04-672a31a486b4",
-    "name": "K2 Admin Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

@@ -1,469 +1,458 @@
 {
+  "info": {
+    "_postman_id": "5b41dbbb-ba62-4caf-b31c-3eb49e533d18",
+    "name": "K2 Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:59:36.000Z",
+    "updatedAt": "2026-10-22T01:59:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5b41dbbb-ba62-4caf-b31c-3eb49e533d18"
+  },
   "item": [
     {
-      "id": "c3f5f286-25d7-4201-9384-dbf4ac624f1a",
-      "name": "Packages",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "packages",
       "item": [
         {
-          "id": "9eea7f24-e330-4bb3-88bb-03d67c8e927e",
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fetch information for a specific Package",
+              "id": "3dd879b8-f2d2-46f9-90ff-2774a1d8687e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/packages/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "packages",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2101b03b-7050-403e-a638-520a99628cbe",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the package"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "36a9dd9a-e0c1-4355-8f2d-e58ef1323bbb",
+                  "name": "Installation packages are available for each of the major operating systems.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/packages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "packages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"built_at\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:59:37.000Z",
+                  "updatedAt": "2026-10-22T01:59:37.000Z",
+                  "uid": "35240-36a9dd9a-e0c1-4355-8f2d-e58ef1323bbb"
+                },
+                {
+                  "id": "02437f39-f5a7-451f-bdcc-eb8286c08301",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/packages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "packages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:59:37.000Z",
+                  "updatedAt": "2026-10-22T01:59:37.000Z",
+                  "uid": "35240-02437f39-f5a7-451f-bdcc-eb8286c08301"
+                },
+                {
+                  "id": "fbb87a86-f611-4b7f-a082-8c0ac4f3540c",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/packages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "packages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:59:37.000Z",
+                  "updatedAt": "2026-10-22T01:59:37.000Z",
+                  "uid": "35240-fbb87a86-f611-4b7f-a082-8c0ac4f3540c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:59:37.000Z",
+              "updatedAt": "2026-10-22T01:59:37.000Z",
+              "uid": "35240-3dd879b8-f2d2-46f9-90ff-2774a1d8687e"
+            }
+          ],
+          "id": "42960b78-cab4-45f6-8b50-91d3202155b5",
+          "createdAt": "2026-10-22T01:59:36.000Z",
+          "updatedAt": "2026-10-22T01:59:36.000Z",
+          "uid": "35240-42960b78-cab4-45f6-8b50-91d3202155b5"
+        },
+        {
           "name": "Fetch a list of Packages",
+          "id": "44afb86b-959d-46cf-b884-2d3f98f1084c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch a list of Packages",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/packages?cursor=&per_page=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "packages"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Specify the cursor to begin returning results from",
                   "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
+                  "value": ""
                 },
                 {
-                  "disabled": false,
+                  "description": "Specify the number of records to return in each response.",
                   "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3f1c8249-8d41-4a81-87a1-b6e690da155a",
-              "name": "A paginated collection of Packages",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "packages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"built_at\": \"1954-09-11T22:39:15.850Z\",\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"version\": \"string\"\n    },\n    {\n      \"built_at\": \"1972-08-07T21:17:33.605Z\",\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"version\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/packages?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "93a1b6c7-9da8-4c8a-9c1d-d06d7f00c203",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "packages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fcb4c3ff-5432-47f6-9e62-5fb64b94f819",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "packages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c7dba787-27fe-4304-92bc-189ca44509e3",
-          "name": "Fetch information for a specific Package",
-          "request": {
-            "name": "Fetch information for a specific Package",
-            "description": {},
-            "url": {
-              "path": [
-                "packages",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the package"
+                  "value": "25"
                 }
               ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            }
           },
           "response": [
             {
-              "id": "b9168cc8-8fac-4653-8016-c804feb663c4",
-              "name": "Installation packages are available for each of the major operating systems.\n",
+              "id": "7d5dfa4f-e40c-4b3a-9af8-149667068303",
+              "name": "A paginated collection of Packages",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "packages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the package"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/packages?cursor=&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "packages"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"built_at\": \"1975-01-15T17:33:55.707Z\",\n  \"id\": \"string\",\n  \"url\": \"string\",\n  \"version\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"built_at\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"built_at\": \"<dateTime>\",\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:59:37.000Z",
+              "updatedAt": "2026-10-22T01:59:37.000Z",
+              "uid": "35240-7d5dfa4f-e40c-4b3a-9af8-149667068303"
             },
             {
-              "id": "a5fb81b1-ffa4-496b-a0a1-c4b1b200ad66",
+              "id": "360a2b7f-eb5d-4d76-a4d8-bd396db53d88",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "packages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the package"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/packages?cursor=&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "packages"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:59:37.000Z",
+              "updatedAt": "2026-10-22T01:59:37.000Z",
+              "uid": "35240-360a2b7f-eb5d-4d76-a4d8-bd396db53d88"
             },
             {
-              "id": "d9574a2b-76f3-4560-ac9f-f089583db076",
+              "id": "b7253d45-1dbe-446e-8f32-f83b06d2d6a3",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "packages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the package"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/packages?cursor=&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "packages"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:59:37.000Z",
+              "updatedAt": "2026-10-22T01:59:37.000Z",
+              "uid": "35240-b7253d45-1dbe-446e-8f32-f83b06d2d6a3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:59:37.000Z",
+          "updatedAt": "2026-10-22T01:59:37.000Z",
+          "uid": "35240-44afb86b-959d-46cf-b884-2d3f98f1084c"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "5c8ea7b8-17da-4778-9817-0749a13f2f05",
+      "createdAt": "2026-10-22T01:59:36.000Z",
+      "updatedAt": "2026-10-22T01:59:36.000Z",
+      "uid": "35240-5c8ea7b8-17da-4778-9817-0749a13f2f05"
     }
   ],
   "auth": {
@@ -471,17 +460,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6487aa41-af3b-44e8-b1b1-79b2d39e8bc4",
-    "name": "K2 Admin Users Packages API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

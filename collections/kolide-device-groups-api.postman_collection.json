@@ -1,1289 +1,1278 @@
 {
+  "info": {
+    "_postman_id": "d4dc2dc6-fdcc-4b10-8dc2-3132d378462f",
+    "name": "K2 Device Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:58:59.000Z",
+    "updatedAt": "2026-10-22T01:58:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d4dc2dc6-fdcc-4b10-8dc2-3132d378462f"
+  },
   "item": [
     {
-      "id": "cebd1b6b-7c28-4488-8b80-a5455d73175d",
-      "name": "Device Groups",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "device_groups",
       "item": [
         {
-          "id": "dac86adc-52e4-4639-90ed-556782f7af1b",
-          "name": "Fetch a list of Devices",
-          "request": {
-            "name": "Fetch a list of Devices",
-            "description": {},
-            "url": {
-              "path": [
-                "device_groups",
-                ":deviceGroupId",
-                "devices"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                },
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "deviceGroupId",
-                  "description": "(Required) The device group ID of the device"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{deviceGroupId}",
+          "item": [
             {
-              "id": "a9bdc951-f3e2-474c-ad1e-67c633588d86",
-              "name": "A paginated collection of Devices",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "devices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "devices",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Fetch a list of Devices",
+                  "id": "b0bc85a6-4792-4daf-800a-00049dc8997d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device_groups/:deviceGroupId/devices?cursor=&per_page=25&query=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device_groups",
+                        ":deviceGroupId",
+                        "devices"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        },
+                        {
+                          "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                          "key": "query",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f43b817-1661-4d8b-b807-3c05312e1db0",
+                          "key": "deviceGroupId",
+                          "value": "<string>",
+                          "description": "(Required) The device group ID of the device"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b8f84572-92b0-4b21-9852-e46b264b7780",
+                      "name": "A paginated collection of Devices",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/devices?cursor=&per_page=25&query=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the cursor to begin returning results from",
+                              "key": "cursor",
+                              "value": ""
+                            },
+                            {
+                              "description": "Specify the number of records to return in each response.",
+                              "key": "per_page",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                              "key": "query",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceGroupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"registered_at\": \"<dateTime>\",\n      \"last_authenticated_at\": \"<dateTime>\",\n      \"last_seen_at\": \"<dateTime>\",\n      \"registered_owner_info\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"operating_system\": \"<string>\",\n      \"hardware_model\": \"<string>\",\n      \"serial\": \"<string>\",\n      \"hardware_uuid\": \"<string>\",\n      \"note\": \"<string>\",\n      \"auth_state\": \"Will Block\",\n      \"will_block_at\": \"<dateTime>\",\n      \"product_image_url\": \"<string>\",\n      \"auth_configuration\": {\n        \"device_id\": \"<string>\",\n        \"authentication_mode\": \"<string>\",\n        \"person_groups\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"device_type\": \"Android\",\n      \"form_factor\": \"Tablet\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"registered_at\": \"<dateTime>\",\n      \"last_authenticated_at\": \"<dateTime>\",\n      \"last_seen_at\": \"<dateTime>\",\n      \"registered_owner_info\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"operating_system\": \"<string>\",\n      \"hardware_model\": \"<string>\",\n      \"serial\": \"<string>\",\n      \"hardware_uuid\": \"<string>\",\n      \"note\": \"<string>\",\n      \"auth_state\": \"Blocked\",\n      \"will_block_at\": \"<dateTime>\",\n      \"product_image_url\": \"<string>\",\n      \"auth_configuration\": {\n        \"device_id\": \"<string>\",\n        \"authentication_mode\": \"<string>\",\n        \"person_groups\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      \"device_type\": \"Windows\",\n      \"form_factor\": \"Tablet\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-b8f84572-92b0-4b21-9852-e46b264b7780"
+                    },
+                    {
+                      "id": "e46572bd-237b-4bd6-93a8-9a4a9004e7f2",
+                      "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/devices?cursor=&per_page=25&query=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the cursor to begin returning results from",
+                              "key": "cursor",
+                              "value": ""
+                            },
+                            {
+                              "description": "Specify the number of records to return in each response.",
+                              "key": "per_page",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                              "key": "query",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceGroupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-e46572bd-237b-4bd6-93a8-9a4a9004e7f2"
+                    },
+                    {
+                      "id": "84b04d84-236e-4300-9aee-0dce2794ba9f",
+                      "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/devices?cursor=&per_page=25&query=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the cursor to begin returning results from",
+                              "key": "cursor",
+                              "value": ""
+                            },
+                            {
+                              "description": "Specify the number of records to return in each response.",
+                              "key": "per_page",
+                              "value": "25"
+                            },
+                            {
+                              "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `name` , `registered_at` , `last_authenticated_at` , `serial` , `note` , `hardware_uuid` , `device_type` , `will_block_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                              "key": "query",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceGroupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-84b04d84-236e-4300-9aee-0dce2794ba9f"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:58:59.000Z",
+                  "updatedAt": "2026-10-22T01:58:59.000Z",
+                  "uid": "35240-b0bc85a6-4792-4daf-800a-00049dc8997d"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"registered_at\": \"2008-07-08T09:22:21.343Z\",\n      \"last_authenticated_at\": \"1990-04-25T00:07:58.722Z\",\n      \"last_seen_at\": \"1979-05-03T04:34:48.397Z\",\n      \"registered_owner_info\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"operating_system\": \"string\",\n      \"hardware_model\": \"string\",\n      \"serial\": \"string\",\n      \"hardware_uuid\": \"string\",\n      \"note\": \"string\",\n      \"auth_state\": \"Blocked\",\n      \"will_block_at\": \"2026-04-11T13:41:38.136Z\",\n      \"product_image_url\": \"string\",\n      \"auth_configuration\": {\n        \"device_id\": \"string\",\n        \"authentication_mode\": \"string\",\n        \"person_groups\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"device_type\": \"Linux\",\n      \"form_factor\": \"Computer\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"registered_at\": \"2011-03-28T08:05:59.416Z\",\n      \"last_authenticated_at\": \"1973-01-05T20:11:56.569Z\",\n      \"last_seen_at\": \"2013-01-17T23:14:11.631Z\",\n      \"registered_owner_info\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"operating_system\": \"string\",\n      \"hardware_model\": \"string\",\n      \"serial\": \"string\",\n      \"hardware_uuid\": \"string\",\n      \"note\": \"string\",\n      \"auth_state\": \"Good\",\n      \"will_block_at\": \"1999-08-05T01:53:42.307Z\",\n      \"product_image_url\": \"string\",\n      \"auth_configuration\": {\n        \"device_id\": \"string\",\n        \"authentication_mode\": \"string\",\n        \"person_groups\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"device_type\": \"Windows\",\n      \"form_factor\": \"Phone\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/devices?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "82453c7c-cea4-403c-bc9e-b374eaf1f6ad",
+              "createdAt": "2026-10-22T01:58:59.000Z",
+              "updatedAt": "2026-10-22T01:58:59.000Z",
+              "uid": "35240-82453c7c-cea4-403c-bc9e-b374eaf1f6ad"
             },
             {
-              "id": "af5cd85f-6ee0-4cef-b811-ef1a46bc3b5a",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "devices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "memberships",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Remove a specified Device from the Device Group",
+                      "id": "fbb624e9-dc9e-4cb7-bc4f-9fa344527536",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f8971202-7542-4b7b-ba61-6b801729bb77",
+                              "key": "deviceGroupId",
+                              "value": "<string>",
+                              "description": "(Required) The device group ID of the device group member"
+                            },
+                            {
+                              "id": "575b001a-de76-4fc5-b09b-9661f12d0345",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the device group member"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "a2b45688-3867-4df8-89b6-f21c3c3576a9",
+                          "name": "The deleted Device group member",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "device_groups",
+                                ":deviceGroupId",
+                                "memberships",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceGroupId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"device_id\": \"<string>\",\n  \"group_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:58:59.000Z",
+                          "updatedAt": "2026-10-22T01:58:59.000Z",
+                          "uid": "35240-a2b45688-3867-4df8-89b6-f21c3c3576a9"
+                        },
+                        {
+                          "id": "ca3b1e2f-7852-4abc-91d1-e627bad3c8b2",
+                          "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "device_groups",
+                                ":deviceGroupId",
+                                "memberships",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceGroupId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:58:59.000Z",
+                          "updatedAt": "2026-10-22T01:58:59.000Z",
+                          "uid": "35240-ca3b1e2f-7852-4abc-91d1-e627bad3c8b2"
+                        },
+                        {
+                          "id": "d0ac6ef9-b958-4a3a-8f78-be82e0a4dcd7",
+                          "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "device_groups",
+                                ":deviceGroupId",
+                                "memberships",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deviceGroupId"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:58:59.000Z",
+                          "updatedAt": "2026-10-22T01:58:59.000Z",
+                          "uid": "35240-d0ac6ef9-b958-4a3a-8f78-be82e0a4dcd7"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-fbb624e9-dc9e-4cb7-bc4f-9fa344527536"
+                    }
+                  ],
+                  "id": "f16b254a-8283-4099-99d8-35a4f8c1b8f7",
+                  "createdAt": "2026-10-22T01:58:59.000Z",
+                  "updatedAt": "2026-10-22T01:58:59.000Z",
+                  "uid": "35240-f16b254a-8283-4099-99d8-35a4f8c1b8f7"
+                },
+                {
+                  "name": "Add a Device to the Device Group",
+                  "id": "afbc469a-e497-423d-9477-b3501cc52a4b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device_groups",
+                        ":deviceGroupId",
+                        "memberships"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4579e0da-9e47-49a5-9704-f7d0fe3ebdc2",
+                          "key": "deviceGroupId",
+                          "value": "<string>",
+                          "description": "(Required) The device group ID of the device group member"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "17bea3d0-a826-4916-959e-306b9f965316",
+                      "name": "The newly created Device group member",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "memberships"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceGroupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"device_id\": \"<string>\",\n  \"group_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-17bea3d0-a826-4916-959e-306b9f965316"
+                    },
+                    {
+                      "id": "a36883b1-4d83-412f-a554-275ff9fd5150",
+                      "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "memberships"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceGroupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-a36883b1-4d83-412f-a554-275ff9fd5150"
+                    },
+                    {
+                      "id": "a8e0b4dc-c261-4b06-ab9e-fb2b9b6e791a",
+                      "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/device_groups/:deviceGroupId/memberships",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "device_groups",
+                            ":deviceGroupId",
+                            "memberships"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deviceGroupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:58:59.000Z",
+                      "updatedAt": "2026-10-22T01:58:59.000Z",
+                      "uid": "35240-a8e0b4dc-c261-4b06-ab9e-fb2b9b6e791a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:58:59.000Z",
+                  "updatedAt": "2026-10-22T01:58:59.000Z",
+                  "uid": "35240-afbc469a-e497-423d-9477-b3501cc52a4b"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c2cba8f2-3a0d-4b3b-a43b-5203917ed8cd",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "devices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "dab056d8-a11b-4975-a0fb-57062b0b98c6",
+              "createdAt": "2026-10-22T01:58:59.000Z",
+              "updatedAt": "2026-10-22T01:58:59.000Z",
+              "uid": "35240-dab056d8-a11b-4975-a0fb-57062b0b98c6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8841dc9b-b7f4-4828-aca0-1bd24062aa74",
+          "createdAt": "2026-10-22T01:58:59.000Z",
+          "updatedAt": "2026-10-22T01:58:59.000Z",
+          "uid": "35240-8841dc9b-b7f4-4828-aca0-1bd24062aa74"
         },
         {
-          "id": "2a79f685-e9a8-47e5-8809-8936586c5bea",
-          "name": "Add a Device to the Device Group",
-          "request": {
-            "name": "Add a Device to the Device Group",
-            "description": {},
-            "url": {
-              "path": [
-                "device_groups",
-                ":deviceGroupId",
-                "memberships"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "deviceGroupId",
-                  "description": "(Required) The device group ID of the device group member"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "{id}",
+          "item": [
             {
-              "id": "ab4bc894-a6c3-46cb-971b-b52d23f2dec7",
-              "name": "The newly created Device group member",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "memberships"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device group member"
-                    }
-                  ]
-                },
+              "name": "Fetch information for a specific Device group",
+              "id": "2d854e9f-4ec9-43b5-a674-8970908644e2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"device_id\": \"string\",\n  \"group_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "93351dad-847e-4587-aa3d-4d20cc33524f",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "memberships"
-                  ],
+                  "raw": "{{baseUrl}}/device_groups/:id",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device group member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e9651420-bc0c-4472-ad3f-2ae751d93dec",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "device_groups",
-                    ":deviceGroupId",
-                    "memberships"
+                    ":id"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
+                      "id": "fef588cc-f414-4579-a258-c7e99841cfec",
+                      "key": "id",
                       "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device group member"
+                      "description": "(Required) The ID of the device group"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "c704906a-f7e4-4245-95f6-8c573ac8d276",
+                  "name": "Device Groups allow you to group devices together in ways that are\nbeneficial to your organization, both in the UI and programmatically\nvia the API.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device_groups/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device_groups",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T01:58:59.000Z",
+                  "updatedAt": "2026-10-22T01:58:59.000Z",
+                  "uid": "35240-c704906a-f7e4-4245-95f6-8c573ac8d276"
+                },
+                {
+                  "id": "6217cb9c-db29-425a-842a-9af77c1f4095",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device_groups/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device_groups",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:58:59.000Z",
+                  "updatedAt": "2026-10-22T01:58:59.000Z",
+                  "uid": "35240-6217cb9c-db29-425a-842a-9af77c1f4095"
+                },
+                {
+                  "id": "f3cef299-9418-4123-bba1-229656006199",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/device_groups/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "device_groups",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:58:59.000Z",
+                  "updatedAt": "2026-10-22T01:58:59.000Z",
+                  "uid": "35240-f3cef299-9418-4123-bba1-229656006199"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:58:59.000Z",
+              "updatedAt": "2026-10-22T01:58:59.000Z",
+              "uid": "35240-2d854e9f-4ec9-43b5-a674-8970908644e2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "03fc1729-0a7b-4b43-a85e-5c77f4e63072",
+          "createdAt": "2026-10-22T01:58:59.000Z",
+          "updatedAt": "2026-10-22T01:58:59.000Z",
+          "uid": "35240-03fc1729-0a7b-4b43-a85e-5c77f4e63072"
         },
         {
-          "id": "88b33db0-48eb-4843-ae57-df094c3c69c1",
-          "name": "Remove a specified Device from the Device Group",
-          "request": {
-            "name": "Remove a specified Device from the Device Group",
-            "description": {},
-            "url": {
-              "path": [
-                "device_groups",
-                ":deviceGroupId",
-                "memberships",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "deviceGroupId",
-                  "description": "(Required) The device group ID of the device group member"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the device group member"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b68d2e2d-8825-48b5-9c6a-101fd171aa13",
-              "name": "The deleted Device group member",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "memberships",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device group member"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the device group member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"device_id\": \"string\",\n  \"group_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a4bab440-9041-485b-a98e-3a83595ca0b1",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "memberships",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device group member"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the device group member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "34c0c721-0668-4d33-b8aa-35fc71c1299a",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":deviceGroupId",
-                    "memberships",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deviceGroupId",
-                      "description": "(Required) The device group ID of the device group member"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the device group member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cb24d7ff-4f8b-44b4-a388-bb24e09de648",
           "name": "Fetch a list of Device groups",
+          "id": "50559355-1e0f-4f47-b861-2c9ce19c600b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch a list of Device groups",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/device_groups?cursor=&per_page=25&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "device_groups"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Specify the cursor to begin returning results from",
                   "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
+                  "value": ""
                 },
                 {
-                  "disabled": false,
+                  "description": "Specify the number of records to return in each response.",
                   "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
+                  "value": "25"
                 },
                 {
-                  "disabled": false,
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `description`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                   "key": "query",
-                  "value": "<string>",
-                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `description`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "408356d0-5d48-4f44-895f-9f4bd576d1cb",
-              "name": "A paginated collection of Device groups",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "created_at:2000-01-08T20:38:21Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1971-03-08T14:42:36.734Z\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"members_count\": 5502\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1964-08-20T09:27:00.324Z\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"members_count\": 1738\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/device_groups?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fe0bc23e-4c64-47e2-9a83-cf062fc9b7e1",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "created_at:2000-01-08T20:38:21Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dabb4b06-0cc1-4590-bf22-6463763f22c2",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "created_at:2000-01-08T20:38:21Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a4638f8e-f257-4cc2-8e6d-a060366bb672",
-          "name": "Fetch information for a specific Device group",
-          "request": {
-            "name": "Fetch information for a specific Device group",
-            "description": {},
-            "url": {
-              "path": [
-                "device_groups",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the device group"
+                  "value": "<string>"
                 }
               ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            }
           },
           "response": [
             {
-              "id": "47ca51a1-dbbe-456b-b395-42ccd5bb2f28",
-              "name": "Device Groups allow you to group devices together in ways that are\nbeneficial to your organization, both in the UI and programmatically\nvia the API.\n",
+              "id": "88cbc8d8-00be-4f69-9a6a-2b73f90ac094",
+              "name": "A paginated collection of Device groups",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the device group"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/device_groups?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device_groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `description`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"created_at\": \"1980-12-11T06:25:45.407Z\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"members_count\": 6743\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"members_count\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"members_count\": \"<integer>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:58:59.000Z",
+              "updatedAt": "2026-10-22T01:58:59.000Z",
+              "uid": "35240-88cbc8d8-00be-4f69-9a6a-2b73f90ac094"
             },
             {
-              "id": "cd863998-7ff1-4a2d-9fc5-08420fb1b994",
+              "id": "ac64b651-872d-47e4-adf6-bf0144fbb616",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the device group"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/device_groups?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device_groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `description`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:58:59.000Z",
+              "updatedAt": "2026-10-22T01:58:59.000Z",
+              "uid": "35240-ac64b651-872d-47e4-adf6-bf0144fbb616"
             },
             {
-              "id": "90c0a424-df44-457b-b999-b4a5619196a9",
+              "id": "88690cbd-8752-4e0e-96de-25cebdb81608",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "device_groups",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the device group"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/device_groups?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "device_groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`created_at` , `name` , `description`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:58:59.000Z",
+              "updatedAt": "2026-10-22T01:58:59.000Z",
+              "uid": "35240-88690cbd-8752-4e0e-96de-25cebdb81608"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:58:59.000Z",
+          "updatedAt": "2026-10-22T01:58:59.000Z",
+          "uid": "35240-50559355-1e0f-4f47-b861-2c9ce19c600b"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "329e19e3-ba04-47e4-a4a9-73b8b4be58c0",
+      "createdAt": "2026-10-22T01:58:59.000Z",
+      "updatedAt": "2026-10-22T01:58:59.000Z",
+      "uid": "35240-329e19e3-ba04-47e4-a4a9-73b8b4be58c0"
     }
   ],
   "auth": {
@@ -1291,17 +1280,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a912b713-e841-4f41-a872-269f9333c838",
-    "name": "K2 Admin Users Device Groups API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

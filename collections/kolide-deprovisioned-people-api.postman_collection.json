@@ -1,266 +1,266 @@
 {
+  "info": {
+    "_postman_id": "753b3303-6b94-48b2-9da7-d07e4d5249bd",
+    "name": "K2 Deprovisioned People API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:58:49.000Z",
+    "updatedAt": "2026-10-22T01:58:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-753b3303-6b94-48b2-9da7-d07e4d5249bd"
+  },
   "item": [
     {
-      "id": "6492d977-9a4c-48eb-b5d6-c612cdd9f278",
-      "name": "Deprovisioned People",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "deprovisioned_people",
       "item": [
         {
-          "id": "c43b5b06-a58d-4641-ac59-2885a5c36d6c",
           "name": "Fetch a list of the people that have been deprovisioned",
+          "id": "7a039a5f-f4aa-4716-a744-32000557b8f9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch a list of the people that have been deprovisioned",
-            "description": {},
-            "url": {
-              "path": [
-                "deprovisioned_people"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                },
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `email` , `name` , `last_authenticated_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
-                }
-              ],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "Specify the API version to be used",
                 "key": "x-kolide-api-version",
-                "value": "2023-05-26"
+                "value": "2026-04-07"
               },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/deprovisioned_people?cursor=&per_page=25&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deprovisioned_people"
+              ],
+              "query": [
+                {
+                  "description": "Specify the cursor to begin returning results from",
+                  "key": "cursor",
+                  "value": ""
+                },
+                {
+                  "description": "Specify the number of records to return in each response.",
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `email` , `name` , `last_authenticated_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "fd5a13bb-d35a-4f60-8b45-70aee57c1573",
+              "id": "50baa06d-9243-4cd4-8202-99ab35a6269d",
               "name": "A paginated collection of Deprovisioned people",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "deprovisioned_people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/deprovisioned_people?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deprovisioned_people"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `email` , `name` , `last_authenticated_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"created_at\": \"1980-07-04T07:48:18.682Z\",\n      \"last_authenticated_at\": \"1993-12-01T00:44:23.823Z\",\n      \"has_registered_device\": true,\n      \"api_url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"created_at\": \"1959-05-27T17:06:50.503Z\",\n      \"last_authenticated_at\": \"1968-05-13T16:41:46.788Z\",\n      \"has_registered_device\": true,\n      \"api_url\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/deprovisioned_people?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"last_authenticated_at\": \"<dateTime>\",\n      \"has_registered_device\": \"<boolean>\",\n      \"api_url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"last_authenticated_at\": \"<dateTime>\",\n      \"has_registered_device\": \"<boolean>\",\n      \"api_url\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:58:49.000Z",
+              "updatedAt": "2026-10-22T01:58:49.000Z",
+              "uid": "35240-50baa06d-9243-4cd4-8202-99ab35a6269d"
             },
             {
-              "id": "926178e6-9fbd-4702-9221-d515b43b5a3a",
+              "id": "9279f3f6-d5da-42fa-9a58-ecd730ed0782",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "deprovisioned_people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/deprovisioned_people?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deprovisioned_people"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `email` , `name` , `last_authenticated_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:58:49.000Z",
+              "updatedAt": "2026-10-22T01:58:49.000Z",
+              "uid": "35240-9279f3f6-d5da-42fa-9a58-ecd730ed0782"
             },
             {
-              "id": "91481a9e-854e-48d0-877a-f74d55950e94",
+              "id": "801f3b43-3e22-4ce3-a525-12330a7df0ec",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "deprovisioned_people"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/deprovisioned_people?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deprovisioned_people"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `email` , `name` , `last_authenticated_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:58:49.000Z",
+              "updatedAt": "2026-10-22T01:58:49.000Z",
+              "uid": "35240-801f3b43-3e22-4ce3-a525-12330a7df0ec"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:58:49.000Z",
+          "updatedAt": "2026-10-22T01:58:49.000Z",
+          "uid": "35240-7a039a5f-f4aa-4716-a744-32000557b8f9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "4c8e3e21-718b-4e85-a8f5-8d4de6e82f57",
+      "createdAt": "2026-10-22T01:58:49.000Z",
+      "updatedAt": "2026-10-22T01:58:49.000Z",
+      "uid": "35240-4c8e3e21-718b-4e85-a8f5-8d4de6e82f57"
     }
   ],
   "auth": {
@@ -268,17 +268,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f389e855-048c-42d1-8ede-9740073fa651",
-    "name": "K2 Admin Users Deprovisioned People API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

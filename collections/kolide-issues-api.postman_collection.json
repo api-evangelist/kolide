@@ -1,487 +1,478 @@
 {
+  "info": {
+    "_postman_id": "82e5c45c-a312-4a5a-bff0-fa2dafe167ad",
+    "name": "K2 Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:59:21.000Z",
+    "updatedAt": "2026-10-22T01:59:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-82e5c45c-a312-4a5a-bff0-fa2dafe167ad"
+  },
   "item": [
     {
-      "id": "4c12caa8-82d2-4751-808f-0ff3424c7041",
-      "name": "Issues",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "issues",
       "item": [
         {
-          "id": "1538aa1f-9e2a-48cf-b448-c3b11744a6a6",
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fetch information for a specific Issue",
+              "id": "ab09a8a7-0470-403e-b8cc-4ff4289a7840",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/issues/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "939a5512-61a4-44ab-83e6-c0e188ce8fd8",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the issue"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "01e2ac7d-09f8-4495-9ae4-49849f56f54a",
+                  "name": "An Issue is created when a device fails a check. Some checks, when\nthey fail, will produce multiple Issues, each with a unique\nprimary_key_value.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/issues/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "issues",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"issue_key\": \"<string>\",\n  \"issue_value\": \"<string>\",\n  \"title\": \"<string>\",\n  \"value\": {},\n  \"exempted\": \"<boolean>\",\n  \"resolved_at\": \"<dateTime>\",\n  \"detected_at\": \"<dateTime>\",\n  \"blocks_device_at\": \"<dateTime>\",\n  \"device_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  },\n  \"check_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  },\n  \"last_rechecked_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:59:21.000Z",
+                  "updatedAt": "2026-10-22T01:59:21.000Z",
+                  "uid": "35240-01e2ac7d-09f8-4495-9ae4-49849f56f54a"
+                },
+                {
+                  "id": "35c8186f-b49b-4e90-a32c-df20e4e9ea64",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/issues/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "issues",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:59:21.000Z",
+                  "updatedAt": "2026-10-22T01:59:21.000Z",
+                  "uid": "35240-35c8186f-b49b-4e90-a32c-df20e4e9ea64"
+                },
+                {
+                  "id": "27b24759-821e-4385-bbc3-02f7e4fb4d78",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/issues/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "issues",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:59:21.000Z",
+                  "updatedAt": "2026-10-22T01:59:21.000Z",
+                  "uid": "35240-27b24759-821e-4385-bbc3-02f7e4fb4d78"
+                }
+              ],
+              "createdAt": "2026-10-22T01:59:21.000Z",
+              "updatedAt": "2026-10-22T01:59:21.000Z",
+              "uid": "35240-ab09a8a7-0470-403e-b8cc-4ff4289a7840"
+            }
+          ],
+          "id": "cc7ffb5f-06db-4aad-a6a8-00f396965d4d",
+          "createdAt": "2026-10-22T01:59:21.000Z",
+          "updatedAt": "2026-10-22T01:59:21.000Z",
+          "uid": "35240-cc7ffb5f-06db-4aad-a6a8-00f396965d4d"
+        },
+        {
           "name": "Fetch a list of Issues",
+          "id": "051964ad-13ff-4c69-bc8c-284d5213b466",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch a list of Issues",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/issues?cursor=&per_page=25&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "issues"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Specify the cursor to begin returning results from",
                   "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
+                  "value": ""
                 },
                 {
-                  "disabled": false,
+                  "description": "Specify the number of records to return in each response.",
                   "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
+                  "value": "25"
                 },
                 {
-                  "disabled": false,
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                   "key": "query",
-                  "value": "<string>",
-                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ffd02fae-399a-4d57-af8b-115922609e7a",
-              "name": "A paginated collection of Issues",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "issues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"issue_key\": \"string\",\n      \"issue_value\": \"string\",\n      \"title\": \"string\",\n      \"value\": {},\n      \"exempted\": false,\n      \"resolved_at\": \"1959-07-18T23:18:15.831Z\",\n      \"detected_at\": \"1995-05-02T22:47:37.077Z\",\n      \"blocks_device_at\": \"2003-03-02T14:59:01.632Z\",\n      \"device_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"check_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"last_rechecked_at\": \"1994-02-09T08:46:31.115Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"issue_key\": \"string\",\n      \"issue_value\": \"string\",\n      \"title\": \"string\",\n      \"value\": {},\n      \"exempted\": true,\n      \"resolved_at\": \"2020-12-21T08:13:15.617Z\",\n      \"detected_at\": \"1996-05-07T15:29:08.904Z\",\n      \"blocks_device_at\": \"2008-02-05T14:38:01.694Z\",\n      \"device_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"check_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"last_rechecked_at\": \"1985-09-13T14:59:00.830Z\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/issues?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "546dd579-915b-4056-bc3b-a5cdc9bf8212",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "issues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3716c443-0d15-40a6-8303-93acd78b8ecd",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "issues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    },
-                    {
-                      "key": "query",
-                      "value": "id:[\"a\", \"b\", \"c\"]"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "738816b9-14c5-40ca-833d-55a792cde083",
-          "name": "Fetch information for a specific Issue",
-          "request": {
-            "name": "Fetch information for a specific Issue",
-            "description": {},
-            "url": {
-              "path": [
-                "issues",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the issue"
+                  "value": "<string>"
                 }
               ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            }
           },
           "response": [
             {
-              "id": "54cd5bbc-c9e6-4677-bb79-f8aa375221f1",
-              "name": "An Issue is created when a device fails a check. Some checks, when\nthey fail, will produce multiple Issues, each with a unique\nprimary_key_value.\n",
+              "id": "0ecdd82f-949d-4e47-b944-abb35967b5fe",
+              "name": "A paginated collection of Issues",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "issues",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the issue"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/issues?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "issues"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"issue_key\": \"string\",\n  \"issue_value\": \"string\",\n  \"title\": \"string\",\n  \"value\": {},\n  \"exempted\": false,\n  \"resolved_at\": \"1976-11-05T17:45:52.174Z\",\n  \"detected_at\": \"1985-04-13T05:29:25.957Z\",\n  \"blocks_device_at\": \"1969-03-28T23:09:44.164Z\",\n  \"device_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  },\n  \"check_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  },\n  \"last_rechecked_at\": \"1963-12-15T04:12:11.986Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"issue_key\": \"<string>\",\n      \"issue_value\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": {},\n      \"exempted\": \"<boolean>\",\n      \"resolved_at\": \"<dateTime>\",\n      \"detected_at\": \"<dateTime>\",\n      \"blocks_device_at\": \"<dateTime>\",\n      \"device_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"check_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"last_rechecked_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"issue_key\": \"<string>\",\n      \"issue_value\": \"<string>\",\n      \"title\": \"<string>\",\n      \"value\": {},\n      \"exempted\": \"<boolean>\",\n      \"resolved_at\": \"<dateTime>\",\n      \"detected_at\": \"<dateTime>\",\n      \"blocks_device_at\": \"<dateTime>\",\n      \"device_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"check_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"last_rechecked_at\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:59:21.000Z",
+              "updatedAt": "2026-10-22T01:59:21.000Z",
+              "uid": "35240-0ecdd82f-949d-4e47-b944-abb35967b5fe"
             },
             {
-              "id": "f08c690b-11f1-4d22-a49a-7c6c501ec626",
+              "id": "36bc058c-6cc8-49e1-a29b-a0baf741deb3",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "issues",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the issue"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/issues?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "issues"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:59:21.000Z",
+              "updatedAt": "2026-10-22T01:59:21.000Z",
+              "uid": "35240-36bc058c-6cc8-49e1-a29b-a0baf741deb3"
             },
             {
-              "id": "826a5485-9fc0-4a25-9712-b24f027a52d7",
+              "id": "0a903e0c-0f44-4053-9c9c-9531400317f3",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "issues",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the issue"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/issues?cursor=&per_page=25&query=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "issues"
+                  ],
+                  "query": [
+                    {
+                      "description": "Specify the cursor to begin returning results from",
+                      "key": "cursor",
+                      "value": ""
+                    },
+                    {
+                      "description": "Specify the number of records to return in each response.",
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`id` , `detected_at` , `resolved_at` , `blocks_device_at` , `title` , `issue_key` , `issue_value` , `exempted` , `check_id` , `device_id` , `last_rechecked_at`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:59:21.000Z",
+              "updatedAt": "2026-10-22T01:59:21.000Z",
+              "uid": "35240-0a903e0c-0f44-4053-9c9c-9531400317f3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:59:21.000Z",
+          "updatedAt": "2026-10-22T01:59:21.000Z",
+          "uid": "35240-051964ad-13ff-4c69-bc8c-284d5213b466"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "2dbb8043-94c7-4e96-a27d-16c2cec21d65",
+      "createdAt": "2026-10-22T01:59:21.000Z",
+      "updatedAt": "2026-10-22T01:59:21.000Z",
+      "uid": "35240-2dbb8043-94c7-4e96-a27d-16c2cec21d65"
     }
   ],
   "auth": {
@@ -489,17 +480,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "7c379e6e-098d-4b9d-b1a3-88003b5504a7",
-    "name": "K2 Admin Users Issues API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

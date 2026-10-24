@@ -1,208 +1,198 @@
 {
+  "info": {
+    "_postman_id": "3bdad62a-53f9-40b7-97e6-04d5faf88715",
+    "name": "K2 Whoami API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:00:17.000Z",
+    "updatedAt": "2026-10-22T02:00:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3bdad62a-53f9-40b7-97e6-04d5faf88715"
+  },
   "item": [
     {
-      "id": "06ffc4ad-2e84-4bfe-abf2-44505e0c926d",
-      "name": "Whoami",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "whoami",
       "item": [
         {
-          "id": "e5e97b6c-068a-4048-a37c-e0b0122d9e9c",
           "name": "Fetch information about the organization",
+          "id": "6f0a464e-3784-487f-acf5-46b328727862",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch information about the organization",
-            "description": {},
-            "url": {
-              "path": [
-                "whoami"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "Specify the API version to be used",
                 "key": "x-kolide-api-version",
-                "value": "2023-05-26"
+                "value": "2026-04-07"
               },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/whoami",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "whoami"
+              ]
+            }
           },
           "response": [
             {
-              "id": "136ee3f2-9915-403d-85ed-57fd7a12b8c3",
+              "id": "e6c86af3-3544-4f58-91ca-9d73c3426902",
               "name": "Returns information about the customer authenticated by the authorization token.\n",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "whoami"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/whoami",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whoami"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"organization_id\": \"string\",\n  \"organization_name\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"organization_id\": \"<string>\",\n  \"organization_name\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:00:18.000Z",
+              "updatedAt": "2026-10-22T02:00:18.000Z",
+              "uid": "35240-e6c86af3-3544-4f58-91ca-9d73c3426902"
             },
             {
-              "id": "02b074f7-191e-4732-a1c8-58282c5da458",
+              "id": "1f16a942-f320-406d-86e3-52c27c7a4b8e",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "whoami"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/whoami",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whoami"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:00:18.000Z",
+              "updatedAt": "2026-10-22T02:00:18.000Z",
+              "uid": "35240-1f16a942-f320-406d-86e3-52c27c7a4b8e"
             },
             {
-              "id": "26c38e10-157c-425c-9f08-a7a8838a3e2e",
+              "id": "0c8f0d1f-b7a1-4086-9738-9cd4d4195f73",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "whoami"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/whoami",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whoami"
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:00:18.000Z",
+              "updatedAt": "2026-10-22T02:00:18.000Z",
+              "uid": "35240-0c8f0d1f-b7a1-4086-9738-9cd4d4195f73"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:00:18.000Z",
+          "updatedAt": "2026-10-22T02:00:18.000Z",
+          "uid": "35240-6f0a464e-3784-487f-acf5-46b328727862"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "604b0544-8b17-46f1-ba92-19b9213b3614",
+      "createdAt": "2026-10-22T02:00:18.000Z",
+      "updatedAt": "2026-10-22T02:00:18.000Z",
+      "uid": "35240-604b0544-8b17-46f1-ba92-19b9213b3614"
     }
   ],
   "auth": {
@@ -210,17 +200,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "343f9809-549f-4dbd-8fcd-e51e4841becf",
-    "name": "K2 Admin Users Whoami API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

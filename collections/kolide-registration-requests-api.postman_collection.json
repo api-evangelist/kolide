@@ -1,1003 +1,996 @@
 {
+  "info": {
+    "_postman_id": "862a9b1a-1a95-40a9-ad79-35b7158bd5ec",
+    "name": "K2 Registration Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:00:01.000Z",
+    "updatedAt": "2026-10-22T02:00:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-862a9b1a-1a95-40a9-ad79-35b7158bd5ec"
+  },
   "item": [
     {
-      "id": "797eaddc-d5f1-4cbd-b0d2-c9f599e49c9b",
-      "name": "Registration Requests",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "registration_requests",
       "item": [
         {
-          "id": "16df4e0d-a33d-47d8-830d-a1244085758c",
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fetch information for a specific Registration request",
+              "id": "876c3fbc-b4cc-4ea3-845e-c46dbc07804e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registration_requests/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registration_requests",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e4fedf06-e80b-4e9f-988c-25614dfddb07",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the registration request"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "471b8c04-668c-426a-ac9e-2d5012ffe9d9",
+                  "name": "A registration request is created when someone requests admin\napproval to register a device with Kolide. Registration requests can\nbe approved or denied by admins.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"requester_message\": \"<string>\",\n  \"internal_denial_note\": \"<string>\",\n  \"internal_approval_note\": \"<string>\",\n  \"requested_at\": \"<dateTime>\",\n  \"end_user_denial_note\": \"<string>\",\n  \"requester_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  },\n  \"device_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-471b8c04-668c-426a-ac9e-2d5012ffe9d9"
+                },
+                {
+                  "id": "4ba2be5c-4bb5-40d4-86fe-b3a42ce5f130",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-4ba2be5c-4bb5-40d4-86fe-b3a42ce5f130"
+                },
+                {
+                  "id": "f9f4fee6-d219-4180-92ed-1199615361c5",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-f9f4fee6-d219-4180-92ed-1199615361c5"
+                }
+              ],
+              "createdAt": "2026-10-22T02:00:02.000Z",
+              "updatedAt": "2026-10-22T02:00:02.000Z",
+              "uid": "35240-876c3fbc-b4cc-4ea3-845e-c46dbc07804e"
+            },
+            {
+              "name": "Update an existing Registration request",
+              "id": "60690f08-1cb1-4cbd-b779-dcb19f92b906",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registration_requests/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registration_requests",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "80fc70a6-1ee5-4fde-a128-d7bef903dc1c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the registration request"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0dc68b40-60aa-4454-b453-8ba542faca4f",
+                  "name": "The updated Registration request",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"requester_message\": \"<string>\",\n  \"internal_denial_note\": \"<string>\",\n  \"internal_approval_note\": \"<string>\",\n  \"requested_at\": \"<dateTime>\",\n  \"end_user_denial_note\": \"<string>\",\n  \"requester_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  },\n  \"device_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-0dc68b40-60aa-4454-b453-8ba542faca4f"
+                },
+                {
+                  "id": "0538ce12-ee32-48c8-acbe-06e91cc0a8a0",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-0538ce12-ee32-48c8-acbe-06e91cc0a8a0"
+                },
+                {
+                  "id": "3dcb3ea3-9798-4965-9d6b-e40679727e41",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-3dcb3ea3-9798-4965-9d6b-e40679727e41"
+                }
+              ],
+              "createdAt": "2026-10-22T02:00:02.000Z",
+              "updatedAt": "2026-10-22T02:00:02.000Z",
+              "uid": "35240-60690f08-1cb1-4cbd-b779-dcb19f92b906"
+            },
+            {
+              "name": "Update an existing Registration request",
+              "id": "bece0885-4e02-4958-9dc6-9f50920dbaab",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registration_requests/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registration_requests",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a70a0b73-954b-4f06-af8a-6bcbeae65674",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the registration request"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "00a5e387-c547-4e31-96e9-d513bd1f5a98",
+                  "name": "The updated Registration request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"requester_message\": \"<string>\",\n  \"internal_denial_note\": \"<string>\",\n  \"internal_approval_note\": \"<string>\",\n  \"requested_at\": \"<dateTime>\",\n  \"end_user_denial_note\": \"<string>\",\n  \"requester_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  },\n  \"device_information\": {\n    \"identifier\": \"<string>\",\n    \"link\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-00a5e387-c547-4e31-96e9-d513bd1f5a98"
+                },
+                {
+                  "id": "0fc4223c-ae48-4775-9dae-d4263688ca67",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-0fc4223c-ae48-4775-9dae-d4263688ca67"
+                },
+                {
+                  "id": "c118ce4d-374c-4f82-a1dc-3a56326b180a",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registration_requests/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registration_requests",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:02.000Z",
+                  "updatedAt": "2026-10-22T02:00:02.000Z",
+                  "uid": "35240-c118ce4d-374c-4f82-a1dc-3a56326b180a"
+                }
+              ],
+              "createdAt": "2026-10-22T02:00:02.000Z",
+              "updatedAt": "2026-10-22T02:00:02.000Z",
+              "uid": "35240-bece0885-4e02-4958-9dc6-9f50920dbaab"
+            }
+          ],
+          "id": "3394d81b-5a7b-4fa6-a149-f7b797bf82af",
+          "createdAt": "2026-10-22T02:00:02.000Z",
+          "updatedAt": "2026-10-22T02:00:02.000Z",
+          "uid": "35240-3394d81b-5a7b-4fa6-a149-f7b797bf82af"
+        },
+        {
           "name": "Fetch a list of Registration requests",
+          "id": "d579702e-92af-4f89-b8b1-87636922874c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Fetch a list of Registration requests",
-            "description": {},
+            "method": "GET",
+            "header": [
+              {
+                "description": "Specify the API version to be used",
+                "key": "x-kolide-api-version",
+                "value": "2026-04-07"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/registration_requests?cursor=&per_page=25&query=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "registration_requests"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Specify the cursor to begin returning results from",
                   "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
+                  "value": ""
                 },
                 {
-                  "disabled": false,
+                  "description": "Specify the number of records to return in each response.",
                   "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
+                  "value": "25"
                 },
                 {
-                  "disabled": false,
+                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`status` , `requested_at` , `requester_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                   "key": "query",
-                  "value": "<string>",
-                  "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`status` , `requested_at` , `requester_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n"
+                  "value": "<string>"
                 }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+              ]
+            }
           },
           "response": [
             {
-              "id": "88fa9a14-f60f-4496-b127-fc5c041df260",
+              "id": "a5fae8c3-33e2-4f83-bdc8-fa81f6fafda3",
               "name": "A paginated collection of Registration requests",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "registration_requests"
-                  ],
+                  "raw": "{{baseUrl}}/registration_requests?cursor=&per_page=25&query=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "registration_requests"
+                  ],
                   "query": [
                     {
+                      "description": "Specify the cursor to begin returning results from",
                       "key": "cursor",
                       "value": ""
                     },
                     {
+                      "description": "Specify the number of records to return in each response.",
                       "key": "per_page",
                       "value": "25"
                     },
                     {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`status` , `requested_at` , `requester_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                       "key": "query",
-                      "value": "status:enumerated-value"
+                      "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"requester_message\": \"string\",\n      \"internal_denial_note\": \"string\",\n      \"internal_approval_note\": \"string\",\n      \"requested_at\": \"2009-01-30T19:40:33.456Z\",\n      \"end_user_denial_note\": \"string\",\n      \"requester_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"device_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"requester_message\": \"string\",\n      \"internal_denial_note\": \"string\",\n      \"internal_approval_note\": \"string\",\n      \"requested_at\": \"1977-05-22T00:00:28.867Z\",\n      \"end_user_denial_note\": \"string\",\n      \"requester_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      },\n      \"device_information\": {\n        \"identifier\": \"string\",\n        \"link\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/registration_requests?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"requester_message\": \"<string>\",\n      \"internal_denial_note\": \"<string>\",\n      \"internal_approval_note\": \"<string>\",\n      \"requested_at\": \"<dateTime>\",\n      \"end_user_denial_note\": \"<string>\",\n      \"requester_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"device_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"requester_message\": \"<string>\",\n      \"internal_denial_note\": \"<string>\",\n      \"internal_approval_note\": \"<string>\",\n      \"requested_at\": \"<dateTime>\",\n      \"end_user_denial_note\": \"<string>\",\n      \"requester_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      },\n      \"device_information\": {\n        \"identifier\": \"<string>\",\n        \"link\": \"<string>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:00:02.000Z",
+              "updatedAt": "2026-10-22T02:00:02.000Z",
+              "uid": "35240-a5fae8c3-33e2-4f83-bdc8-fa81f6fafda3"
             },
             {
-              "id": "e85d0612-8d17-4371-8745-868b35b0d9fd",
+              "id": "19bdd9a8-37ed-4857-93a5-68a7795f3327",
               "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "registration_requests"
-                  ],
+                  "raw": "{{baseUrl}}/registration_requests?cursor=&per_page=25&query=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "registration_requests"
+                  ],
                   "query": [
                     {
+                      "description": "Specify the cursor to begin returning results from",
                       "key": "cursor",
                       "value": ""
                     },
                     {
+                      "description": "Specify the number of records to return in each response.",
                       "key": "per_page",
                       "value": "25"
                     },
                     {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`status` , `requested_at` , `requester_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                       "key": "query",
-                      "value": "status:enumerated-value"
+                      "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:00:02.000Z",
+              "updatedAt": "2026-10-22T02:00:02.000Z",
+              "uid": "35240-19bdd9a8-37ed-4857-93a5-68a7795f3327"
             },
             {
-              "id": "75266a07-3034-4958-917c-537267b0017c",
+              "id": "f31a13b6-258e-4523-a946-908e891350bc",
               "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Specify the API version to be used",
+                    "key": "x-kolide-api-version",
+                    "value": "2026-04-07"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "registration_requests"
-                  ],
+                  "raw": "{{baseUrl}}/registration_requests?cursor=&per_page=25&query=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "registration_requests"
+                  ],
                   "query": [
                     {
+                      "description": "Specify the cursor to begin returning results from",
                       "key": "cursor",
                       "value": ""
                     },
                     {
+                      "description": "Specify the number of records to return in each response.",
                       "key": "per_page",
                       "value": "25"
                     },
                     {
+                      "description": "A query clause used to filter the set of resources returned. Use\n`:` for exact matches (including for boolean fields), `~` for\npartial-string matches. `:[\"a\",\"b\",\"c\"]` or `:[1,2,3]`\ncan be used for fields that support multi-value search.\n Datetime fields support exact-matching\n(`:`) as well as less-than (`<`) and greater-than (`>`). The\nsearchable fields are:\n\n`status` , `requested_at` , `requester_message`\n\nSearch clauses can be combined with the ` AND ` and ` OR ` operators.\n\nFor more information, see the [search documentation](https://www.kolide.com/docs/developers/api#search).\n",
                       "key": "query",
-                      "value": "status:enumerated-value"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "61c35b84-6b54-4a0b-a7e9-c33b4a4772d6",
-          "name": "Fetch information for a specific Registration request",
-          "request": {
-            "name": "Fetch information for a specific Registration request",
-            "description": {},
-            "url": {
-              "path": [
-                "registration_requests",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the registration request"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "bb8ce984-969d-44ae-a8ef-8b8a2aae41d5",
-              "name": "A registration request is created when someone requests admin\napproval to register a device with Kolide. Registration requests can\nbe approved or denied by admins.\n",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
+                      "value": "<string>"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"requester_message\": \"string\",\n  \"internal_denial_note\": \"string\",\n  \"internal_approval_note\": \"string\",\n  \"requested_at\": \"1972-01-27T03:14:44.735Z\",\n  \"end_user_denial_note\": \"string\",\n  \"requester_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  },\n  \"device_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "65feb070-901f-4927-afc3-81e2fa6b2991",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5b1bebdc-eb91-40da-8af6-007f167eab94",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5bdb194f-d5e1-4c38-ac16-c5a9f52cee80",
-          "name": "Update an existing Registration request",
-          "request": {
-            "name": "Update an existing Registration request",
-            "description": {},
-            "url": {
-              "path": [
-                "registration_requests",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the registration request"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a16a2e59-a244-4780-a6e9-51c7722dbe41",
-              "name": "The updated Registration request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"requester_message\": \"string\",\n  \"internal_denial_note\": \"string\",\n  \"internal_approval_note\": \"string\",\n  \"requested_at\": \"1972-01-27T03:14:44.735Z\",\n  \"end_user_denial_note\": \"string\",\n  \"requester_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  },\n  \"device_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3c85068b-c7f5-419a-b975-0f212af39797",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ba60c9fb-ba47-47b8-b8cd-fd01f1319517",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:00:02.000Z",
+              "updatedAt": "2026-10-22T02:00:02.000Z",
+              "uid": "35240-f31a13b6-258e-4523-a946-908e891350bc"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "313f81d1-4989-440d-a089-7e4d939203e3",
-          "name": "Update an existing Registration request",
-          "request": {
-            "name": "Update an existing Registration request",
-            "description": {},
-            "url": {
-              "path": [
-                "registration_requests",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the registration request"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c12c3ada-ded7-4ec4-bdaf-a16fa13cdc28",
-              "name": "The updated Registration request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"requester_message\": \"string\",\n  \"internal_denial_note\": \"string\",\n  \"internal_approval_note\": \"string\",\n  \"requested_at\": \"1972-01-27T03:14:44.735Z\",\n  \"end_user_denial_note\": \"string\",\n  \"requester_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  },\n  \"device_information\": {\n    \"identifier\": \"string\",\n    \"link\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3959c81c-9867-455e-bf78-958183efc027",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d39f2edf-14f0-421e-afd1-cb43847b01e8",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "registration_requests",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the registration request"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"<string>\",\n  \"internal_denial_reason\": \"<string>\",\n  \"internal_message\": \"<string>\",\n  \"end_user_denial_message\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:00:02.000Z",
+          "updatedAt": "2026-10-22T02:00:02.000Z",
+          "uid": "35240-d579702e-92af-4f89-b8b1-87636922874c"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "1848ca7d-e64c-48d8-b448-ae3b35fd1428",
+      "createdAt": "2026-10-22T02:00:02.000Z",
+      "updatedAt": "2026-10-22T02:00:02.000Z",
+      "uid": "35240-1848ca7d-e64c-48d8-b448-ae3b35fd1428"
     }
   ],
   "auth": {
@@ -1005,17 +998,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "bc8117c6-efb6-49b0-a759-9288e59bdb4c",
-    "name": "K2 Admin Users Registration Requests API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }

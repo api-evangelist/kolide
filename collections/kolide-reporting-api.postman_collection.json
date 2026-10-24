@@ -1,1509 +1,1482 @@
 {
+  "info": {
+    "_postman_id": "b42dff85-a11b-40df-8780-bbbe63ce2958",
+    "name": "K2 Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:00:12.000Z",
+    "updatedAt": "2026-10-22T02:00:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b42dff85-a11b-40df-8780-bbbe63ce2958"
+  },
   "item": [
     {
-      "id": "b47cfe93-01c8-4a9f-8762-58867caac8c1",
-      "name": "Reporting",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "reporting",
       "item": [
         {
-          "id": "9cdd119d-a533-45d2-b5a3-c8822f994f1e",
-          "name": "Fetch a list of Table records",
-          "request": {
-            "name": "Fetch a list of Table records",
-            "description": {},
-            "url": {
-              "path": [
-                "reporting",
-                "tables",
-                ":tableName",
-                "table_records"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tableName",
-                  "description": "(Required) The table name of the table record"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "tables",
+          "item": [
             {
-              "id": "08e0db32-ed5b-4ea2-bbff-f035b74c613f",
-              "name": "A paginated collection of Table records",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "tables",
-                    ":tableName",
-                    "table_records"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{tableName}",
+              "item": [
+                {
+                  "name": "table_records",
+                  "item": [
                     {
-                      "key": "cursor",
-                      "value": ""
+                      "name": "Fetch a list of Table records",
+                      "id": "06acddfa-ccff-4ec7-99cc-8758030f03b5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/tables/:tableName/table_records?cursor=&per_page=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "tables",
+                            ":tableName",
+                            "table_records"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the cursor to begin returning results from",
+                              "key": "cursor",
+                              "value": ""
+                            },
+                            {
+                              "description": "Specify the number of records to return in each response.",
+                              "key": "per_page",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "8b43523e-a4a9-4537-bab9-8db22de6c9fd",
+                              "key": "tableName",
+                              "value": "<string>",
+                              "description": "(Required) The table name of the table record"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "7188a0be-bef3-4035-9034-f659e369ac56",
+                          "name": "A paginated collection of Table records",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reporting/tables/:tableName/table_records?cursor=&per_page=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reporting",
+                                "tables",
+                                ":tableName",
+                                "table_records"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify the cursor to begin returning results from",
+                                  "key": "cursor",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "Specify the number of records to return in each response.",
+                                  "key": "per_page",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tableName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-10-22T02:00:12.000Z",
+                          "updatedAt": "2026-10-22T02:00:12.000Z",
+                          "uid": "35240-7188a0be-bef3-4035-9034-f659e369ac56"
+                        },
+                        {
+                          "id": "d1c5ec3b-b7d6-45b1-ba50-3252b8a816b4",
+                          "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reporting/tables/:tableName/table_records?cursor=&per_page=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reporting",
+                                "tables",
+                                ":tableName",
+                                "table_records"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify the cursor to begin returning results from",
+                                  "key": "cursor",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "Specify the number of records to return in each response.",
+                                  "key": "per_page",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tableName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:00:12.000Z",
+                          "updatedAt": "2026-10-22T02:00:12.000Z",
+                          "uid": "35240-d1c5ec3b-b7d6-45b1-ba50-3252b8a816b4"
+                        },
+                        {
+                          "id": "cfcbd026-159f-4653-b588-a644929bd52f",
+                          "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reporting/tables/:tableName/table_records?cursor=&per_page=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reporting",
+                                "tables",
+                                ":tableName",
+                                "table_records"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify the cursor to begin returning results from",
+                                  "key": "cursor",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "Specify the number of records to return in each response.",
+                                  "key": "per_page",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tableName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:00:12.000Z",
+                          "updatedAt": "2026-10-22T02:00:12.000Z",
+                          "uid": "35240-cfcbd026-159f-4653-b588-a644929bd52f"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-06acddfa-ccff-4ec7-99cc-8758030f03b5"
+                    }
+                  ],
+                  "id": "b6a486f9-d5b6-4373-8238-08d8b2847a26",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-b6a486f9-d5b6-4373-8238-08d8b2847a26"
+                }
+              ],
+              "id": "e0299276-725f-4d61-b779-b08526635943",
+              "createdAt": "2026-10-22T02:00:12.000Z",
+              "updatedAt": "2026-10-22T02:00:12.000Z",
+              "uid": "35240-e0299276-725f-4d61-b779-b08526635943"
+            },
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Fetch information for a specific Reporting table",
+                  "id": "710abec3-787a-42b8-b19a-0278ce574b3e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/tables/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "tables",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2806febe-30a5-4c65-a0eb-be130f207f2b",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The name of the reporting table"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "04914111-6b1d-4a28-8931-849cd72c0080",
+                      "name": "There are many tables of data collected by Kolide that are available via the API and reporting interfaces. More information about these tables can be found at: https://www.kolide.com/features/device-inventory/properties",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/tables/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "tables",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"category\": \"<string>\",\n  \"description\": \"<string>\",\n  \"column_names\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"searchable_fields\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"documentation_url\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-04914111-6b1d-4a28-8931-849cd72c0080"
                     },
                     {
-                      "key": "per_page",
-                      "value": "25"
+                      "id": "db580db0-2f8b-4212-af5f-06121fde5ff9",
+                      "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/tables/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "tables",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-db580db0-2f8b-4212-af5f-06121fde5ff9"
+                    },
+                    {
+                      "id": "8dcaebd5-3d80-429c-889c-1ec0d2088ba8",
+                      "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/tables/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "tables",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-8dcaebd5-3d80-429c-889c-1ec0d2088ba8"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tableName",
-                      "description": "(Required) The table name of the table record"
-                    }
-                  ]
-                },
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-710abec3-787a-42b8-b19a-0278ce574b3e"
+                }
+              ],
+              "id": "52590349-5db1-40b8-a724-23450515fa7b",
+              "createdAt": "2026-10-22T02:00:12.000Z",
+              "updatedAt": "2026-10-22T02:00:12.000Z",
+              "uid": "35240-52590349-5db1-40b8-a724-23450515fa7b"
+            },
+            {
+              "name": "Fetch a list of Reporting tables",
+              "id": "ec7a4508-b28f-4722-b3e9-883cd54f9fe3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/table_records?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b3549502-2dd2-4a10-b715-7259a7c4f6a9",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "reporting",
-                    "tables",
-                    ":tableName",
-                    "table_records"
-                  ],
+                  "raw": "{{baseUrl}}/reporting/tables?cursor=&per_page=25",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tableName",
-                      "description": "(Required) The table name of the table record"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2d0d8cfb-e702-4a65-8986-b6939fb594d2",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "tables",
-                    ":tableName",
-                    "table_records"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tableName",
-                      "description": "(Required) The table name of the table record"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ea1e3af8-b45c-4235-b5d6-5abfdbffdd79",
-          "name": "Fetch a list of Reporting tables",
-          "request": {
-            "name": "Fetch a list of Reporting tables",
-            "description": {},
-            "url": {
-              "path": [
-                "reporting",
-                "tables"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f2208274-51e8-4336-8f14-23cbd357525e",
-              "name": "A paginated collection of Reporting tables",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "reporting",
                     "tables"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Specify the cursor to begin returning results from",
                       "key": "cursor",
                       "value": ""
                     },
                     {
+                      "description": "Specify the number of records to return in each response.",
                       "key": "per_page",
                       "value": "25"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"category\": \"string\",\n      \"description\": \"string\",\n      \"column_names\": [\n        4176,\n        7583\n      ],\n      \"searchable_fields\": [\n        4191,\n        5377\n      ],\n      \"documentation_url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"category\": \"string\",\n      \"description\": \"string\",\n      \"column_names\": [\n        1668,\n        8533\n      ],\n      \"searchable_fields\": [\n        3773,\n        5064\n      ],\n      \"documentation_url\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/tables?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "adfd134b-0095-436a-8072-c85f91129f5c",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "tables"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "bba4592e-fecb-4c98-aa31-d96baeb983b1",
+                  "name": "A paginated collection of Reporting tables",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/tables?cursor=&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "tables"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"column_names\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"searchable_fields\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"documentation_url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"description\": \"<string>\",\n      \"column_names\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"searchable_fields\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"documentation_url\": \"<string>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-bba4592e-fecb-4c98-aa31-d96baeb983b1"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fe2b4f2f-582b-4987-9014-a7cce7b153d3",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "tables"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "20cd8437-8558-44ee-910e-3b0df8b420d5",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/tables?cursor=&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "tables"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-20cd8437-8558-44ee-910e-3b0df8b420d5"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "c3cc01a5-722e-4ffe-98bc-8c313b97cced",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/tables?cursor=&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "tables"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-c3cc01a5-722e-4ffe-98bc-8c313b97cced"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:00:12.000Z",
+              "updatedAt": "2026-10-22T02:00:12.000Z",
+              "uid": "35240-ec7a4508-b28f-4722-b3e9-883cd54f9fe3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "915688b5-bc21-4ca5-824d-44c958d14d2e",
+          "createdAt": "2026-10-22T02:00:12.000Z",
+          "updatedAt": "2026-10-22T02:00:12.000Z",
+          "uid": "35240-915688b5-bc21-4ca5-824d-44c958d14d2e"
         },
         {
-          "id": "cd55aee0-45f0-464f-a251-6a02bbc882a6",
-          "name": "Fetch information for a specific Reporting table",
-          "request": {
-            "name": "Fetch information for a specific Reporting table",
-            "description": {},
-            "url": {
-              "path": [
-                "reporting",
-                "tables",
-                ":name"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "name",
-                  "description": "(Required) The name of the reporting table"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "queries",
+          "item": [
             {
-              "id": "729791fd-c84e-4b85-a53d-ea3b0fb355cf",
-              "name": "There are many tables of data collected by Kolide that are available via the API and reporting interfaces. More information about these tables can be found at: https://www.kolide.com/features/device-inventory/properties",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "tables",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{queryId}",
+              "item": [
+                {
+                  "name": "results",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) The name of the reporting table"
+                      "name": "Fetch a list of Report query results",
+                      "id": "9f137455-a033-4f9a-8789-3a71beca96aa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/queries/:queryId/results?cursor=&per_page=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "queries",
+                            ":queryId",
+                            "results"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specify the cursor to begin returning results from",
+                              "key": "cursor",
+                              "value": ""
+                            },
+                            {
+                              "description": "Specify the number of records to return in each response.",
+                              "key": "per_page",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "38d45642-ed08-411b-8f73-883c9109cedd",
+                              "key": "queryId",
+                              "value": "<string>",
+                              "description": "(Required) The query ID of the report query result"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "fa61f094-9b90-4217-88e9-143a65dad058",
+                          "name": "A paginated collection of Report query results",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reporting/queries/:queryId/results?cursor=&per_page=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reporting",
+                                "queries",
+                                ":queryId",
+                                "results"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify the cursor to begin returning results from",
+                                  "key": "cursor",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "Specify the number of records to return in each response.",
+                                  "key": "per_page",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-10-22T02:00:12.000Z",
+                          "updatedAt": "2026-10-22T02:00:12.000Z",
+                          "uid": "35240-fa61f094-9b90-4217-88e9-143a65dad058"
+                        },
+                        {
+                          "id": "d9f7aae1-7eb4-4d06-814a-4f2c5e2d97e3",
+                          "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reporting/queries/:queryId/results?cursor=&per_page=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reporting",
+                                "queries",
+                                ":queryId",
+                                "results"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify the cursor to begin returning results from",
+                                  "key": "cursor",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "Specify the number of records to return in each response.",
+                                  "key": "per_page",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:00:12.000Z",
+                          "updatedAt": "2026-10-22T02:00:12.000Z",
+                          "uid": "35240-d9f7aae1-7eb4-4d06-814a-4f2c5e2d97e3"
+                        },
+                        {
+                          "id": "9b6120e3-2784-4bdf-b6f3-288baa62565d",
+                          "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Specify the API version to be used",
+                                "key": "x-kolide-api-version",
+                                "value": "2026-04-07"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reporting/queries/:queryId/results?cursor=&per_page=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reporting",
+                                "queries",
+                                ":queryId",
+                                "results"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify the cursor to begin returning results from",
+                                  "key": "cursor",
+                                  "value": ""
+                                },
+                                {
+                                  "description": "Specify the number of records to return in each response.",
+                                  "key": "per_page",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:00:12.000Z",
+                          "updatedAt": "2026-10-22T02:00:12.000Z",
+                          "uid": "35240-9b6120e3-2784-4bdf-b6f3-288baa62565d"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-9f137455-a033-4f9a-8789-3a71beca96aa"
                     }
-                  ]
-                },
+                  ],
+                  "id": "4943f6d5-1e5f-4796-9fa5-f38e9613194c",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-4943f6d5-1e5f-4796-9fa5-f38e9613194c"
+                }
+              ],
+              "id": "7b5ce2d8-4935-407b-9f86-4d03e71035a2",
+              "createdAt": "2026-10-22T02:00:12.000Z",
+              "updatedAt": "2026-10-22T02:00:12.000Z",
+              "uid": "35240-7b5ce2d8-4935-407b-9f86-4d03e71035a2"
+            },
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Fetch information for a specific Report query",
+                  "id": "891842b7-23e0-40c5-836c-2cce0c063fbc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/queries/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "queries",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "99020c6f-267e-4680-a96b-ba76b4e25e38",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the report query"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "701d40d8-9b73-40ef-9eae-b905e0925ebf",
+                      "name": "A Report Query is a SQL query run against the Reporting Database\nfeature of Kolide.\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/queries/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "queries",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"osquery_sql\": \"<string>\",\n  \"result_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-701d40d8-9b73-40ef-9eae-b905e0925ebf"
+                    },
+                    {
+                      "id": "3cf40651-9c0d-4898-adad-656732a94a55",
+                      "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/queries/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "queries",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-3cf40651-9c0d-4898-adad-656732a94a55"
+                    },
+                    {
+                      "id": "a9d8c0a5-5659-4030-ac59-a0817dfa7c5a",
+                      "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Specify the API version to be used",
+                            "key": "x-kolide-api-version",
+                            "value": "2026-04-07"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reporting/queries/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reporting",
+                            "queries",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:00:12.000Z",
+                      "updatedAt": "2026-10-22T02:00:12.000Z",
+                      "uid": "35240-a9d8c0a5-5659-4030-ac59-a0817dfa7c5a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-891842b7-23e0-40c5-836c-2cce0c063fbc"
+                }
+              ],
+              "id": "298ae8f9-7813-4ece-b02a-eb303e104f12",
+              "createdAt": "2026-10-22T02:00:12.000Z",
+              "updatedAt": "2026-10-22T02:00:12.000Z",
+              "uid": "35240-298ae8f9-7813-4ece-b02a-eb303e104f12"
+            },
+            {
+              "name": "Fetch a list of Report queries",
+              "id": "96cbfaa3-3ebc-4066-8481-95758cf3fa99",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Specify the API version to be used",
                     "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
+                    "value": "2026-04-07"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"name\": \"string\",\n  \"category\": \"string\",\n  \"description\": \"string\",\n  \"column_names\": [\n    4813,\n    1374\n  ],\n  \"searchable_fields\": [\n    1322,\n    2125\n  ],\n  \"documentation_url\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "120253e7-d927-44b2-af44-b2f1ecc377a7",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "reporting",
-                    "tables",
-                    ":name"
-                  ],
+                  "raw": "{{baseUrl}}/reporting/queries?cursor=&per_page=25",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) The name of the reporting table"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bf17cf51-553c-465e-83ea-00e7aedaec0d",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "tables",
-                    ":name"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "name",
-                      "description": "(Required) The name of the reporting table"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a07b47ca-c870-47ad-8d5d-a0e556784caf",
-          "name": "Fetch a list of Report query results",
-          "request": {
-            "name": "Fetch a list of Report query results",
-            "description": {},
-            "url": {
-              "path": [
-                "reporting",
-                "queries",
-                ":queryId",
-                "results"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "queryId",
-                  "description": "(Required) The query ID of the report query result"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "82e2d653-76fe-4b5b-8270-befb9acd678a",
-              "name": "A paginated collection of Report query results",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries",
-                    ":queryId",
-                    "results"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queryId",
-                      "description": "(Required) The query ID of the report query result"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/results?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "34166163-0ff1-4690-b12a-f90b0aa40142",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries",
-                    ":queryId",
-                    "results"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queryId",
-                      "description": "(Required) The query ID of the report query result"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "181f9d86-c578-443f-8da6-06ed6c5d76f4",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries",
-                    ":queryId",
-                    "results"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "queryId",
-                      "description": "(Required) The query ID of the report query result"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0f81c0f9-fc6e-4c5c-b07a-4fd4835d4a95",
-          "name": "Fetch a list of Report queries",
-          "request": {
-            "name": "Fetch a list of Report queries",
-            "description": {},
-            "url": {
-              "path": [
-                "reporting",
-                "queries"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "omit_results",
-                  "value": "<string>",
-                  "description": "In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field.\nHowever, this can lead to timeouts when retrieving queries with large resultsets.\n\nTo improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint (see below).\n\n> Note: The results field is deprecated and will be removed in a future API version.\n\nFor paginated access to query results, use the dedicated endpoint:\n\n```\n/reporting/queries/{queryId}/results\n```\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "cursor",
-                  "value": "",
-                  "description": "Specify the cursor to begin returning results from"
-                },
-                {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "25",
-                  "description": "Specify the number of records to return in each response."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3fc9d4a5-99bf-4f1a-8d01-6d6fe724aa59",
-              "name": "A paginated collection of Report queries",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "reporting",
                     "queries"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
-                      "key": "omit_results",
-                      "value": "<string>"
-                    },
-                    {
+                      "description": "Specify the cursor to begin returning results from",
                       "key": "cursor",
                       "value": ""
                     },
                     {
+                      "description": "Specify the number of records to return in each response.",
                       "key": "per_page",
                       "value": "25"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ]
                 }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": 1158,\n      \"name\": \"string\",\n      \"osquery_sql\": \"string\",\n      \"result_count\": 2379,\n      \"created_at\": \"1948-10-04T21:01:26.866Z\"\n    },\n    {\n      \"id\": 3729,\n      \"name\": \"string\",\n      \"osquery_sql\": \"string\",\n      \"result_count\": 2199,\n      \"created_at\": \"2020-10-10T23:12:54.995Z\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"https://api.kolide.com/queries?per_page=10&cursor=Imyw\",\n    \"current_cursor\": \"Miwy\",\n    \"next_cursor\": \"NCw0\",\n    \"count\": 10\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9103217d-65e1-443a-821f-f77ce7e6f67e",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              },
+              "response": [
+                {
+                  "id": "725881f5-bcc4-4be4-9fed-8f1513a4aa66",
+                  "name": "A paginated collection of Report queries",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/queries?cursor=&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "queries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "omit_results",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"osquery_sql\": \"<string>\",\n      \"result_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"osquery_sql\": \"<string>\",\n      \"result_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"pagination\": {\n    \"next\": \"<uri>\",\n    \"current_cursor\": \"<string>\",\n    \"next_cursor\": \"<string>\",\n    \"count\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-725881f5-bcc4-4be4-9fed-8f1513a4aa66"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cc998d9c-a4ab-4722-a5a9-afaafd95343f",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "5f30cba8-d4ee-49ff-9901-d4eae6f3f692",
+                  "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/queries?cursor=&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "queries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "omit_results",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "cursor",
-                      "value": ""
-                    },
-                    {
-                      "key": "per_page",
-                      "value": "25"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-5f30cba8-d4ee-49ff-9901-d4eae6f3f692"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "e9d1079e-0423-4bd2-8775-82ec495936e4",
+                  "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Specify the API version to be used",
+                        "key": "x-kolide-api-version",
+                        "value": "2026-04-07"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reporting/queries?cursor=&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reporting",
+                        "queries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Specify the cursor to begin returning results from",
+                          "key": "cursor",
+                          "value": ""
+                        },
+                        {
+                          "description": "Specify the number of records to return in each response.",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:00:12.000Z",
+                  "updatedAt": "2026-10-22T02:00:12.000Z",
+                  "uid": "35240-e9d1079e-0423-4bd2-8775-82ec495936e4"
                 }
               ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:00:12.000Z",
+              "updatedAt": "2026-10-22T02:00:12.000Z",
+              "uid": "35240-96cbfaa3-3ebc-4066-8481-95758cf3fa99"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "57b04f6d-d7de-4f8c-9fd1-f8d6c4a77ee0",
-          "name": "Fetch information for a specific Report query",
-          "request": {
-            "name": "Fetch information for a specific Report query",
-            "description": {},
-            "url": {
-              "path": [
-                "reporting",
-                "queries",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "omit_results",
-                  "value": "<string>",
-                  "description": "In version `2023-05-26` of the API, query results are included by default in the reporting query `results` field.\nHowever, this can lead to timeouts when retrieving queries with large resultsets.\n\nTo improve performance and prevent timeouts, exclude results by adding the query parameter: `omit_results=true` and fetch results from the paginated endpoint (see below).\n\n> Note: The results field is deprecated and will be removed in a future API version.\n\nFor paginated access to query results, use the dedicated endpoint:\n\n```\n/reporting/queries/{queryId}/results\n```\n"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The ID of the report query"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Specify the API version to be used",
-                "key": "x-kolide-api-version",
-                "value": "2023-05-26"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8f841343-a540-4556-9e04-b38102b78915",
-              "name": "A Report Query is a SQL query run against the Reporting Database\nfeature of Kolide.\n",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "omit_results",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the report query"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": 8815,\n  \"name\": \"string\",\n  \"osquery_sql\": \"string\",\n  \"result_count\": 6088,\n  \"created_at\": \"1997-02-01T04:16:50.533Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1b47635a-c512-4c50-81c6-8caf1062bafa",
-              "name": "An 'unauthorized' response may occur for features restricted by or unavailable to your organization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "omit_results",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the report query"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"This feature has been disabled by your organization\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c63f4aaf-f8df-49bd-a0ab-5880544ef98b",
-              "name": "A 'forbidden' response may occur if the API key does not have necessary permissions to perform certain actions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "reporting",
-                    "queries",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "omit_results",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The ID of the report query"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Specify the API version to be used",
-                    "key": "x-kolide-api-version",
-                    "value": "2023-05-26"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The API key used is not authorized to perform this action\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d59d77ef-91b0-4bf1-afb7-96512cda5096",
+          "createdAt": "2026-10-22T02:00:12.000Z",
+          "updatedAt": "2026-10-22T02:00:12.000Z",
+          "uid": "35240-d59d77ef-91b0-4bf1-afb7-96512cda5096"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.kolide.com/",
-      "key": "baseUrl"
+      "id": "d5f30dd4-697f-4311-8d53-c1095832a38a",
+      "createdAt": "2026-10-22T02:00:12.000Z",
+      "updatedAt": "2026-10-22T02:00:12.000Z",
+      "uid": "35240-d5f30dd4-697f-4311-8d53-c1095832a38a"
     }
   ],
   "auth": {
@@ -1511,17 +1484,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "9f01e08e-5702-4b0e-a7b3-dd6060ba52da",
-    "name": "K2 Admin Users Reporting API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.kolide.com/"
     }
-  }
+  ]
 }
