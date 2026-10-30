@@ -64,47 +64,155 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kolide is a device trust and endpoint security platform, now part of 1Password Extended
-Access Management. It enforces Zero Trust access by blocking non-compliant devices from
-authenticating into corporate applications through Okta, Google Workspace or Microsoft
-Entra, runs continuous security and compliance checks across Linux, macOS, Windows, iOS
-and Android endpoints, and maintains a fleet-wide device inventory built on osquery.
+Kolide is a device trust and endpoint security platform, now part of 1Password Extended Access Management. It enforces Zero Trust access by blocking non-compliant devices from authenticating into corporate applications through Okta, Google Workspace or Microsoft Entra, runs continuous security and compliance checks across Linux, macOS, Windows, iOS and Android endpoints, and maintains fleet-wide device inventory built on thousands of osquery-sourced data points. Its distinguishing philosophy is user-first remediation: rather than silently denying access, Kolide educates the end user about the specific problem on their device and guides them through fixing it themselves, cutting helpdesk load. The public developer surface is the K2 API at api.kolide.com — 65 REST operations across devices, people, groups, security checks, compliance issues, live osquery campaigns, approval queues, reporting tables and audit logs — published as OpenAPI 3.0 on dated version lines, with HMAC-signed webhooks, an OpenID Shared Signals Framework (CAEP) event stream, and a first-party MCP server.
 
-Website: https://kolide.com — Developer docs: https://www.kolide.com/docs/developers
+**Areas:** Company · B2B · Security · Device Trust · Endpoint Security · Zero Trust · Compliance · Identity · osquery · Device Management
 
-## API
+## Kolide on APIs.io
 
-The **Kolide K2 API** at `https://api.kolide.com` — 65 REST operations across 52 paths,
-published as OpenAPI 3.0 on two dated version lines (`2026-04-07` current, `2023-05-26`
-still supported, pinned with `X-Kolide-Api-Version`). Bearer API key auth (`k2sk_v1_`
-prefix); write access is Kolide Max only and granted explicitly per key.
+Everything profiled for Kolide is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kolide/](https://apis.io/providers/kolide/)** — or go straight to one of the APIs or properties below.
 
-## Artifacts
+### APIs (17)
 
-| Dir | What |
+- [Kolide Admin Users API](https://apis.io/apis/kolide/kolide-admin-users-api/) — The Admin Users API from Kolide — 2 operation(s) for admin users.
+- [Kolide Audit Logs API](https://apis.io/apis/kolide/kolide-audit-logs-api/) — The Audit Logs API from Kolide — 2 operation(s) for audit logs.
+- [Kolide Auth Logs API](https://apis.io/apis/kolide/kolide-auth-logs-api/) — The Auth Logs API from Kolide — 2 operation(s) for auth logs.
+- [Kolide Checks API](https://apis.io/apis/kolide/kolide-checks-api/) — The Checks API from Kolide — 5 operation(s) for checks.
+- [Kolide Custom Check Drafts API](https://apis.io/apis/kolide/kolide-custom-check-drafts-api/) — The Custom Check Drafts API from Kolide — 2 operation(s) for custom check drafts.
+- [Kolide Deprovisioned People API](https://apis.io/apis/kolide/kolide-deprovisioned-people-api/) — The Deprovisioned People API from Kolide — 1 operation(s) for deprovisioned people.
+- [Kolide Device Groups API](https://apis.io/apis/kolide/kolide-device-groups-api/) — The Device Groups API from Kolide — 5 operation(s) for device groups.
+- [Kolide Devices API](https://apis.io/apis/kolide/kolide-devices-api/) — The Devices API from Kolide — 7 operation(s) for devices.
+- [Kolide Exemption Requests API](https://apis.io/apis/kolide/kolide-exemption-requests-api/) — The Exemption Requests API from Kolide — 2 operation(s) for exemption requests.
+- [Kolide Issues API](https://apis.io/apis/kolide/kolide-issues-api/) — The Issues API from Kolide — 2 operation(s) for issues.
+- [Kolide Live Query Campaigns API](https://apis.io/apis/kolide/kolide-live-query-campaigns-api/) — The Live Query Campaigns API from Kolide — 3 operation(s) for live query campaigns.
+- [Kolide Packages API](https://apis.io/apis/kolide/kolide-packages-api/) — The Packages API from Kolide — 2 operation(s) for packages.
+- [Kolide People API](https://apis.io/apis/kolide/kolide-people-api/) — The People API from Kolide — 5 operation(s) for people.
+- [Kolide Person Groups API](https://apis.io/apis/kolide/kolide-person-groups-api/) — The Person Groups API from Kolide — 3 operation(s) for person groups.
+- [Kolide Registration Requests API](https://apis.io/apis/kolide/kolide-registration-requests-api/) — The Registration Requests API from Kolide — 2 operation(s) for registration requests.
+- [Kolide Reporting API](https://apis.io/apis/kolide/kolide-reporting-api/) — The Reporting API from Kolide — 6 operation(s) for reporting.
+- [Kolide Whoami API](https://apis.io/apis/kolide/kolide-whoami-api/) — The Whoami API from Kolide — 1 operation(s) for whoami.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Kolide Events](https://apis.io/asyncapis/kolide/kolide-events/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [1Password Device Trust (Kolide K2) MCP Server](https://apis.io/servers/kolide/kolide/)
+
+#### Collections (17)
+
+Postman and Open Collection request collections.
+
+- [K2 Admin Users API](https://apis.io/collections/kolide/open-kolide-admin-users-api/)
+- [K2 Admin Users Audit Logs API](https://apis.io/collections/kolide/open-kolide-audit-logs-api/)
+- [K2 Admin Users Auth Logs API](https://apis.io/collections/kolide/open-kolide-auth-logs-api/)
+- [K2 Admin Users Checks API](https://apis.io/collections/kolide/open-kolide-checks-api/)
+- [K2 Admin Users Custom Check Drafts API](https://apis.io/collections/kolide/open-kolide-custom-check-drafts-api/)
+- [K2 Admin Users Deprovisioned People API](https://apis.io/collections/kolide/open-kolide-deprovisioned-people-api/)
+- [K2 Admin Users Device Groups API](https://apis.io/collections/kolide/open-kolide-device-groups-api/)
+- [K2 Admin Users Devices API](https://apis.io/collections/kolide/open-kolide-devices-api/)
+- [K2 Admin Users Exemption Requests API](https://apis.io/collections/kolide/open-kolide-exemption-requests-api/)
+- [K2 Admin Users Issues API](https://apis.io/collections/kolide/open-kolide-issues-api/)
+- [K2 Admin Users Live Query Campaigns API](https://apis.io/collections/kolide/open-kolide-live-query-campaigns-api/)
+- [K2 Admin Users Packages API](https://apis.io/collections/kolide/open-kolide-packages-api/)
+- [K2 Admin Users People API](https://apis.io/collections/kolide/open-kolide-people-api/)
+- [K2 Admin Users Person Groups API](https://apis.io/collections/kolide/open-kolide-person-groups-api/)
+- [K2 Admin Users Registration Requests API](https://apis.io/collections/kolide/open-kolide-registration-requests-api/)
+- [K2 Admin Users Reporting API](https://apis.io/collections/kolide/open-kolide-reporting-api/)
+- [K2 Admin Users Whoami API](https://apis.io/collections/kolide/open-kolide-whoami-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Kolide K2 Overlay](https://apis.io/overlays/kolide/kolide-k2-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Kolide Authentication](https://apis.io/security/kolide/kolide-authentication/)
+- [Kolide Domain Security](https://apis.io/security/kolide/kolide-domain-security/)
+- [Kolide Trust Center](https://apis.io/security/kolide/kolide-trust-center/)
+- [Kolide Vulnerability Disclosure](https://apis.io/security/kolide/kolide-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://kolide.com)
+- [Documentation](https://www.kolide.com/docs)
+- [Getting started](https://www.kolide.com/docs/developers/usecases)
+- [API reference](https://kolideapi.readme.io/reference)
+- [Pricing](https://www.kolide.com/pricing)
+- [Sign up](https://app.kolide.com/signin)
+- [Support](https://www.kolide.com/docs/about-kolide/support)
+- [Blog](https://www.kolide.com/blog)
+- [Terms of service](https://www.kolide.com/legal/terms)
+- [Privacy policy](https://www.kolide.com/legal/privacy)
+- [GitHub](https://github.com/kolide)
+- [Status](https://status.1password.com)
+
+## API Evangelist rating
+
+**Kin Score 56.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| `openapi/` | Both dated K2 specs, fetched verbatim from kolide.com/docs/openapi |
-| `overlays/` | Overlay 1.0.0 of our enhancements over the 2026-04-07 spec |
-| `mcp/` | The first-party MCP server (github.com/kolide/device-trust-mcp-server), ~55 real tools |
-| `asyncapi/` | Webhook catalog (12 events, HMAC-SHA256) + OpenID SSF/CAEP stream contract |
-| `well-known/` | Live `/.well-known/ssf-configuration`; everything else 404 |
-| `authentication/` | Bearer key model, token shape, per-key write permissions |
-| `conventions/` | Cursor pagination, query grammar, rate limits, versioning |
-| `errors/` | Error catalog derived from the spec + docs |
-| `lifecycle/` | Dated version policy, status page, changelog links |
-| `changelog/` | Structured recent API changelog entries |
-| `conformance/` | SSF 1.0, CAEP, RFC 8935/8936, SOC 2, GDPR — and what is not claimed |
-| `data-model/` | Entity graph derived from the 44 schemas |
-| `packages/` | Registry findings — no first-party API client SDK exists |
-| `security/` | Domain security probe, HackerOne VDP, trust posture |
-| `skills/` | Four packaged Agent Skills for the marquee flows |
-| `llms/` | Generated llms.txt (Kolide publishes none) |
+| Discoverability | 73.2 |
+| Contract quality | 57.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 52.6 |
+| Developer ergonomics | 56.5 |
+| Access clarity | 60.5 |
 
-## Notable gaps
+**Agent readiness 28.4** — agent-aware
 
-No first-party API client SDK in any language; no `security.txt`; no RFC 9457 error
-envelope or error-code registry; no idempotency keys; no OAuth/OIDC or scopes; no
-published deprecation policy or Sunset headers; no `operationId` on any of the 65
-operations; no AsyncAPI document despite two real event surfaces.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | — |
 
-Backed by: matrix-partners
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kolide/](https://apis.io/providers/kolide/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kolide: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kolide/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
